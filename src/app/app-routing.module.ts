@@ -6,9 +6,13 @@ import { RulesComponent } from './rules/rules.component';
 import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
-  { path: 'intro', component: IntroComponent, data: {animation: 'Intro'} },
-  { path: 'rules', component: RulesComponent, data: {animation: 'Rules'} },
-  { path: 'history', component: HistoryComponent, data: {animation: 'History'} },
+  { path: 'intro', component: IntroComponent, data: { animation: 'intro' } },
+  { path: 'rules', component: RulesComponent, data: { animation: 'rules' } },
+  {
+    path: 'history',
+    component: HistoryComponent,
+    data: { animation: 'History' }
+  },
   { path: '', redirectTo: 'intro', pathMatch: 'full' }
 ];
 
