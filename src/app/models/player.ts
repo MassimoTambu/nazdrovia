@@ -3,11 +3,13 @@ export class Player {
     private readonly id: number,
     private readonly name: string,
     private readonly lastName: string,
-    private readonly image: string,
     private readonly nasScore: number,
     private readonly penalities: number,
-    private readonly isOut: boolean
-  ) {}
+    private readonly isOut: boolean = false,
+    private readonly image?: string,
+  ) {
+    // if image is null ? set default icon
+  }
 
   get Name() {
     return this.name;
