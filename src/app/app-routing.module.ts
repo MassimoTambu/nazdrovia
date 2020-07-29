@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+import { RulesComponent } from './pages/rules/rules.component';
 
-import { IntroComponent } from './intro/intro.component';
-import { RulesComponent } from './rules/rules.component';
-import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
-  { path: 'intro', component: IntroComponent, data: { animation: 'intro' } },
+  { path: 'home', component: HomeComponent, data: { animation: 'home' } },
   { path: 'rules', component: RulesComponent, data: { animation: 'rules' } },
-  {
-    path: 'history',
-    component: HistoryComponent,
-    data: { animation: 'History' }
-  },
-  { path: '', redirectTo: 'intro', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

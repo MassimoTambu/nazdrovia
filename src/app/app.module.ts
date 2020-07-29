@@ -5,18 +5,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './app.component';
-import { RulesComponent } from './rules/rules.component';
-import { IntroComponent } from './intro/intro.component';
-import { HistoryComponent } from './history/history.component';
-import { HeaderComponent } from './header/header.component';
+import { RulesComponent } from './pages/rules/rules.component';
+import { HeaderComponent } from './pages/header/header.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ArchivementsComponent } from './pages/archivements/archivements.component';
+import { PenalizedComponent } from './pages/penalized/penalized.component';
+import { CreditsComponent } from './pages/credits/credits.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RulesComponent,
-    IntroComponent,
-    HistoryComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    ArchivementsComponent,
+    PenalizedComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserModule,
