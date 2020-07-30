@@ -8,7 +8,7 @@ export interface Pages {
 export const pages: Pages[] = [
   { title: "Regole", route: Routes.Rules },
   { title: "Obbiettivi", route: Routes.Achievements },
-  { title: "Penalizzati", route: Routes.Penalized },
+  { title: "Giocatori", route: Routes.Players },
   { title: "Cocktails Ufficiali", route: Routes.OfficialCocktails },
   { title: "Crediti", route: Routes.Credits },
   { title: "Altri giochi", route: Routes.OtherGames },

@@ -4,6 +4,6 @@ export class Routes {
   static readonly Credits = "credits";
   static readonly OfficialCocktails = "official-cocktails";
   static readonly OtherGames = "other-games";
-  static readonly Penalized = "penalized";
+  static readonly Players = "players";
   static readonly Rules = "rules";
 }

@@ -10,7 +10,8 @@ import { FooterComponent } from "./pages/footer/footer.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { OfficialCocktailsComponent } from "./pages/official-cocktails/official-cocktails.component";
 import { OtherGamesComponent } from "./pages/other-games/other-games.component";
-import { PenalizedComponent } from "./pages/penalized/penalized.component";
+import { PlayersComponent } from "./pages/players/players.component";
+import { PlayerComponent } from "./pages/players/player/player.component";
 import { RulesComponent } from "./pages/rules/rules.component";
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RulesComponent } from "./pages/rules/rules.component";
     RulesComponent,
     HomeComponent,
     AchievementsComponent,
-    PenalizedComponent,
+    PlayersComponent,
+    PlayerComponent,
     CreditsComponent,
     OtherGamesComponent,
     OfficialCocktailsComponent,
