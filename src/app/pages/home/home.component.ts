@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Pages } from "../../models/pages";
+import { Pages, pages } from "../../models/pages";
+import { Router } from "@angular/router";
+import { Routes } from "src/app/models/routes";
 
 @Component({
   selector: "app-home",
@@ -7,14 +9,9 @@ import { Pages } from "../../models/pages";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  pages: Pages[] = [
-    { title: "Regole" },
-    { title: "Obbiettivi" },
-    { title: "Penalizzati" },
-    { title: "Cocktails Ufficiali" },
-    { title: "Crediti" },
-    { title: "Altri giochi" },
-  ];
+  constructor(private route: Router) {}
+
+  pages: Pages[] = pages;
 
   gridCols: number;
   gridRowHeight: string;
@@ -31,5 +28,9 @@ export class HomeComponent implements OnInit {
       this.gridCols = 2;
       this.gridRowHeight = `${(window.screen.height * 20) / 100}px`;
     }
+  }
+
+  public navigateToPage(route: string): void {
+    this.route.navigate([route]);
   }
 }
