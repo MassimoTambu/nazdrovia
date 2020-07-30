@@ -4,7 +4,7 @@ import { Pages } from "../../models/pages";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+  styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
   pages: Pages[] = [
@@ -13,13 +13,13 @@ export class HomeComponent implements OnInit {
     { title: "Penalizzati" },
     { title: "Cocktails Ufficiali" },
     { title: "Crediti" },
+    { title: "Altri giochi" },
   ];
 
   gridCols: number;
   gridRowHeight: string;
 
   ngOnInit(): void {
-    this.styleCard();
     this.styleGrid();
   }
 
@@ -31,12 +31,5 @@ export class HomeComponent implements OnInit {
       this.gridCols = 2;
       this.gridRowHeight = `${(window.screen.height * 20) / 100}px`;
     }
-  }
-
-  public styleCard(): object {
-    return {
-      width: "98%",
-      height: "90%",
-    };
   }
 }

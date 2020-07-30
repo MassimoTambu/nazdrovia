@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-official-cocktails',
-  templateUrl: './official-cocktails.component.html',
-  styleUrls: ['./official-cocktails.component.css']
+  selector: "app-official-cocktails",
+  templateUrl: "./official-cocktails.component.html",
+  styleUrls: ["./official-cocktails.component.scss"],
 })
 export class OfficialCocktailsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

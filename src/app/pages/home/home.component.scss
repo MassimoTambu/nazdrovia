@@ -1,0 +1,13 @@
+.title {
+  padding: 30px 0 20px 0;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+mat-card {
+  width: 95%;
+  height: 90%;
+  > .card-title {
+    font-size: 20px;
+  }
+}

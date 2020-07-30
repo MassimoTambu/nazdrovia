@@ -1,7 +1,10 @@
-<mat-grid-list [cols]="gridCols" [rowHeight]="gridRowHeight">
-  <mat-grid-tile *ngFor="let page of pages">
-    <mat-card [ngStyle]="styleCard()">
-      {{ page.title }}
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+<div>
+  <h1 class="title">Nazdrovia</h1>
+  <mat-grid-list [cols]="gridCols" [rowHeight]="gridRowHeight">
+    <mat-grid-tile *ngFor="let page of pages">
+      <mat-card>
+        <span class="card-title">{{ page.title }}</span>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
