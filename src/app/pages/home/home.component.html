@@ -1,1 +1,7 @@
-<p>home works!</p>
+<mat-grid-list [cols]="gridCols" [rowHeight]="gridRowHeight">
+  <mat-grid-tile *ngFor="let page of pages">
+    <mat-card [ngStyle]="styleCard()">
+      {{ page.title }}
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

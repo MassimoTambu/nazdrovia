@@ -1,32 +1,35 @@
-import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { AppRoutingModule } from "./app-routing.module";
+import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatButtonModule } from "@angular/material/button";
-
+import { AppMaterialModule } from "./app-material.module";
+import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { RulesComponent } from "./pages/rules/rules.component";
-import { HeaderComponent } from "./pages/header/header.component";
-import { HomeComponent } from "./pages/home/home.component";
 import { AchievementsComponent } from "./pages/achievements/achievements.component";
-import { PenalizedComponent } from "./pages/penalized/penalized.component";
 import { CreditsComponent } from "./pages/credits/credits.component";
+import { FooterComponent } from "./pages/footer/footer.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { OfficialCocktailsComponent } from "./pages/official-cocktails/official-cocktails.component";
+import { OtherGamesComponent } from "./pages/other-games/other-games.component";
+import { PenalizedComponent } from "./pages/penalized/penalized.component";
+import { RulesComponent } from "./pages/rules/rules.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     RulesComponent,
-    HeaderComponent,
     HomeComponent,
     AchievementsComponent,
     PenalizedComponent,
     CreditsComponent,
+    OtherGamesComponent,
+    OfficialCocktailsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AppMaterialModule,
     BrowserAnimationsModule,
-    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
