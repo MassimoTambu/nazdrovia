@@ -1,5 +1,15 @@
 .rule-container {
   padding: 1.5vh 0;
+  > .rule-category {
+    color: whitesmoke;
+    font-size: 3vh;
+    text-align: start;
+  }
+  > .rule-prologue, .rule-epilogue {
+    color: whitesmoke;
+    font-size: 1.5vh;
+    text-align: start;
+  }
   > .rule {
     border-radius: 25px;
     > .rule-title {
@@ -16,4 +26,10 @@
       text-align: center;
     }
   }
+}
+.rule-beta-advisor {
+  padding: 1vh 0;
+  color: whitesmoke;
+  font-size: 1.2vh;
+  text-align: start;
 }
