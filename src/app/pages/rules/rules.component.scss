@@ -1,0 +1,19 @@
+.rule-container {
+  padding: 1.5vh 0;
+  > .rule {
+    border-radius: 25px;
+    > .rule-title {
+      font-size: 2vh;
+    }
+    > .rule-number {
+      position: absolute;
+      top: 0;
+      font-size: 2.5vh;
+    }
+    > .rule-desc {
+      padding: 1.5vh 2vh 1vh 2vh;
+      font-size: 1.5vh;
+      text-align: center;
+    }
+  }
+}

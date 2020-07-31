@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, AfterViewInit, ElementRef } from "@angular/core";
 import { Router, RouterOutlet } from "@angular/router";
 import { Animation } from "./animations";
 
@@ -8,14 +8,18 @@ import { Animation } from "./animations";
   styleUrls: ["./app.component.scss"],
   animations: [Animation],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = "Nazdrovia";
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private elementRef: ElementRef) {}
 
   prepareRoute(outlet: RouterOutlet) {
     return (
       outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
     );
+  }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = "black";
   }
 }

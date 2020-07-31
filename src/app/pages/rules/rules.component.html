@@ -1,42 +1,6 @@
-<p>
-  0) Chi non ha il bere alcolico (<0%) non può chiamare. Gli analcolici non sono
-  considerati alcolici. 1) Chi lo chiama deve avere almeno metà della quantità
-  alcolica dell'avversario. Chi ce l'ha pieno deve berlo TUTTO. 2) ‎La persona
-  beve se è riconosciuto il possesso del bicchiere, quindi dopo averlo
-  sorseggiato. 3) ‎Assaggiare un sorso del bicchiere di un altro non è
-  considerato come proprio. 4) ‎Deve bere chiunque ha sentito la parola. 5) ‎Il
-  drink va bevuto entro 1 minuto. Se il concorrente non sa le regole deve berlo
-  entro 2 minuti. 6) Limite di 1 chiamata consecutiva a testa; per poter
-  richiamare bisogna aspettare prima una chiamata da un'altra persona. 7) Chi ha
-  ricevuto e chi ha detto il nas non può chiamarlo finché non ha finito il
-  bicchiere e non ne ha un altro pieno. Se viene richiamato non è valido, è
-  accettato come segno di brindisi. 8) CAPITAN RACHETE! ‎GLI EXTRACOMUNITARI
-  VENGONO DISCRIMINATI NEL GIOCO. 9) HIGH NOON! ‎QUESTE REGOLE NON VALGONO COL
-  VINELLO DEL CINESE. 10) DURO A MORIRE! SE HAI SBOCCATO E DOPO FAI UN NAS ALLA
-  GOCCIA DIVENTI IL *TACCHINO*. LE REGOLE 1,2,3,6 NON VALGONO. 11) OLD TOKYO
-  SANDBLASTER! (Valido solo in presenza di un anziano) SE BEVI DUE BICCHIERI
-  CONTEMPORANEAMENTE DI QUANTITÀ DOPPIA RISPETTO AGLI ALTRI, POI HAI IL DIRITTO
-  DI TRASFORMARE LA PAROLA NAS IN UN'ALTRA PAROLA A TUA SCELTA CHE DEVE ESSERE
-  CONFERMATA DA UNA DEGLI ALTRI TRE SAGGI. SE QUALCUNO DICE QUELLA PAROLA VALE
-  COME UN NAS (IL CHIAMANTE NON PUÒ DIRE IL NAS E IL SAGGIO NON PUÒ ANCH'ESSO
-  DIRE IL NAS). PENALITÀ: 3 gialli, al terzo non sei più parte del gruppo. Le
-  penalità si possono prendere: 1) Se non finisci il tuo quantitativo alcolico
-  prendi 1 penalità. 2) ‎Se chi l'ha chiamata non finisce il suo quantitativo
-  alcolico prende 3 penalità. 3) ‎Chi è esterno alla comunità italiana prendere
-  il doppio della penalità. 4) ‎Se sbocchi mentre stai bevendo non si prende la
-  penalità. 5) Le penalità non si tolgono. 6) ‎Se una persona lo chiama che non
-  ha la base alcolica (e non scherza) prende 1 penalità. Però se gli altri
-  bevono il loro drink pensando sia un nas vero, chi la chiamato prende 3
-  penalità. CHI HA 3 PENALITÀ NON PUÒ PARTECIPARE AL GIOCO E ALLE SUCCESSIVE
-  COMPETIZIONI ALCOLICHE. SACRIFICIO 1) Un secondo compare può chiamare il
-  sacrificio a chiunque del gruppo il quale si trovi in difficoltà. Colui a cui
-  viene chiamato può rifiutare o accettare il sacrificio. Chi chiama il
-  sacrificio deve bere tutto in 10 secondi. NIENTE SACRIFICIO DEL SACRIFICIO. LA
-  BEVUTA Non puoi smettere di bere, si può bere lentamente ma si deve bere di
-  continuo. ⅓ di bicchiere da 0,5l di birra equivale a 1 short liscio di
-  superalcolico. 1 drink qualunque equivale a 1 pinta di birra 0,5l che equivale
-  a 1 calice di vino. 1 short equivale ad ⅓ di un drink. Futuri cambiamenti
-  Delle regole vengono effettuate in riunione Privata dagli anziani (Gio, Ava,
-  Massi) Penalizzati: 2 Francia Willy Zack Andi Casa Ale Nicolini 2 Vanni
-  Versione:1.5.6 | Open Beta.
-</p>
+<app-page-title [title]="pageTitle"></app-page-title>
+<div>
+  <div *ngFor="let rule of mainRules" class="rule-container">
+    <mat-card [innerHTML]="generateInnerHTML(rule)" class="rule"></mat-card>
+  </div>
+</div>

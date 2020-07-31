@@ -1,6 +1,6 @@
 import { Rule, RuleType } from "../models/rule";
 
-const rules: Rule[] = [
+export const rules: Rule[] = [
   {
     id: 0,
     number: 0,
