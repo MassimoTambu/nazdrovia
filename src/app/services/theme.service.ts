@@ -58,6 +58,17 @@ export class ThemeService {
     }
   }
 
+  getThemeWarnColor(): string {
+    for (const key in THEMES) {
+      if (THEMES.hasOwnProperty(key)) {
+        const t = THEMES[key];
+        if (t.className === this.themeSelected.value) {
+          return t.warn.primaryColor;
+        }
+      }
+    }
+  }
+
   getThemeForegroundColor(): string {
     for (const key in THEMES) {
       if (THEMES.hasOwnProperty(key)) {

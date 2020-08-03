@@ -20,6 +20,7 @@ export class RulesComponent implements OnInit, OnDestroy {
   cssBoxShadow: string;
   cssColor: string;
   cssNumberBackgroundColor: string;
+  cssCategoryFGColor: string;
 
   pageTitle = pages.find((r) => r.route === Routes.Rules).title;
 
@@ -32,7 +33,7 @@ export class RulesComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.tService.themeSelected.subscribe((t) => {
         this.cssColor = this.tService.getFontColor();
-
+        this.cssCategoryFGColor = this.tService.getThemeWarnColor();
         const PColor = this.tService.getThemePColor();
         const AColor = this.tService.getThemeAColor();
         const shadowSize = "25px 25px 0px 0px";

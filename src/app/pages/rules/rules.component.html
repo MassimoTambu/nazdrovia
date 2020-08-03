@@ -1,7 +1,19 @@
 <app-page-title [title]="pageTitle"></app-page-title>
 <div *ngFor="let rulesContainer of allRules" class="rule-container">
   <div class="rule-category" [style.color]="cssColor">
-    {{ rulesContainer.title }}
+    <span
+      [style.backgroundColor]="cssCategoryFGColor"
+      class="rule-category-title"
+      >{{ rulesContainer.title }}</span
+    >
+    <span
+      [style.backgroundColor]="cssCategoryFGColor"
+      class="rule-category-title-background-extension"
+    ></span>
+    <span
+      [style.backgroundColor]="cssCategoryFGColor"
+      class="rule-category-title-circle"
+    ></span>
   </div>
   <div
     *ngIf="rulesContainer.prologue"

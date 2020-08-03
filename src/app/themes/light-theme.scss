@@ -4,7 +4,7 @@
 // mat-palette accepts $palette-name, main, lighter and darker variants
 $light-theme-primary: mat-palette($mat-blue, 700, 400, 800);
 $light-theme-accent: mat-palette($mat-light-blue, 400, 200, 600);
-$light-theme-warn: mat-palette($mat-deep-orange, A400);
+$light-theme-warn: mat-palette($mat-deep-orange, 500);
 
 // create theme (use mat-dark-theme for themes with dark backgrounds)
 $light-theme: mat-light-theme(
