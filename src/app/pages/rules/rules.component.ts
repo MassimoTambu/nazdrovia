@@ -19,6 +19,7 @@ export class RulesComponent implements OnInit, OnDestroy {
 
   cssBoxShadow: string;
   cssColor: string;
+  cssNumberBackgroundColor: string;
 
   pageTitle = pages.find((r) => r.route === Routes.Rules).title;
 
@@ -32,9 +33,11 @@ export class RulesComponent implements OnInit, OnDestroy {
       this.tService.themeSelected.subscribe((t) => {
         this.cssColor = this.tService.getFontColor();
 
-        const color = this.tService.getThemePColor();
+        const PColor = this.tService.getThemePColor();
+        const AColor = this.tService.getThemeAColor();
         const shadowSize = "25px 25px 0px 0px";
-        this.cssBoxShadow = ` ${shadowSize} ${color}`;
+        this.cssBoxShadow = ` ${shadowSize} ${PColor}`;
+        this.cssNumberBackgroundColor = AColor;
       })
     );
   }
@@ -43,18 +46,21 @@ export class RulesComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  generateInnerHTML(rule: Rule): string {
-    const title =
-      rule.title !== undefined
-        ? `<div class="rule-title">${rule.title}</div>`
-        : "";
+  generateInnerHTML(rule: Rule): any {
     const ruleNumber =
       rule.number !== undefined
-        ? `<div class="rule-number">${rule.number}${
+        ? `<span class="rule-number" style="background-color: ${
+            this.cssNumberBackgroundColor
+          }">${rule.number}${
             +rule.number || rule.number === "0" ? "." : ""
-          }</div>`
+          }</span>`
         : "";
+    const title =
+      rule.title !== undefined
+        ? `<span class="rule-title">${rule.title}</span>`
+        : "";
+    const header = `<div class="rule-head">${ruleNumber}${title}</div>`;
     const desc = `<div class="rule-desc">${rule.description}</div>`;
-    return title + ruleNumber + desc;
+    return header + desc;
   }
 }

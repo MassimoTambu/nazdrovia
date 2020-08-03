@@ -2,26 +2,30 @@
   position: relative;
   padding: 3.5vh 0;
   > .rule-category {
-    color: whitesmoke;
     font-size: 3vh;
     text-align: start;
   }
   > .rule-prologue,
   .rule-epilogue {
     padding-top: 2vh;
-    color: whitesmoke;
     font-size: 1.5vh;
     text-align: start;
   }
   > .rule /* mat-card */ {
     border-radius: 25px;
-    > .rule-title {
-      font-size: 2vh;
-    }
-    > .rule-number {
-      position: absolute;
-      top: 1vh;
-      font-size: 2.5vh;
+    > .rule-head {
+      padding-bottom: 5px;
+      > .rule-number {
+        position: absolute;
+        padding: 5px;
+        border-radius: 15px;
+        top: 0.5vh;
+        left: 0.5vw;
+        font-size: 2.5vh;
+      }
+      > .rule-title {
+        font-size: 2vh;
+      }
     }
     > .rule-desc {
       padding: 1.5vh 2vh 1vh 2vh;

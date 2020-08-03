@@ -11,7 +11,7 @@
   ></div>
   <div *ngFor="let rule of rulesContainer.rules" class="rule-container">
     <mat-card
-      [innerHTML]="generateInnerHTML(rule)"
+      [innerHTML]="generateInnerHTML(rule) | safeHtml"
       [style.boxShadow]="cssBoxShadow"
       class="rule"
     ></mat-card>
