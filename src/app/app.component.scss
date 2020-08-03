@@ -1,13 +1,13 @@
-html,
 body {
-  // min-width: 100vw;
-  min-height: 100vh;
   margin: 0 !important;
   padding: 0 !important;
-  background-color: black;
 }
 
 main {
   text-align: center;
   position: relative;
+}
+
+.container {
+  padding: 0 45px;
 }

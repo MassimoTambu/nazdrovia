@@ -1,15 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/theming";
+// always include only once per project
+@include mat-core();
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "app/themes/light-theme.scss";
+@import "app/themes/dark-theme.scss";
 
-.noSelect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+@mixin for-size($size) {
+  @if $size == small {
+    @media (min-width: 576px) {
+      @content;
+    }
+  } @else if $size == medium {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $size == large {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if $size == very-large {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  line-height: 2vh;
+}
+
+.container {
+  @include for-size(small) {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include for-size(medium) {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include for-size(large) {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include for-size(very-large) {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

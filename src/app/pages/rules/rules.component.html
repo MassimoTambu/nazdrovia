@@ -1,13 +1,20 @@
 <app-page-title [title]="pageTitle"></app-page-title>
 <div *ngFor="let rulesContainer of allRules" class="rule-container">
-  <div class="rule-category">{{ rulesContainer.title }}</div>
+  <div class="rule-category" [style.color]="cssColor">
+    {{ rulesContainer.title }}
+  </div>
   <div
     *ngIf="rulesContainer.prologue"
     [innerHTML]="rulesContainer.prologue"
+    [style.color]="cssColor"
     class="rule-prologue"
   ></div>
   <div *ngFor="let rule of rulesContainer.rules" class="rule-container">
-    <mat-card [innerHTML]="generateInnerHTML(rule)" class="rule"></mat-card>
+    <mat-card
+      [innerHTML]="generateInnerHTML(rule)"
+      [style.boxShadow]="cssBoxShadow"
+      class="rule"
+    ></mat-card>
   </div>
   <div
     *ngIf="rulesContainer.epilogue"

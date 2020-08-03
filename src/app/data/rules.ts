@@ -14,7 +14,7 @@ export const rules: RulesContainer[] = [
         id: 2,
         number: "1",
         description:
-          "<b>Chi lo chiama deve avere almeno metà della quantità alcolica dell'avversario.</b> Chi ce l'ha pieno deve berlo TUTTO",
+          "<b>Chi lo chiama deve avere almeno metà della quantità alcolica dell'avversario.</b> Chi ce l'ha pieno deve berlo TUTTO.",
       },
       {
         id: 3,

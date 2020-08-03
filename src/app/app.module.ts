@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
-import { AppMaterialModule } from "./app.material.module";
 import { AppRoutingModule } from "./app.routing.module";
+import { MaterialModule } from "./material.module";
 import { AchievementsComponent } from "./pages/achievements/achievements.component";
 import { CreditsComponent } from "./pages/credits/credits.component";
 import { FooterComponent } from "./pages/footer/footer.component";
@@ -30,10 +30,10 @@ import { SharedModule } from "./shared/shared.module";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AppMaterialModule,
-    SharedModule,
     BrowserAnimationsModule,
+    MaterialModule,
+    AppRoutingModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

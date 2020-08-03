@@ -1,6 +1,16 @@
-import { Component, AfterViewInit, ElementRef } from "@angular/core";
+import { OverlayContainer } from "@angular/cdk/overlay";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
 import { Router, RouterOutlet } from "@angular/router";
+import { Subscription } from "rxjs";
 import { Animation } from "./animations";
+import { ThemeService } from "./services/theme.service";
 
 @Component({
   selector: "app-root",
@@ -8,10 +18,30 @@ import { Animation } from "./animations";
   styleUrls: ["./app.component.scss"],
   animations: [Animation],
 })
-export class AppComponent implements AfterViewInit {
-  title = "Nazdrovia";
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+  @HostBinding("class") componentCssClass: string;
+  private subs = new Subscription();
 
-  constructor(public router: Router, private elementRef: ElementRef) {}
+  constructor(
+    public router: Router,
+    private elementRef: ElementRef,
+    public tService: ThemeService,
+    public overlayContainer: OverlayContainer
+  ) {}
+
+  ngOnInit() {
+    this.subs.add(
+      this.tService.themeSelected.subscribe((t) => this.onSetTheme(t))
+    );
+  }
+
+  ngAfterViewInit() {
+    this.setBackgroundColor();
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
 
   prepareRoute(outlet: RouterOutlet) {
     return (
@@ -19,7 +49,16 @@ export class AppComponent implements AfterViewInit {
     );
   }
 
-  ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = "black";
+  onSetTheme(theme: string) {
+    this.overlayContainer
+      .getContainerElement()
+      .classList.remove(this.tService.previousTheme);
+    this.overlayContainer.getContainerElement().classList.add(theme);
+    this.componentCssClass = theme;
+    this.setBackgroundColor();
+  }
+
+  setBackgroundColor(): void {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = this.tService.getThemeBackgroundColor();
   }
 }

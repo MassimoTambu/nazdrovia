@@ -1,23 +1,26 @@
 .rule-container {
-  padding: 1.5vh 0;
+  position: relative;
+  padding: 3.5vh 0;
   > .rule-category {
     color: whitesmoke;
     font-size: 3vh;
     text-align: start;
   }
-  > .rule-prologue, .rule-epilogue {
+  > .rule-prologue,
+  .rule-epilogue {
+    padding-top: 2vh;
     color: whitesmoke;
     font-size: 1.5vh;
     text-align: start;
   }
-  > .rule {
+  > .rule /* mat-card */ {
     border-radius: 25px;
     > .rule-title {
       font-size: 2vh;
     }
     > .rule-number {
       position: absolute;
-      top: 0;
+      top: 1vh;
       font-size: 2.5vh;
     }
     > .rule-desc {
