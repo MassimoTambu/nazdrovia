@@ -1,6 +1,5 @@
 <body [style.backgroundColor]="tService.getThemeBackgroundColor()">
   <div class="container">
-    <app-nav-bar></app-nav-bar>
     <main [@routeAnimations]="prepareRoute(outlet)">
       <router-outlet #outlet="outlet"></router-outlet>
     </main>

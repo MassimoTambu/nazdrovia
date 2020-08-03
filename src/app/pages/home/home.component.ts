@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Pages, pages } from "../../models/pages";
-import { Router } from "@angular/router";
-import { Routes } from "src/app/models/routes";
 
 @Component({
   selector: "app-home",
@@ -9,7 +8,7 @@ import { Routes } from "src/app/models/routes";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  constructor(private route: Router) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   pages: Pages[] = pages;
 
@@ -31,6 +30,6 @@ export class HomeComponent implements OnInit {
   }
 
   public navigateToPage(route: string): void {
-    this.route.navigate([route]);
+    this.router.navigate([route], { relativeTo: this.activatedRoute });
   }
 }

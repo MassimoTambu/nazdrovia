@@ -13,18 +13,23 @@ const ROUTES: Route[] = [
   {
     path: Routes.Home,
     component: HomeComponent,
-    // data: { animation: "home" },
   },
   {
-    path: Routes.Rules,
-    component: RulesComponent,
-    // data: { animation: "rules" },
+    path: Routes.Home,
+    // data: { animation: "home" },
+    children: [
+      {
+        path: Routes.Rules,
+        component: RulesComponent,
+        // data: { animation: "rules" },
+      },
+      { path: Routes.Achievements, component: AchievementsComponent },
+      { path: Routes.Players, component: PlayersComponent },
+      { path: Routes.OfficialCocktails, component: OfficialCocktailsComponent },
+      { path: Routes.Credits, component: CreditsComponent },
+      { path: Routes.OtherGames, component: OtherGamesComponent },
+    ],
   },
-  { path: Routes.Achievements, component: AchievementsComponent },
-  { path: Routes.Players, component: PlayersComponent },
-  { path: Routes.OfficialCocktails, component: OfficialCocktailsComponent },
-  { path: Routes.Credits, component: CreditsComponent },
-  { path: Routes.OtherGames, component: OtherGamesComponent },
   { path: "", redirectTo: Routes.Home, pathMatch: "full" },
 ];
 
