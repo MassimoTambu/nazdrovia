@@ -1,4 +1,9 @@
 <app-page-title [title]="pageTitle"></app-page-title>
+<h2
+  [style.color]="cssColor"
+  [innerHTML]="rulePageIntro"
+  class="rule-page-intro"
+></h2>
 <div *ngFor="let rulesContainer of allRules" class="rule-container">
   <div class="rule-category" [style.color]="cssColor">
     <span
@@ -34,6 +39,6 @@
     class="rule-epilogue"
   ></div>
 </div>
-<div [style.color]="cssColor" class="rule-beta-advisor">
-  {{ ruleBetaAdvisor }}
+<div [style.color]="cssColor" class="rule-page-beta-advisor">
+  {{ rulePageBetaAdvisor }}
 </div>

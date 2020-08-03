@@ -26,8 +26,9 @@ export class RulesComponent implements OnInit, OnDestroy {
 
   allRules: RulesContainer[] = rules;
 
-  ruleBetaAdvisor =
-    "* Le regole in beta non sono valide nella versione ufficiale.";
+  rulePageIntro = `Le regole sono state scritte in vari momenti mentre eravamo in gatta, se sono presenti errori di calligrafia o di altro genere <span class="rule-page-intro-bold">non rompete il cazzo</span>.`;
+  rulePageBetaAdvisor =
+    "* Le regole in Beta non sono valide nella versione ufficiale.";
 
   ngOnInit() {
     this.subs.add(
