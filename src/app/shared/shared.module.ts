@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { AppRoutingModule } from "../app.routing.module";
 import { MaterialModule } from "../material.module";
+import { FooterComponent } from "../pages/footer/footer.component";
 import { PageTitleComponent } from "./page-title/page-title.component";
 import { SafeHtmlPipe } from "./pipes/safe-html.pipe";
-import { AppRoutingModule } from "../app.routing.module";
 
-const SharedComponents = [PageTitleComponent, SafeHtmlPipe];
+const SharedComponents = [PageTitleComponent, FooterComponent, SafeHtmlPipe];
 
 const SharedModules = [MaterialModule, CommonModule, AppRoutingModule];
 
