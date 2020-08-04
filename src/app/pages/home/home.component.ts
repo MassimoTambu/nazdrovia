@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Pages, pages } from "../../models/pages";
+import { Routes } from "src/app/models/routes";
 
 @Component({
   selector: "app-home",
@@ -11,6 +12,9 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   pages: Pages[] = pages;
+
+  title = "Nazdrovia";
+  route = pages.find((r) => r.route === Routes.Home).route;
 
   gridCols: number;
   gridRowHeight: string;
@@ -27,6 +31,10 @@ export class HomeComponent implements OnInit {
       this.gridCols = 2;
       this.gridRowHeight = `${(window.screen.height * 20) / 100}px`;
     }
+  }
+
+  public filterPages(): Pages[] {
+    return pages.filter(p => p.mainPage !== true);
   }
 
   public navigateToPage(route: string): void {

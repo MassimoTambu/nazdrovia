@@ -22,7 +22,8 @@ export class RulesComponent implements OnInit, OnDestroy {
   cssNumberBackgroundColor: string;
   cssCategoryFGColor: string;
 
-  pageTitle = pages.find((r) => r.route === Routes.Rules).title;
+  pageRoute = Routes.Rules;
+  pageTitle = pages.find((r) => r.route === this.pageRoute).title;
 
   allRules: RulesContainer[] = rules;
 

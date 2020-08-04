@@ -1,23 +1,29 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { THEMES } from "src/app/models/themes";
 import { ThemeService } from "src/app/services/theme.service";
+import { Routes } from "src/app/models/routes";
 
 @Component({
   selector: "app-page-title",
   template: `
-    <div
-      class="nav-bar"
-      [style.backgroundColor]="tService.getThemeForegroundColor()"
-    >
-      <a mat-icon-button routerLink="..">
-        <mat-icon inline="true" color="primary">arrow_back</mat-icon></a
+    <div class="nav-bar-container">
+      <div
+        class="nav-bar"
+        [style.backgroundColor]="tService.getThemeForegroundColor()"
       >
-      <h1 class="page-title" [style.color]="tService.getFontColor()">
-        {{ title }}
-      </h1>
-      <a mat-icon-button [matMenuTriggerFor]="thememenu">
-        <mat-icon inline="true" color="primary">format_paint</mat-icon>
-      </a>
+        <a mat-icon-button *ngIf="!isHome" routerLink="..">
+          <mat-icon inline="true" color="primary">arrow_back</mat-icon></a
+        >
+        <h1
+          [ngClass]="[isHome ? 'title' : 'page-title']"
+          [style.color]="tService.getFontColor()"
+        >
+          {{ title }}
+        </h1>
+        <a mat-icon-button [matMenuTriggerFor]="thememenu">
+          <mat-icon inline="true" color="primary">format_paint</mat-icon>
+        </a>
+      </div>
     </div>
 
     <mat-menu #thememenu="matMenu" class="theme-menu">
@@ -43,6 +49,17 @@ import { ThemeService } from "src/app/services/theme.service";
   `,
   styles: [
     `
+      .title {
+        flex-grow: 1;
+        padding: 30px 0 20px 0;
+        font-size: 6vh;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .nav-bar-container {
+        padding-bottom: 3vh;
+      }
       .nav-bar {
         display: flex;
         align-items: center;
@@ -90,13 +107,20 @@ import { ThemeService } from "src/app/services/theme.service";
     `,
   ],
 })
-export class PageTitleComponent {
+export class PageTitleComponent implements OnInit {
   @Input() title: string;
+  @Input() route: Routes;
 
   themes = THEMES;
+
+  isHome: boolean;
 
   constructor(public tService: ThemeService) {}
   onSelectTheme(theme: string) {
     this.tService.setTheme(theme);
+  }
+
+  ngOnInit() {
+    this.route === Routes.Home ? (this.isHome = true) : (this.isHome = false);
   }
 }
