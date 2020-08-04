@@ -6,7 +6,11 @@
 @import "app/themes/dark-theme.scss";
 
 @mixin for-size($size) {
-  @if $size == small {
+  @if $size == small-max {
+    @media (max-width: 576px) {
+      @content;
+    }
+  } @else if $size == small {
     @media (min-width: 576px) {
       @content;
     }
@@ -15,7 +19,7 @@
       @content;
     }
   } @else if $size == large {
-    @media (max-width: 992px) {
+    @media (min-width: 992px) {
       @content;
     }
   } @else if $size == very-large {
@@ -25,35 +29,23 @@
   }
 }
 
-html,
-body {
-  height: 100%;
-}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   line-height: 2vh;
 }
 
-.container {
-  @include for-size(small) {
-    max-width: 540px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @include for-size(medium) {
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @include for-size(large) {
-    max-width: 960px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+main {
+  flex: 1 0 auto;
   @include for-size(very-large) {
     max-width: 1140px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 50%;
+    margin: 0 auto;
   }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }

@@ -1,44 +1,46 @@
 <app-page-title [title]="pageTitle" [route]="pageRoute"></app-page-title>
-<h2
-  [style.color]="cssColor"
-  [innerHTML]="rulePageIntro"
-  class="rule-page-intro"
-></h2>
-<div *ngFor="let rulesContainer of allRules" class="rule-container">
-  <div class="rule-category" [style.color]="cssColor">
-    <span
-      [style.backgroundColor]="cssCategoryFGColor"
-      class="rule-category-title"
-      >{{ rulesContainer.title }}</span
-    >
-    <span
-      [style.backgroundColor]="cssCategoryFGColor"
-      class="rule-category-title-background-extension"
-    ></span>
-    <span
-      [style.backgroundColor]="cssCategoryFGColor"
-      class="rule-category-title-circle"
-    ></span>
-  </div>
-  <div
-    *ngIf="rulesContainer.prologue"
-    [innerHTML]="rulesContainer.prologue"
+<div class="component-body">
+  <h2
     [style.color]="cssColor"
-    class="rule-prologue"
-  ></div>
-  <div *ngFor="let rule of rulesContainer.rules" class="rule-container">
-    <mat-card
-      [innerHTML]="generateInnerHTML(rule) | safeHtml"
-      [style.boxShadow]="cssBoxShadow"
-      class="rule"
-    ></mat-card>
+    [innerHTML]="rulePageIntro"
+    class="rule-page-intro"
+  ></h2>
+  <div *ngFor="let rulesContainer of allRules" class="rule-container">
+    <div class="rule-category" [style.color]="cssColor">
+      <span
+        [style.backgroundColor]="cssCategoryFGColor"
+        class="rule-category-title"
+        >{{ rulesContainer.title }}</span
+      >
+      <span
+        [style.backgroundColor]="cssCategoryFGColor"
+        class="rule-category-title-background-extension"
+      ></span>
+      <span
+        [style.backgroundColor]="cssCategoryFGColor"
+        class="rule-category-title-circle"
+      ></span>
+    </div>
+    <div
+      *ngIf="rulesContainer.prologue"
+      [innerHTML]="rulesContainer.prologue"
+      [style.color]="cssColor"
+      class="rule-prologue"
+    ></div>
+    <div *ngFor="let rule of rulesContainer.rules" class="rule-container">
+      <mat-card
+        [innerHTML]="generateInnerHTML(rule) | safeHtml"
+        [style.boxShadow]="cssBoxShadow"
+        class="rule"
+      ></mat-card>
+    </div>
+    <div
+      *ngIf="rulesContainer.epilogue"
+      [innerHTML]="rulesContainer.epilogue"
+      class="rule-epilogue"
+    ></div>
   </div>
-  <div
-    *ngIf="rulesContainer.epilogue"
-    [innerHTML]="rulesContainer.epilogue"
-    class="rule-epilogue"
-  ></div>
-</div>
-<div [style.color]="cssColor" class="rule-page-beta-advisor">
-  {{ rulePageBetaAdvisor }}
+  <div [style.color]="cssColor" class="rule-page-beta-advisor">
+    {{ rulePageBetaAdvisor }}
+  </div>
 </div>

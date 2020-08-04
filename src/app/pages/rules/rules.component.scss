@@ -1,9 +1,17 @@
+@import "../../../styles.scss";
+
 .rule-page-intro {
-  font-size: 1.2vh;
+  font-size: 2vh !important;
   font-weight: 400 !important;
   text-align: start;
   > .rule-page-intro-bold {
     font-weight: bold;
+  }
+}
+
+.component-body {
+  @include for-size(small-max) {
+    padding: 3.5vh 30px;
   }
 }
 .rule-container {
