@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { pages } from "src/app/models/pages";
 import { Routes } from "src/app/models/routes";
+import { ThemeService } from "src/app/services/theme.service";
 
 @Component({
   selector: "app-achievements",
@@ -8,7 +9,7 @@ import { Routes } from "src/app/models/routes";
   styleUrls: ["./achievements.component.scss"],
 })
 export class AchievementsComponent implements OnInit {
-  constructor() {}
+  constructor(public tService: ThemeService) {}
 
   pageRoute = Routes.Achievements;
   pageTitle = pages.find((r) => r.route === this.pageRoute).title;

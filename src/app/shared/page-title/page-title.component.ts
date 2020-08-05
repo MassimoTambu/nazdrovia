@@ -11,18 +11,21 @@ import { Routes } from "src/app/models/routes";
         class="nav-bar"
         [style.backgroundColor]="tService.getThemeForegroundColor()"
       >
-        <a mat-icon-button *ngIf="!isHome" routerLink="..">
-          <mat-icon inline="true" color="primary">arrow_back</mat-icon></a
-        >
-        <h1
-          [ngClass]="[isHome ? 'title' : 'page-title']"
-          [style.color]="tService.getFontColor()"
-        >
-          {{ title }}
-        </h1>
-        <a mat-icon-button [matMenuTriggerFor]="thememenu">
-          <mat-icon inline="true" color="primary">format_paint</mat-icon>
-        </a>
+        <div class="nav-bar-elements">
+          <a mat-icon-button *ngIf="!isHome" routerLink="..">
+            <mat-icon inline="true" color="primary">arrow_back</mat-icon></a
+          >
+          <h1
+            [ngClass]="[isHome ? 'title' : 'page-title']"
+            [style.color]="tService.getFontColor()"
+          >
+            {{ title }}
+          </h1>
+          <a mat-icon-button [matMenuTriggerFor]="thememenu">
+            <mat-icon inline="true" color="primary">format_paint</mat-icon>
+          </a>
+        </div>
+        <app-page-anchor-list [anchors]="anchors"></app-page-anchor-list>
       </div>
     </div>
 
@@ -61,11 +64,13 @@ import { Routes } from "src/app/models/routes";
         padding-bottom: 3vh;
       }
       .nav-bar {
-        display: flex;
-        align-items: center;
         padding: 0 20px;
         border-radius: 0 0 20px 20px;
         font-size: 3vh;
+      }
+      .nav-bar-elements {
+        display: flex;
+        align-items: center;
       }
       mat-icon {
         cursor: pointer;
@@ -110,6 +115,7 @@ import { Routes } from "src/app/models/routes";
 export class PageTitleComponent implements OnInit {
   @Input() title: string;
   @Input() route: Routes;
+  @Input() anchors: string[];
 
   themes = THEMES;
 

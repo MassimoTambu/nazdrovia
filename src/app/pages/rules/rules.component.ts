@@ -3,7 +3,7 @@ import { Subscription } from "rxjs";
 import { rules } from "src/app/data/rules";
 import { pages } from "src/app/models/pages";
 import { Routes } from "src/app/models/routes";
-import { Rule, RulesContainer } from "src/app/models/rule";
+import { Rule, RulesContainer, RulesCategory } from "src/app/models/rule";
 import { ThemeService } from "src/app/services/theme.service";
 
 @Component({
@@ -26,6 +26,13 @@ export class RulesComponent implements OnInit, OnDestroy {
   pageTitle = pages.find((r) => r.route === this.pageRoute).title;
 
   allRules: RulesContainer[] = rules;
+  rulesCategories: string[] = [
+    RulesCategory.Bevuta,
+    RulesCategory.Extra,
+    RulesCategory.Penalità,
+    RulesCategory.Principali,
+    RulesCategory.Sacrificio,
+  ];
 
   rulePageIntro = `Le regole sono state scritte in vari momenti mentre eravamo in gatta, se sono presenti errori di calligrafia o di altro genere <span class="rule-page-intro-bold">non rompete il cazzo</span>.`;
   rulePageBetaAdvisor =
