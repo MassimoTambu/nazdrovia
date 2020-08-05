@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Routes } from "src/app/models/routes";
+import { pages } from "src/app/models/pages";
 
 @Component({
   selector: "app-credits",
@@ -7,6 +9,9 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CreditsComponent implements OnInit {
   constructor() {}
+
+  pageRoute = Routes.Credits;
+  pageTitle = pages.find((r) => r.route === this.pageRoute).title;
 
   ngOnInit(): void {}
 }

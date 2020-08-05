@@ -1,7 +1,13 @@
 export interface Achievement {
   id: number;
   title: string;
+  category: AchievementsCategory;
   description: string;
   nasScore: number;
-  isSecret: boolean;
+}
+
+export class AchievementsCategory {
+  static readonly Principali = "principali";
+  static readonly Limited = "limited";
+  static readonly Segreti = "segreti";
 }
