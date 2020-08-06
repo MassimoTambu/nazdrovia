@@ -9,7 +9,13 @@ import { ThemeService } from "src/app/services/theme.service";
         [id]="categoryTitle"
         [style.backgroundColor]="tService.getThemeWarnColor()"
         class="category-title"
-        >{{ categoryTitle }}</span
+        >{{ categoryTitle
+        }}<span
+          *ngIf="categoryNumber && categoryNumber >= 5"
+          class="category-number"
+        >
+          ({{ categoryNumber }})</span
+        ></span
       >
       <span
         [style.backgroundColor]="tService.getThemeWarnColor()"
@@ -31,6 +37,10 @@ import { ThemeService } from "src/app/services/theme.service";
         border-radius: 15px 0 0 15px;
         font-size: 3vh;
       }
+      .category-number {
+        font-size: 1.5vh;
+        vertical-align: super;
+      }
       .category-title-background-extension {
         width: 4vw;
         border-radius: 0 20px 40px 0;
@@ -48,4 +58,5 @@ export class CategoryTitleComponent {
   constructor(public tService: ThemeService) {}
 
   @Input() categoryTitle: string;
+  @Input() categoryNumber: number;
 }

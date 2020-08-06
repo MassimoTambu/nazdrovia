@@ -7,13 +7,16 @@
 <div
   *ngFor="let achievementCategory of allAchievements"
   [id]="achievementCategory.category"
-  class="achievement-category"
+  class="achievements-category"
 >
   <app-category-title
     [categoryTitle]="achievementCategory.category"
+    [categoryNumber]="achievementCategory.achievements.length"
   ></app-category-title>
-  <app-achievement
-    *ngFor="let achievement of achievementCategory.achievements"
-    [achievement]="achievement"
-  ></app-achievement>
+  <div class="achievement-container">
+    <app-achievement
+      *ngFor="let achievement of achievementCategory.achievements"
+      [achievement]="achievement"
+    ></app-achievement>
+  </div>
 </div>
