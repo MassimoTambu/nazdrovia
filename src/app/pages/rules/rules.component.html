@@ -6,31 +6,20 @@
 ></app-page-title>
 <div class="component-body">
   <h2
-    [style.color]="cssColor"
+    [style.color]="tService.getFontColor()"
     [innerHTML]="rulePageIntro"
     class="rule-page-intro"
   ></h2>
   <div *ngFor="let rulesContainer of allRules" class="rule-container">
-    <div class="rule-category" [style.color]="cssColor">
-      <span
-        [id]="rulesContainer.title"
-        [style.backgroundColor]="cssCategoryFGColor"
-        class="rule-category-title"
-        >{{ rulesContainer.title }}</span
-      >
-      <span
-        [style.backgroundColor]="cssCategoryFGColor"
-        class="rule-category-title-background-extension"
-      ></span>
-      <span
-        [style.backgroundColor]="cssCategoryFGColor"
-        class="rule-category-title-circle"
-      ></span>
+    <div class="rule-category" [style.color]="tService.getFontColor()">
+      <app-category-title
+        [categoryTitle]="rulesContainer.title"
+      ></app-category-title>
     </div>
     <div
       *ngIf="rulesContainer.prologue"
       [innerHTML]="rulesContainer.prologue"
-      [style.color]="cssColor"
+      [style.color]="tService.getFontColor()"
       class="rule-prologue"
     ></div>
     <div *ngFor="let rule of rulesContainer.rules" class="rule-container">
@@ -46,7 +35,7 @@
       class="rule-epilogue"
     ></div>
   </div>
-  <div [style.color]="cssColor" class="rule-page-beta-advisor">
+  <div [style.color]="tService.getFontColor()" class="rule-page-beta-advisor">
     {{ rulePageBetaAdvisor }}
   </div>
 </div>

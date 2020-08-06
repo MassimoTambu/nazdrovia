@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Achievement } from "src/app/models/achievement";
 import { ThemeService } from "src/app/services/theme.service";
 
@@ -7,10 +7,8 @@ import { ThemeService } from "src/app/services/theme.service";
   templateUrl: "./achievement.component.html",
   styleUrls: ["./achievement.component.scss"],
 })
-export class AchievementComponent implements OnInit {
+export class AchievementComponent {
   constructor(public tService: ThemeService) {}
 
   @Input() achievement: Achievement;
-
-  ngOnInit(): void {}
 }

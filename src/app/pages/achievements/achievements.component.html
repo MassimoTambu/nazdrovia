@@ -9,12 +9,9 @@
   [id]="achievementCategory.category"
   class="achievement-category"
 >
-  <div
-    class="achievement-category-title"
-    [style.color]="tService.getFontColor()"
-  >
-    {{ achievementCategory.category }}
-  </div>
+  <app-category-title
+    [categoryTitle]="achievementCategory.category"
+  ></app-category-title>
   <app-achievement
     *ngFor="let achievement of achievementCategory.achievements"
     [achievement]="achievement"

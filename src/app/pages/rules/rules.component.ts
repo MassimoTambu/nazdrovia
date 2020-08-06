@@ -13,14 +13,13 @@ import { ThemeService } from "src/app/services/theme.service";
   encapsulation: ViewEncapsulation.None,
 })
 export class RulesComponent implements OnInit, OnDestroy {
-  constructor(private tService: ThemeService) {}
+  constructor(public tService: ThemeService) {}
 
   private subs = new Subscription();
 
   cssBoxShadow: string;
   cssColor: string;
   cssNumberBackgroundColor: string;
-  cssCategoryFGColor: string;
 
   pageRoute = Routes.Rules;
   pageTitle = pages.find((r) => r.route === this.pageRoute).title;
@@ -42,8 +41,6 @@ export class RulesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs.add(
       this.tService.themeSelected.subscribe((t) => {
-        this.cssColor = this.tService.getFontColor();
-        this.cssCategoryFGColor = this.tService.getThemeWarnColor();
         const PColor = this.tService.getThemePColor();
         const AColor = this.tService.getThemeAColor();
         const shadowSize = "25px 25px 0px 0px";

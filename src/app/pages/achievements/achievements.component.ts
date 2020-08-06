@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { ACHIEVEMENTS } from "src/app/data/achievements";
 import { AchievementsCategory } from "src/app/models/achievement";
 import { pages } from "src/app/models/pages";
@@ -10,7 +10,7 @@ import { ThemeService } from "src/app/services/theme.service";
   templateUrl: "./achievements.component.html",
   styleUrls: ["./achievements.component.scss"],
 })
-export class AchievementsComponent implements OnInit {
+export class AchievementsComponent {
   constructor(public tService: ThemeService) {}
 
   pageRoute = Routes.Achievements;
@@ -23,6 +23,4 @@ export class AchievementsComponent implements OnInit {
     AchievementsCategory.Segreti,
   ];
   achievementsRoutes = [Routes.Home, Routes.Achievements];
-
-  ngOnInit(): void {}
 }
