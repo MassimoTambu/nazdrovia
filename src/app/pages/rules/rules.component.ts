@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
 import { Subscription } from "rxjs";
-import { rules } from "src/app/data/rules";
+import { RULES } from "src/app/data/rules";
 import { pages } from "src/app/models/pages";
 import { Routes } from "src/app/models/routes";
 import { Rule, RulesContainer, RulesCategory } from "src/app/models/rule";
@@ -25,7 +25,7 @@ export class RulesComponent implements OnInit, OnDestroy {
   pageRoute = Routes.Rules;
   pageTitle = pages.find((r) => r.route === this.pageRoute).title;
 
-  allRules: RulesContainer[] = rules;
+  allRules: RulesContainer[] = RULES;
   rulesCategories: string[] = [
     RulesCategory.Principali,
     RulesCategory.Extra,
@@ -33,6 +33,7 @@ export class RulesComponent implements OnInit, OnDestroy {
     RulesCategory.Sacrificio,
     RulesCategory.Bevuta,
   ];
+  rulesRoutes = [Routes.Home, Routes.Rules];
 
   rulePageIntro = `Le regole sono state scritte in vari momenti mentre eravamo in gatta, se sono presenti errori di calligrafia o di altro genere <span class="rule-page-intro-bold">non rompete il cazzo</span>.`;
   rulePageBetaAdvisor =

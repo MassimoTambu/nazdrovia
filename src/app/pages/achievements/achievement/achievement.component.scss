@@ -1,0 +1,22 @@
+.achievement-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  > .achievement-icon {
+  }
+  > .achievement-text {
+    display: inherit;
+    flex-direction: column;
+    > .achievement-title {
+      padding-bottom: 10px;
+      font-size: 2vh;
+    }
+    > .achievement-desc {
+      font-size: 1.8vh;
+    }
+  }
+  > .achievement-nas-score {
+    font-size: 2vh;
+  }
+}

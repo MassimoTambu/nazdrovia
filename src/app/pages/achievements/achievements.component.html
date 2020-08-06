@@ -1,2 +1,22 @@
-<app-page-title [title]="pageTitle" [route]="pageRoute"></app-page-title>
-<p>archivements works!</p>
+<app-page-title
+  [title]="pageTitle"
+  [route]="pageRoute"
+  [anchors]="achievementsCategories"
+  [routes]="achievementsRoutes"
+></app-page-title>
+<div
+  *ngFor="let achievementCategory of allAchievements"
+  [id]="achievementCategory.category"
+  class="achievement-category"
+>
+  <div
+    class="achievement-category-title"
+    [style.color]="tService.getFontColor()"
+  >
+    {{ achievementCategory.category }}
+  </div>
+  <app-achievement
+    *ngFor="let achievement of achievementCategory.achievements"
+    [achievement]="achievement"
+  ></app-achievement>
+</div>

@@ -30,12 +30,13 @@ import { Routes } from "src/app/models/routes";
 })
 export class PageAnchorListComponent implements OnInit {
   @Input() anchors: string[];
+  @Input() routes: string[];
 
   constructor(public tService: ThemeService, private router: Router) {}
 
   ngOnInit() {}
 
   navigateToFragment(anchor: string): void {
-    this.router.navigate([Routes.Home, Routes.Rules], { fragment: anchor });
+    this.router.navigate(this.routes, { fragment: anchor });
   }
 }

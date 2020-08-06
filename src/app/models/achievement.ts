@@ -1,13 +1,18 @@
+export interface AchievementsContainer {
+  category: AchievementsCategory;
+  achievements: Achievement[];
+}
+
 export interface Achievement {
   id: number;
   title: string;
-  category: AchievementsCategory;
   description: string;
   nasScore: number;
+  icon?: string;
 }
 
 export class AchievementsCategory {
-  static readonly Principali = "principali";
-  static readonly Limited = "limited";
-  static readonly Segreti = "segreti";
+  static readonly Principali = "Principali";
+  static readonly Limited = "Limited";
+  static readonly Segreti = "Segreti";
 }

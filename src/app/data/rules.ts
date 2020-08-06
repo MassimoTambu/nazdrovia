@@ -1,6 +1,6 @@
-import { Rule, RulesCategory, RulesContainer } from "../models/rule";
+import { RulesCategory, RulesContainer } from "../models/rule";
 
-export const rules: RulesContainer[] = [
+export const RULES: RulesContainer[] = [
   {
     title: RulesCategory.Principali,
     rules: [

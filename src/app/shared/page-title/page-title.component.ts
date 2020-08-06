@@ -25,7 +25,10 @@ import { Routes } from "src/app/models/routes";
             <mat-icon inline="true" color="primary">format_paint</mat-icon>
           </a>
         </div>
-        <app-page-anchor-list [anchors]="anchors"></app-page-anchor-list>
+        <app-page-anchor-list
+          [anchors]="anchors"
+          [routes]="routes"
+        ></app-page-anchor-list>
       </div>
     </div>
 
@@ -116,6 +119,7 @@ export class PageTitleComponent implements OnInit {
   @Input() title: string;
   @Input() route: Routes;
   @Input() anchors: string[];
+  @Input() routes: string[];
 
   themes = THEMES;
 

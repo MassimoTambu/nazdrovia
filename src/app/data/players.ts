@@ -1,6 +1,6 @@
 import { Player } from "../models/player";
 
-const players: Player[] = [
+const PLAYERS: Player[] = [
   new Player(0, "Massimo", "Tamburini", 0, 0),
   new Player(1, "Giovanni", "Balzi", 0, 0),
   new Player(2, "Manuel", "Moscara", 0, 0),

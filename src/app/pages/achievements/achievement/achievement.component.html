@@ -1,1 +1,21 @@
-<p>achievement works!</p>
+<div
+  class="achievement-container"
+  [style.backgroundColor]="tService.getThemeForegroundColor()"
+>
+  <div class="achievement-icon"><mat-icon>home</mat-icon></div>
+  <div class="achievement-text">
+    <div
+      class="achievement-title"
+      [innerHTML]="achievement.title"
+      [style.color]="tService.getFontColor()"
+    ></div>
+    <div
+      class="achievement-desc"
+      [innerHTML]="achievement.description"
+      [style.color]="tService.getFontColor()"
+    ></div>
+  </div>
+  <div class="achievement-nas-score" [style.color]="tService.getFontColor()">
+    {{ achievement.nasScore }}
+  </div>
+</div>
