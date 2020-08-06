@@ -27,11 +27,11 @@ export class RulesComponent implements OnInit, OnDestroy {
 
   allRules: RulesContainer[] = rules;
   rulesCategories: string[] = [
-    RulesCategory.Bevuta,
+    RulesCategory.Principali,
     RulesCategory.Extra,
     RulesCategory.Penalità,
-    RulesCategory.Principali,
     RulesCategory.Sacrificio,
+    RulesCategory.Bevuta,
   ];
 
   rulePageIntro = `Le regole sono state scritte in vari momenti mentre eravamo in gatta, se sono presenti errori di calligrafia o di altro genere <span class="rule-page-intro-bold">non rompete il cazzo</span>.`;

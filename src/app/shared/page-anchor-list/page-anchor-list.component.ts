@@ -6,11 +6,27 @@ import { Routes } from "src/app/models/routes";
 @Component({
   selector: "app-page-anchor-list",
   template: `
-    <span *ngFor="let anchor of anchors" (click)="navigateToFragment(anchor)">{{
-      anchor
-    }}</span>
+    <mat-chip-list>
+      <mat-chip
+        *ngFor="let anchor of anchors"
+        (click)="navigateToFragment(anchor)"
+        color="primary"
+        selected
+        >{{ anchor }}</mat-chip
+      >
+    </mat-chip-list>
   `,
-  styles: [``],
+  styles: [
+    `
+      ::ng-deep.mat-chip-list-wrapper {
+        justify-content: center;
+      }
+      mat-chip {
+        cursor: pointer;
+        font-size: 2vh;
+      }
+    `,
+  ],
 })
 export class PageAnchorListComponent implements OnInit {
   @Input() anchors: string[];

@@ -64,7 +64,7 @@ import { Routes } from "src/app/models/routes";
         padding-bottom: 3vh;
       }
       .nav-bar {
-        padding: 0 20px;
+        padding: 0 20px 10px 20px;
         border-radius: 0 0 20px 20px;
         font-size: 3vh;
       }
