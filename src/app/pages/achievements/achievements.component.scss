@@ -1,6 +1,10 @@
 .achievements-category {
   padding-bottom: 30px;
-  > .achievement-container {
-    padding-top: 20px;
+  > .app-category-title-container {
+    padding-bottom: 20px;
+  }
+  > .achievements-container {
+    padding: 20px;
+    border-radius: 40px;
   }
 }

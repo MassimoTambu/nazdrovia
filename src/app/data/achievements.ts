@@ -148,6 +148,13 @@ export const ACHIEVEMENTS: AchievementsContainer[] = [
   },
   {
     category: AchievementsCategory.Segreti,
-    achievements: [],
+    achievements: [
+      {
+        id: 1,
+        title: "<b>GNEE</b>",
+        description: "Top Secret",
+        nasScore: 10,
+      },
+    ],
   },
 ];

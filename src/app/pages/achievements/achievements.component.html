@@ -9,14 +9,26 @@
   [id]="achievementCategory.category"
   class="achievements-category"
 >
-  <app-category-title
-    [categoryTitle]="achievementCategory.category"
-    [categoryNumber]="achievementCategory.achievements.length"
-  ></app-category-title>
-  <div class="achievement-container">
-    <app-achievement
-      *ngFor="let achievement of achievementCategory.achievements"
-      [achievement]="achievement"
-    ></app-achievement>
+  <div class="app-category-title-container">
+    <app-category-title
+      [categoryTitle]="achievementCategory.category"
+      [categoryNumber]="achievementCategory.achievements.length"
+    ></app-category-title>
+  </div>
+  <div
+    class="achievements-container"
+    [style.backgroundColor]="tService.getThemeForegroundColor()"
+  >
+    <div
+      *ngFor="
+        let achievement of achievementCategory.achievements;
+        let i = index
+      "
+    >
+      <app-achievement [achievement]="achievement"></app-achievement>
+      <mat-divider
+        *ngIf="achievementCategory.achievements.length - 1 != i"
+      ></mat-divider>
+    </div>
   </div>
 </div>
