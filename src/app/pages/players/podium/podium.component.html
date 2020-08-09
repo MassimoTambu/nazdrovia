@@ -1,0 +1,90 @@
+<div class="podium-container" [style.color]="tService.getFontColor()">
+  <div class="podium-places">
+    <div class="podium-second-place">
+      <div
+        class="podium-player-icon"
+        *ngIf="players[1].Image; else defaultPlayerIcon"
+      >
+        {{ players[1].Image }}
+      </div>
+      <div
+        class="podium-pedestal"
+        [style.backgroundColor]="tService.getThemeForegroundColor()"
+      >
+        <div
+          class="podium-number"
+          [style.backgroundColor]="tService.getThemePColor()"
+        >
+          2
+        </div>
+      </div>
+    </div>
+    <div class="podium-first-place">
+      <div
+        class="podium-player-icon"
+        *ngIf="players[0].Image; else defaultPlayerIcon"
+      >
+        {{ players[0].Image }}
+      </div>
+      <div
+        class="podium-pedestal"
+        [style.backgroundColor]="tService.getThemeForegroundColor()"
+      >
+        <div
+          class="podium-number"
+          [style.backgroundColor]="tService.getThemePColor()"
+        >
+          1
+        </div>
+      </div>
+    </div>
+    <div class="podium-third-place">
+      <div
+        class="podium-player-icon"
+        *ngIf="players[2].Image; else defaultPlayerIcon"
+      >
+        {{ players[2].Image }}
+      </div>
+      <div
+        class="podium-pedestal"
+        [style.backgroundColor]="tService.getThemeForegroundColor()"
+      >
+        <div
+          class="podium-number"
+          [style.backgroundColor]="tService.getThemePColor()"
+        >
+          3
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="podium-players-names">
+    <div class="podium-player-complete-name">
+      {{ players[1].CompleteName }}
+    </div>
+    <div class="podium-player-complete-name">
+      {{ players[0].CompleteName }}
+    </div>
+    <div class="podium-player-complete-name">
+      {{ players[2].CompleteName }}
+    </div>
+  </div>
+  <div class="podium-players-scores">
+    <div class="podium-players-nas-score" style="font-size: 2vh;">
+      {{ players[1].NasScore }}
+      <span class="podium-nas-score-symbol">N</span>
+    </div>
+    <div class="podium-players-nas-score" style="font-size: 3vh;">
+      {{ players[0].NasScore }}
+      <span class="podium-nas-score-symbol">N</span>
+    </div>
+    <div class="podium-players-nas-score" style="font-size: 1.5vh;">
+      {{ players[2].NasScore }}
+      <span class="podium-nas-score-symbol">N</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #defaultPlayerIcon>
+  <mat-icon inline="true" class="podium-player-icon">person</mat-icon>
+</ng-template>

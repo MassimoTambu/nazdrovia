@@ -4,9 +4,10 @@ export class Player {
     private readonly name: string,
     private readonly lastName: string,
     private readonly nasScore: number,
+    private readonly catchPhrase: string,
     private readonly penalities: number,
     private readonly isOut: boolean = false,
-    private readonly image?: string,
+    private readonly image?: string
   ) {
     // if image is null ? set default icon
   }
@@ -24,14 +25,22 @@ export class Player {
   }
 
   get NasScore() {
-    return `${this.nasScore}`;
+    return this.nasScore;
+  }
+
+  get CatchPhrase() {
+    return this.catchPhrase;
   }
 
   get Penalities() {
-    return `${this.penalities}`;
+    return this.penalities;
   }
 
   get IsOut() {
     return this.isOut;
+  }
+
+  get Image() {
+    return this.image;
   }
 }

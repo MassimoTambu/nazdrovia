@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { PLAYERS } from "src/app/data/players";
 import { pages } from "src/app/models/pages";
 import { Routes } from "src/app/models/routes";
 
@@ -7,11 +8,14 @@ import { Routes } from "src/app/models/routes";
   templateUrl: "./players.component.html",
   styleUrls: ["./players.component.scss"],
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent {
   constructor() {}
 
   pageRoute = Routes.Players;
   pageTitle = pages.find((r) => r.route === this.pageRoute).title;
 
-  ngOnInit(): void {}
+  players = PLAYERS;
+  playersPodium = this.players
+    .sort((p1, p2) => (p1.NasScore > p2.NasScore ? -1 : 1))
+    .slice(0, 3);
 }

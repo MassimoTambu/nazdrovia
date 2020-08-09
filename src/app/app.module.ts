@@ -12,6 +12,7 @@ import { OfficialCocktailsComponent } from "./pages/official-cocktails/official-
 import { OtherGamesComponent } from "./pages/other-games/other-games.component";
 import { PlayerComponent } from "./pages/players/player/player.component";
 import { PlayersComponent } from "./pages/players/players.component";
+import { PodiumComponent } from "./pages/players/podium/podium.component";
 import { RulesComponent } from "./pages/rules/rules.component";
 import { SharedModule } from "./shared/shared.module";
 
@@ -23,6 +24,7 @@ const AppComponents = [
   AchievementComponent,
   PlayersComponent,
   PlayerComponent,
+  PodiumComponent,
   CreditsComponent,
   OtherGamesComponent,
   OfficialCocktailsComponent,
