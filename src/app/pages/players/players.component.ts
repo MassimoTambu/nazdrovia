@@ -18,4 +18,11 @@ export class PlayersComponent {
   playersPodium = this.players
     .sort((p1, p2) => (p1.NasScore > p2.NasScore ? -1 : 1))
     .slice(0, 3);
+
+  displayedHeaderColumns = ["Nome", "Cognome", "Nas Score"];
+  displayedColumns = [
+    "name",
+    "lastName",
+    "nasScore" /* Serve anche achievement sbloccati x/y con barra di completamento */,
+  ];
 }

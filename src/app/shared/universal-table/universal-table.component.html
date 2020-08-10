@@ -1,0 +1,79 @@
+<mat-card>
+  <span class="card-title-back" [style.backgroundColor]="accentColor"></span>
+  <mat-card-title>
+    <ng-container *ngIf="players">Lista Giocatori</ng-container>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="card-content-header">
+      <div id="header">
+        <mat-form-field
+          appearance="fill"
+          id="filter"
+          *ngIf="dataSource.filteredData.length"
+        >
+          <mat-label>Cerca</mat-label>
+          <input matInput (keyup)="applyFilter($event)" />
+        </mat-form-field>
+      </div>
+      <mat-paginator
+        fxFlex="grow"
+        #paginatorU
+        [pageSizeOptions]="[5, 10, 20, 30, 50]"
+        [pageSize]="20"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+
+    <mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+      <ng-container
+        [matColumnDef]="col"
+        *ngFor="let col of displayedColumns; let i = index"
+      >
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{
+          displayedHeaderColumns[i]
+        }}</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element[col] }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell
+          *matCellDef="let element"
+          [attr.colspan]="displayedColumns.length"
+        >
+          <div
+            class="element-detail"
+            [@detailExpand]="
+              element == expandedElement ? 'expanded' : 'collapsed'
+            "
+          >
+            Dettagli
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row
+        *matHeaderRowDef="displayedColumns; sticky: true"
+      ></mat-header-row>
+      <mat-row
+        *matRowDef="let element; columns: displayedColumns"
+        class="element-row"
+        [class.expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element"
+      >
+      </mat-row>
+      <mat-row
+        *matRowDef="let row; columns: ['expandedDetail']"
+        class="detail-row"
+      ></mat-row>
+    </mat-table>
+
+    <mat-paginator
+      *ngIf="paginatorU.length > 5"
+      (page)="syncPrimaryPaginator($event)"
+      [length]="paginatorU.length"
+      [pageIndex]="paginatorU.pageIndex"
+      [pageSize]="paginatorU.pageSize"
+      [pageSizeOptions]="paginatorU.pageSizeOptions"
+      showFirstLastButtons
+    ></mat-paginator>
+  </mat-card-content>
+</mat-card>
