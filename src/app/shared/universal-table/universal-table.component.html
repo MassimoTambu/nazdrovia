@@ -44,6 +44,9 @@
             [@detailExpand]="
               element == expandedElement ? 'expanded' : 'collapsed'
             "
+            [style.height]="
+              element == expandedElement ? 'unset' : '0 !important'
+            "
           >
             Dettagli
           </div>
