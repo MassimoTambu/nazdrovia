@@ -1,5 +1,5 @@
 <mat-card>
-  <span class="card-title-back" [style.backgroundColor]="accentColor"></span>
+  <span class="card-title-back" [style.backgroundColor]="primaryColor"></span>
   <mat-card-title>
     <ng-container *ngIf="players">Lista Giocatori</ng-container>
   </mat-card-title>
@@ -29,10 +29,18 @@
         [matColumnDef]="col"
         *ngFor="let col of displayedColumns; let i = index"
       >
-        <mat-header-cell *matHeaderCellDef mat-sort-header>{{
-          displayedHeaderColumns[i]
-        }}</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element[col] }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ displayedHeaderColumns[i] }}</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element"
+          ><ng-container
+            *ngIf="
+              col != 'achievementsUnlocked';
+              else achievementsUnlockedCellTemplate
+            "
+            >{{ element[col] }}</ng-container
+          ></mat-cell
+        >
       </ng-container>
       <ng-container matColumnDef="expandedDetail">
         <mat-cell
@@ -48,7 +56,39 @@
               element == expandedElement ? 'unset' : '0 !important'
             "
           >
-            Dettagli
+            <div *ngIf="players" class="player-detail">
+              <span class="player-catch-phrase-title">Frase d'effetto:</span>
+              <span class="player-catch-phrase-desc"
+                >“ {{ element.CatchPhrase }} „</span
+              >
+            </div>
+            <div *ngIf="achievements" class="player-achievements">
+              <div class="achievements-list-title">Obbiettivi</div>
+              <div
+                *ngFor="let achievementsContainer of achievements"
+                class="achievements-container"
+              >
+                <div class="achievements-category-title">
+                  {{ achievementsContainer.category }}
+                </div>
+                <div class="achievements-icons">
+                  <ng-container
+                    *ngFor="
+                      let achievement of achievementsContainer.achievements
+                    "
+                  >
+                    <ng-container
+                      *ngIf="achievement.icon"
+                      class="achievement-icon"
+                      >{{ achievement.icon }}</ng-container
+                    >
+                    <mat-icon *ngIf="!achievement.icon" class="achievement-icon"
+                      >home</mat-icon
+                    >
+                  </ng-container>
+                </div>
+              </div>
+            </div>
           </div>
         </mat-cell>
       </ng-container>
@@ -80,3 +120,7 @@
     ></mat-paginator>
   </mat-card-content>
 </mat-card>
+
+<ng-template #achievementsUnlockedCellTemplate>
+  <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+</ng-template>

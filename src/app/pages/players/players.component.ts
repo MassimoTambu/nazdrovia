@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ACHIEVEMENTS } from "src/app/data/achievements";
 import { PLAYERS } from "src/app/data/players";
 import { pages } from "src/app/models/pages";
 import { Routes } from "src/app/models/routes";
@@ -15,14 +16,16 @@ export class PlayersComponent {
   pageTitle = pages.find((r) => r.route === this.pageRoute).title;
 
   players = PLAYERS;
+  achievements = ACHIEVEMENTS;
   playersPodium = this.players
     .sort((p1, p2) => (p1.NasScore > p2.NasScore ? -1 : 1))
     .slice(0, 3);
 
-  displayedHeaderColumns = ["Nome", "Cognome", "Nas Score"];
-  displayedColumns = [
-    "name",
-    "lastName",
-    "nasScore" /* Serve anche achievement sbloccati x/y con barra di completamento */,
+  displayedHeaderColumns = [
+    "Nome",
+    "Cognome",
+    "Nas Score",
+    "Obbiettivi Completati",
   ];
+  displayedColumns = ["name", "lastName", "nasScore", "achievementsUnlocked"];
 }

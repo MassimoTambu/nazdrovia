@@ -71,6 +71,40 @@ mat-row.element-row:not(.expanded-row):active {
 .element-detail {
   overflow: hidden;
   display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  line-height: 2;
+  > .player-detail {
+    display: inherit;
+    > .player-catch-phrase-title {
+    }
+    > .player-catch-phrase-desc {
+      font-style: italic;
+    }
+  }
+  > .player-achievements {
+    display: inherit;
+    flex-direction: column;
+    align-items: start;
+    > .achievements-list-title {
+    }
+    > .achievements-container {
+      display: inherit;
+      justify-content: start;
+      flex-wrap: wrap;
+      width: 100%;
+      > .achievements-category-title {
+        padding-right: 10px;
+      }
+      > .achievements-icons {
+        display: inherit;
+        flex-wrap: wrap;
+        justify-content: center;
+        > .achievement-icon {
+        }
+      }
+    }
+  }
 }
 
 .mat-badge {

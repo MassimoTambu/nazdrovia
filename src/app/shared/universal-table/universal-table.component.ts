@@ -5,21 +5,14 @@ import {
   transition,
   trigger,
 } from "@angular/animations";
-import {
-  Component,
-  Directive,
-  ElementRef,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { Component, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Subscription } from "rxjs";
-import { ThemeService } from "src/app/services/theme.service";
+import { AchievementsContainer } from "src/app/models/achievement";
 import { Player } from "src/app/models/player";
+import { ThemeService } from "src/app/services/theme.service";
 
 @Component({
   selector: "app-universal-table",
@@ -42,6 +35,7 @@ import { Player } from "src/app/models/player";
 })
 export class UniversalTableComponent implements OnInit, OnDestroy {
   @Input() players: Player[];
+  @Input() achievements: AchievementsContainer[];
   @Input() displayedHeaderColumns: string[];
   @Input() displayedColumns: string[];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -50,7 +44,7 @@ export class UniversalTableComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<any>;
   expandedElement: any | null;
 
-  accentColor: string;
+  primaryColor: string;
   private subs = new Subscription();
 
   constructor(public tService: ThemeService) {}
@@ -58,7 +52,7 @@ export class UniversalTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs.add(
       this.tService.themeSelected.subscribe(() => {
-        this.accentColor = this.tService.getThemeAColor();
+        this.primaryColor = this.tService.getThemePColor();
       })
     );
     if (this.players) {

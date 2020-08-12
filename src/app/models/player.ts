@@ -6,6 +6,7 @@ export class Player {
     private readonly nasScore: number,
     private readonly catchPhrase: string,
     private readonly penalities: number,
+    private readonly achievementsUnlocked: number,
     private readonly isOut: boolean = false,
     private readonly image?: string
   ) {
@@ -34,6 +35,10 @@ export class Player {
 
   get Penalities() {
     return this.penalities;
+  }
+
+  get AchievementsUnlocked() {
+    return this.achievementsUnlocked;
   }
 
   get IsOut() {
