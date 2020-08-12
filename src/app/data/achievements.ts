@@ -137,13 +137,6 @@ export const ACHIEVEMENTS: AchievementsContainer[] = [
         description: "Completa 5 cinesi senza bere.",
         nasScore: 50,
       },
-      {
-        id: 3,
-        title: "<b>OH SHIT, HERE WE GO AGAIN</b>",
-        description:
-          "Completa due vinelli del cinese da 1 lt l'uno per due cinesi",
-        nasScore: 30,
-      },
     ],
   },
   {
