@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Route } from "@angular/router";
+import { Route, RouterModule } from "@angular/router";
+import { Routes } from "src/app/shared/models/routes";
 import { AchievementsComponent } from "./pages/achievements/achievements.component";
 import { CreditsComponent } from "./pages/credits/credits.component";
 import { HomeComponent } from "./pages/home/home.component";
@@ -7,7 +8,6 @@ import { OfficialCocktailsComponent } from "./pages/official-cocktails/official-
 import { OtherGamesComponent } from "./pages/other-games/other-games.component";
 import { PlayersComponent } from "./pages/players/players.component";
 import { RulesComponent } from "./pages/rules/rules.component";
-import { Routes } from "./models/routes";
 
 const ROUTES: Route[] = [
   {

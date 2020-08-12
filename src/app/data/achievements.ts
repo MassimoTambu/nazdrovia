@@ -1,7 +1,7 @@
 import {
   AchievementsCategory,
   AchievementsContainer,
-} from "../models/achievement";
+} from "src/app/shared/models/achievement";
 
 export const ACHIEVEMENTS: AchievementsContainer[] = [
   {

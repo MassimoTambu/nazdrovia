@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { THEMES } from "src/app/models/themes";
-import { ThemeService } from "src/app/services/theme.service";
-import { Routes } from "src/app/models/routes";
+import { THEMES } from "src/app/shared/models/themes";
+import { ThemeService } from "src/app/shared/services/theme.service";
+import { Routes } from "src/app/shared/models/routes";
 
 @Component({
   selector: "app-page-title",

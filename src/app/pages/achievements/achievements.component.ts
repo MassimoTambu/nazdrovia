@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { ACHIEVEMENTS } from "src/app/data/achievements";
-import { AchievementsCategory } from "src/app/models/achievement";
-import { pages } from "src/app/models/pages";
-import { Routes } from "src/app/models/routes";
-import { ThemeService } from "src/app/services/theme.service";
+import { AchievementsCategory } from "src/app/shared/models/achievement";
+import { pages } from "src/app/shared/models/pages";
+import { Routes } from "src/app/shared/models/routes";
+import { ThemeService } from "src/app/shared/services/theme.service";
 
 @Component({
   selector: "app-achievements",

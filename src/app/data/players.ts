@@ -1,4 +1,4 @@
-import { Player } from "../models/player";
+import { Player } from "src/app/shared/models/player";
 
 export const PLAYERS: Player[] = [
   new Player(0, "Massimo", "Tamburini", 10, "E sai che perdita!?!", 0, 2),

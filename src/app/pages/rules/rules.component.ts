@@ -1,10 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core";
 import { Subscription } from "rxjs";
 import { RULES } from "src/app/data/rules";
-import { pages } from "src/app/models/pages";
-import { Routes } from "src/app/models/routes";
-import { Rule, RulesContainer, RulesCategory } from "src/app/models/rule";
-import { ThemeService } from "src/app/services/theme.service";
+import { pages } from "src/app/shared/models/pages";
+import { Routes } from "src/app/shared/models/routes";
+import {
+  Rule,
+  RulesCategory,
+  RulesContainer,
+} from "src/app/shared/models/rule";
+import { ThemeService } from "src/app/shared/services/theme.service";
 
 @Component({
   selector: "app-rules",

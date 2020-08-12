@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { ACHIEVEMENTS } from "src/app/data/achievements";
 import { PLAYERS } from "src/app/data/players";
-import { pages } from "src/app/models/pages";
-import { Routes } from "src/app/models/routes";
+import { pages } from "src/app/shared/models/pages";
+import { Routes } from "src/app/shared/models/routes";
 
 @Component({
   selector: "app-players",

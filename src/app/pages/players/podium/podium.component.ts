@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { Player } from "src/app/models/player";
-import { ThemeService } from "src/app/services/theme.service";
+import { Player } from "src/app/shared/models/player";
+import { ThemeService } from "src/app/shared/services/theme.service";
 
 @Component({
   selector: "app-podium",

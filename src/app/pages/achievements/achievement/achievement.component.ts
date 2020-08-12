@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { Achievement } from "src/app/models/achievement";
-import { ThemeService } from "src/app/services/theme.service";
+import { Achievement } from "src/app/shared/models/achievement";
+import { ThemeService } from "src/app/shared/services/theme.service";
 
 @Component({
   selector: "app-achievement",

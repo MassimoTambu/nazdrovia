@@ -9,8 +9,8 @@ import {
 } from "@angular/core";
 import { Router, RouterOutlet } from "@angular/router";
 import { Subscription } from "rxjs";
+import { ThemeService } from "src/app/shared/services/theme.service";
 import { Animation } from "./animations";
-import { ThemeService } from "./services/theme.service";
 
 @Component({
   selector: "app-root",

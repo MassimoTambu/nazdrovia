@@ -1,4 +1,4 @@
-import { RulesCategory, RulesContainer } from "../models/rule";
+import { RulesCategory, RulesContainer } from "src/app/shared/models/rule";
 
 export const RULES: RulesContainer[] = [
   {

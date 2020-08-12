@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Routes } from "src/app/models/routes";
-import { pages } from "src/app/models/pages";
+import { Routes } from "src/app/shared/models/routes";
+import { pages } from "src/app/shared/models/pages";
 
 @Component({
   selector: "app-credits",

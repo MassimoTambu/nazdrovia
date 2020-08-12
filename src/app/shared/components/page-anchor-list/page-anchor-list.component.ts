@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ThemeService } from "src/app/services/theme.service";
 import { Router } from "@angular/router";
-import { Routes } from "src/app/models/routes";
+import { ThemeService } from "src/app/shared/services/theme.service";
 
 @Component({
   selector: "app-page-anchor-list",

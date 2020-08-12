@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { Pages, pages } from "../../models/pages";
-import { Routes } from "src/app/models/routes";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Pages, pages } from "src/app/shared/models/pages";
+import { Routes } from "src/app/shared/models/routes";
 
 @Component({
   selector: "app-home",
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   public filterPages(): Pages[] {
-    return pages.filter(p => p.mainPage !== true);
+    return pages.filter((p) => p.mainPage !== true);
   }
 
   public navigateToPage(route: string): void {

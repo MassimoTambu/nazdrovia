@@ -10,9 +10,9 @@ import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Subscription } from "rxjs";
-import { AchievementsContainer } from "src/app/models/achievement";
-import { Player } from "src/app/models/player";
-import { ThemeService } from "src/app/services/theme.service";
+import { AchievementsContainer } from "src/app/shared/models/achievement";
+import { Player } from "src/app/shared/models/player";
+import { ThemeService } from "src/app/shared/services/theme.service";
 
 @Component({
   selector: "app-universal-table",
