@@ -11,8 +11,8 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Subscription } from "rxjs";
 import { AchievementsContainer } from "src/app/shared/models/achievement";
-import { Player } from "src/app/shared/models/player";
 import { ThemeService } from "src/app/shared/services/theme.service";
+import { Player } from "../../../../../../shared/models/player";
 
 @Component({
   selector: "app-universal-table",
