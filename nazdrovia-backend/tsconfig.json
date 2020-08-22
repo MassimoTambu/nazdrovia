@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "noImplicitAny": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "declaration": false,
+    "sourceMap": false,
+    "outDir": "dist",
+    "baseUrl": "src",
+    "rootDir": "."
+  },
+}
