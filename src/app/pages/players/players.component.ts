@@ -4,7 +4,7 @@ import { ACHIEVEMENTS } from "src/app/data/achievements";
 import { pages } from "src/app/shared/models/pages";
 import { Routes } from "src/app/shared/models/routes";
 import { PlayersService } from "src/app/shared/services/players.service";
-import { Player } from "../../../../../shared/models/player";
+import { Player } from "src/app/shared/models/player";
 
 @Component({
   selector: "app-players",

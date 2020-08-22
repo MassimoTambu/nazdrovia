@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { Consts } from "../../../../../shared/models/consts";
-import { Player } from "../../../../../shared/models/player";
+import { Consts } from "src/app/shared/models/consts";
+import { Player } from "src/app/shared/models/player";
 
 @Injectable({ providedIn: "root" })
 export class PlayersService {
