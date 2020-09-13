@@ -8,43 +8,47 @@ import '../utilities/utilities.dart';
 class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            width: resizeWidth(percValue: 45, context: context, fullUnder: 570),
-            height: resizeHeight(percValue: 8, context: context),
-            decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 40),
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              width:
+                  resizeWidth(percValue: 45, context: context, fullUnder: 570),
+              height: resizeHeight(percValue: 8, context: context),
+              decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  LayoutBuilder(
+                    builder: (BuildContext ctx, BoxConstraints cons) {
+                      return Text(
+                        'NAZDROVIA',
+                        style: TextStyle(
+                          fontSize: cons.maxHeight / 1.5,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      );
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: DropdownThemeButton(),
+                  ),
+                ],
               ),
             ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                LayoutBuilder(
-                  builder: (BuildContext ctx, BoxConstraints cons) {
-                    return Text(
-                      'NAZDROVIA',
-                      style: TextStyle(
-                        fontSize: cons.maxHeight / 1.5,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    );
-                  },
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: DropdownThemeButton(),
-                ),
-              ],
-            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
