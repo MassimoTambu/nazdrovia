@@ -35,13 +35,13 @@ class PagesTable extends StatelessWidget {
               width: 2, color: Theme.of(context).scaffoldBackgroundColor),
           children: [
             TableRow(
-              children: [PageRow(routes[0].name), PageRow(routes[1].name)],
+              children: [PageRow(pages[0].title), PageRow(pages[1].title)],
             ),
             TableRow(
-              children: [PageRow(routes[2].name), PageRow(routes[3].name)],
+              children: [PageRow(pages[2].title), PageRow(pages[3].title)],
             ),
             TableRow(
-              children: [PageRow(routes[4].name), PageRow(routes[5].name)],
+              children: [PageRow(pages[4].title), PageRow(pages[5].title)],
             ),
           ],
         ),

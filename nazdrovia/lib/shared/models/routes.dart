@@ -1,15 +1,9 @@
-class Route {
-  final String route;
-  final String name;
-
-  const Route(this.route, this.name);
+class Routes {
+  static const HOME = 'home';
+  static const ACHIEVEMENTS = 'achievements';
+  static const CREDITS = 'credits';
+  static const OFFICIALCOCKTAILS = 'official-cocktails';
+  static const OTHERGAMES = 'other-games';
+  static const PLAYERS = 'players';
+  static const RULES = 'rules';
 }
-
-List<Route> routes = [
-  Route('/rules', 'Regole'),
-  Route('/achievements', 'Obbiettivi'),
-  Route('/players', 'Giocatori'),
-  Route('/official-cocktails', 'Cocktails Ufficiali'),
-  Route('/credits', 'Crediti'),
-  Route('/other-games', 'Altri Giochi'),
-];
