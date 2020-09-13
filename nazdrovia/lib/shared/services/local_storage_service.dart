@@ -4,7 +4,7 @@ class LocalStorage {
   static LocalStorage manager;
   static SharedPreferences _prefs;
 
-  static Future<LocalStorage> getInstance() async {
+  Future<LocalStorage> getInstance() async {
     if (manager == null || _prefs == null) {
       manager = LocalStorage();
       _prefs = await SharedPreferences.getInstance();
@@ -12,13 +12,11 @@ class LocalStorage {
     return manager;
   }
 
-  static String getItem(String key) {
-    return _prefs.getString(key) ?? null;
+  String getItem(String key) {
+    return _prefs?.getString(key) ?? null;
   }
 
-  static void setItem(String key, String value) {
-    print(key);
-
+  void setItem(String key, String value) {
     _prefs.setString(key, value);
   }
 }
