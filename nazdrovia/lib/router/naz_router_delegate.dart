@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nazdrovia/app_states/route_app_state.dart';
 import 'package:nazdrovia/router/naz_route_path.dart';
-import 'package:nazdrovia/screens/not_found.dart';
-import 'package:nazdrovia/screens/screens.dart';
+import 'package:nazdrovia/pages/not_found.dart';
+import 'package:nazdrovia/pages/pages.dart';
 
 class NazRouterDelegate extends RouterDelegate<NazRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<NazRoutePath> {
