@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/app_state/app_state.dart';
+import 'package:nazdrovia/app_states/app_state.dart';
 import 'package:provider/provider.dart';
 
 import '../utilities/resizer.dart';

@@ -6,4 +6,5 @@ class Routes {
   static const OTHERGAMES = 'other-games';
   static const PLAYERS = 'players';
   static const RULES = 'rules';
+  static const NOTFOUND = 'quattrohzeroquattroh';
 }

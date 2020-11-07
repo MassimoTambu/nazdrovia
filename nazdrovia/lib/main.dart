@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/app_state/app_state.dart';
-import 'package:nazdrovia/screens/screens.dart';
+import 'package:nazdrovia/app_states/app_state.dart';
+import 'package:nazdrovia/router/naz_route_information_parser.dart';
+import 'package:nazdrovia/router/naz_router_delegate.dart';
 import 'package:nazdrovia/shared/utilities/utilities.dart';
 import 'package:provider/provider.dart';
 
@@ -14,12 +15,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AppState>(
       create: (context) => AppState(),
-      child: MaterialAppManager(),
+      child: _MaterialAppManager(),
     );
   }
 }
 
-class MaterialAppManager extends StatelessWidget {
+class _MaterialAppManager extends StatelessWidget {
+  final _routerDelegate = NazRouterDelegate();
+  final _routeInformationParser = NazRouteInformationParser();
+
   @override
   Widget build(BuildContext context) {
     final lightTheme = Provider.of<AppState>(context, listen: false)
@@ -33,11 +37,12 @@ class MaterialAppManager extends StatelessWidget {
         .getItem(Themes.lsThemeKey);
     final themeMode =
         Provider.of<AppState>(context).themes.currentTheme(lsThemeKey);
-    return MaterialApp(
+    return MaterialApp.router(
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: themeMode,
-      home: HomePage(),
+      routerDelegate: _routerDelegate,
+      routeInformationParser: _routeInformationParser,
     );
   }
 }
