@@ -24,7 +24,9 @@ Queste sono le classi principali utilizzate:
 - Il RouteInformationParser (NazRouteInformationParser)
 
 L'appState serve per tenere in memoria qual'è per esempio la pagina selezionata
-e provvede a notificare il suo stato dove viene instanziata.
+e provvede a notificare il suo stato dove viene instanziata. Io ho seguito
+l'esempio ufficiale e l'ho instanziato all'interno di RouterDelegate ma si può
+mettere a piacemento dove si voglia.
 
 Il RouterDelegate invece gestisce la lista delle pagine che andremo
 a visualizzare e ci fornisce dei metodi che saranno eseguiti in determinate
@@ -64,6 +66,14 @@ creare un Provider, visto che il Delegate eredita il ChangeNotifier, e chiamare
 Quindi dobbiamo creare un ChangeNotifierProvider<NazRouterDelegate>.value(...);
 utilizziamo il '.value' perché NON andremo a creare un Delegate da zero ma esso
 sarà anche utilizzato nella MaterialApp.router(...).
+
+Facoltativo:
+Invece che utilizzare la classe MaterialPage possiamo crearne una nostra custom
+per gestire l'animazione di entrata e uscita delle pagine (NazAnimationPage).
+Nel metodo "createRoute" abbiamo "animation" che è l'animazione di entrata
+mentre "secondaryAnimation" è quella di uscita. NOTA: quando si fa onPop viene
+eseguita l'animazione di entrata quindi "animation" in reverse. Ancora non sono
+riuscito a trovare il modo di sovrascrivere questo meccanismo.
 */
 class NazdroviaApp extends StatelessWidget {
   final _routerDelegate = NazRouterDelegate();
