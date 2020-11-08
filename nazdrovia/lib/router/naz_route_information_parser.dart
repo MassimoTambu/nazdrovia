@@ -19,10 +19,12 @@ class NazRouteInformationParser extends RouteInformationParser<NazRoutePath> {
     return NotFoundPath();
   }
 
+  /*
+  serve per aggiornare la barra del browser contenente l'url quando
+  stiamo aggiornando la navigazione tramite interazione con l'app
+  */
   @override
   RouteInformation restoreRouteInformation(NazRoutePath configuration) {
-    print('restoreRouteInformation');
-    print(configuration);
     if (configuration is HomePath) {
       return RouteInformation(location: Routes.HOME);
     } else if (configuration is RulesPath) {

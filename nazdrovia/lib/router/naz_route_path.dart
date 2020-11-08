@@ -68,3 +68,20 @@ class RulesPath implements NazRoutePath {
   @override
   get path => _path;
 }
+
+class NazPathManager {
+  static List<NazRoutePath> _nazPaths = [
+    HomePath(),
+    AchievementsPath(),
+    CreditsPath(),
+    OfficialCocktailsPath(),
+    OtherGamesPath(),
+    PlayersPath(),
+    RulesPath(),
+    NotFoundPath(),
+  ];
+
+  static NazRoutePath findNazPath(NazRoutePath path) {
+    return _nazPaths.firstWhere((np) => path.runtimeType == np.runtimeType);
+  }
+}

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class NazPage extends Page {
+class NazAnimationPage extends Page {
   final Widget child;
 
-  const NazPage(this.child);
+  const NazAnimationPage(this.child);
 
   @override
   Route createRoute(BuildContext context) {

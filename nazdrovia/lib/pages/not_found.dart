@@ -53,7 +53,6 @@ class _NotFoundPageState extends State<NotFoundPage> {
 
   String generateText(int number) {
     final rndBool = rnd.nextBool();
-    print(number);
     if (rndBool) {
       if (number == 4) return '4';
       if (number == 0) return '0';

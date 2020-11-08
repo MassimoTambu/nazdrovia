@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/shared/models/routes.dart';
+import 'package:nazdrovia/router/naz_route_path.dart';
 
-class Pages {
+class NazDataPage {
   String title;
-  String route;
+  NazRoutePath path;
   bool mainPage;
 
-  Pages({@required this.title, @required this.route, this.mainPage});
+  NazDataPage({@required this.title, @required this.path, this.mainPage});
 }
 
-final List<Pages> pages = [
-  Pages(title: 'Nazdrovia', route: Routes.HOME, mainPage: true),
-  Pages(title: 'Regole', route: Routes.RULES),
-  Pages(title: 'Obbiettivi', route: Routes.ACHIEVEMENTS),
-  Pages(title: 'Giocatori', route: Routes.PLAYERS),
-  Pages(title: 'Cocktails Ufficiali', route: Routes.OFFICIALCOCKTAILS),
-  Pages(title: 'Crediti', route: Routes.CREDITS),
-  Pages(title: 'Altri giochi', route: Routes.OTHERGAMES),
+final List<NazDataPage> pages = [
+  NazDataPage(title: 'Nazdrovia', path: HomePath(), mainPage: true),
+  NazDataPage(title: 'Regole', path: RulesPath()),
+  NazDataPage(title: 'Obbiettivi', path: AchievementsPath()),
+  NazDataPage(title: 'Giocatori', path: PlayersPath()),
+  NazDataPage(title: 'Cocktails Ufficiali', path: OfficialCocktailsPath()),
+  NazDataPage(title: 'Crediti', path: CreditsPath()),
+  NazDataPage(title: 'Altri giochi', path: OtherGamesPath()),
 ];

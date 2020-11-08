@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nazdrovia/router/naz_router_delegate.dart';
 import 'package:nazdrovia/shared/models/models.dart';
 import 'package:nazdrovia/shared/utilities/utilities.dart';
 import 'package:nazdrovia/shared/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -35,13 +37,13 @@ class PagesTable extends StatelessWidget {
               width: 2, color: Theme.of(context).scaffoldBackgroundColor),
           children: [
             TableRow(
-              children: [PageRow(pages[1].title), PageRow(pages[2].title)],
+              children: [PageRow(pages[1]), PageRow(pages[2])],
             ),
             TableRow(
-              children: [PageRow(pages[3].title), PageRow(pages[4].title)],
+              children: [PageRow(pages[3]), PageRow(pages[4])],
             ),
             TableRow(
-              children: [PageRow(pages[5].title), PageRow(pages[6].title)],
+              children: [PageRow(pages[5]), PageRow(pages[6])],
             ),
           ],
         ),
@@ -51,9 +53,9 @@ class PagesTable extends StatelessWidget {
 }
 
 class PageRow extends StatelessWidget {
-  const PageRow(this.routeName);
+  final NazDataPage page;
 
-  final String routeName;
+  const PageRow(this.page);
 
   @override
   Widget build(BuildContext context) {
@@ -61,15 +63,23 @@ class PageRow extends StatelessWidget {
       padding: EdgeInsets.only(left: 20),
       height: resizeHeight(percValue: 22, context: context),
       color: Theme.of(context).backgroundColor,
-      child: LayoutBuilder(
-        builder: (BuildContext ctx, BoxConstraints cons) => Text(
-          routeName,
-          style: TextStyle(
-            fontSize: cons.maxHeight / 8,
+      child: InkWell(
+        onTap: () => navigateToPath(context, page),
+        child: LayoutBuilder(
+          builder: (BuildContext ctx, BoxConstraints cons) => Text(
+            page.title,
+            style: TextStyle(
+              fontSize: cons.maxHeight / 8,
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void navigateToPath(BuildContext context, NazDataPage page) {
+    Provider.of<NazRouterDelegate>(context, listen: false)
+        .navigateToPath(context, page);
   }
 }
 
