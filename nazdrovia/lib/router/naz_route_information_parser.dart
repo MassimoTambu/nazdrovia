@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:nazdrovia/router/naz_route_path.dart';
 import 'package:nazdrovia/shared/models/models.dart';
 
-class NazRouteInformationParser extends RouteInformationParser<NazRoutePath> {
+class NazRouteInformationParser extends RouteInformationParser<NazPath> {
   @override
-  Future<NazRoutePath> parseRouteInformation(
+  Future<NazPath> parseRouteInformation(
       RouteInformation routeInformation) async {
     final uri = Uri.parse(routeInformation.location);
 
@@ -24,7 +24,7 @@ class NazRouteInformationParser extends RouteInformationParser<NazRoutePath> {
   stiamo aggiornando la navigazione tramite interazione con l'app
   */
   @override
-  RouteInformation restoreRouteInformation(NazRoutePath configuration) {
+  RouteInformation restoreRouteInformation(NazPath configuration) {
     if (configuration is HomePath) {
       return RouteInformation(location: Routes.HOME);
     } else if (configuration is RulesPath) {
@@ -44,7 +44,7 @@ class NazRouteInformationParser extends RouteInformationParser<NazRoutePath> {
     }
   }
 
-  NazRoutePath handleFirstLevelPaths(Uri uri) {
+  NazPath handleFirstLevelPaths(Uri uri) {
     if (uri.pathSegments.first == Routes.HOME) {
       return HomePath();
     } else if (uri.pathSegments.first == Routes.RULES) {

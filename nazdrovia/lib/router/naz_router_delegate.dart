@@ -3,27 +3,30 @@ import 'package:nazdrovia/app_states/route_app_state.dart';
 import 'package:nazdrovia/router/naz_route_path.dart';
 import 'package:nazdrovia/pages/not_found.dart';
 import 'package:nazdrovia/pages/pages.dart';
-import 'package:nazdrovia/shared/models/pages.dart';
 
-class NazRouterDelegate extends RouterDelegate<NazRoutePath>
-    with ChangeNotifier, PopNavigatorRouterDelegateMixin<NazRoutePath> {
-  final GlobalKey<NavigatorState> navigatorKey;
+class NazRouterDelegate extends RouterDelegate<NazPath>
+    with ChangeNotifier, PopNavigatorRouterDelegateMixin<NazPath> {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  RouteAppState _routeAppState;
 
-  var routeAppState = RouteAppState();
+  NazRouterDelegate() {
+    _routeAppState = RouteAppState()..addListener(notifyListeners);
+  }
 
-  NazRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>();
-  // non so a cosa serva
-  // {
-  //   routeAppState.addListener(notifyListeners);
-  // }
+  RouteAppState get appState => _routeAppState;
+  set appState(RouteAppState value) {
+    if (value == appState) return;
+    _routeAppState = value;
+    notifyListeners();
+  }
 
   /*
   Importantissimo! Questo getter va a notificare il metodo
   "restoreRouteInformation" del RouteInfomationParser quando navighiamo
   interagendo con l'app
   */
-  NazRoutePath get currentConfiguration {
-    return NazPathManager.findNazPath(routeAppState.selectedPath);
+  NazPath get currentConfiguration {
+    return _routeAppState.selectedPath;
   }
 
   @override
@@ -33,65 +36,66 @@ class NazRouterDelegate extends RouterDelegate<NazRoutePath>
       pages: handlePages(),
       onPopPage: (route, result) {
         print('onPopPage');
-        print(result);
-        notifyListeners();
         return route.didPop(result);
       },
     );
   }
 
   @override
-  Future<void> setNewRoutePath(NazRoutePath path) async {
-    routeAppState.selectedPath = NazPathManager.findNazPath(path);
+  Future<void> setNewRoutePath(NazPath path) async {
+    if (_routeAppState.selectedPath != path) {
+      _routeAppState.selectedPath = path;
+    }
   }
 
   List<Page> handlePages() {
-    return [
-      if (routeAppState.selectedPath is HomePath)
-        MaterialPage(
-          key: ValueKey(routeAppState.selectedPath),
-          child: HomePage(),
-        ),
-      if (routeAppState.selectedPath is AchievementsPath)
-        MaterialPage(
-          key: ValueKey(routeAppState.selectedPath),
-          child: AchievementsPage(),
-        ),
-      if (routeAppState.selectedPath is CreditsPath)
-        MaterialPage(
-          key: ValueKey(routeAppState.selectedPath),
-          child: CreditsPage(),
-        ),
-      if (routeAppState.selectedPath is OfficialCocktailsPath)
-        MaterialPage(
-          key: ValueKey(routeAppState.selectedPath),
-          child: OfficialCocktailsPage(),
-        ),
-      if (routeAppState.selectedPath is OtherGamesPath)
-        MaterialPage(
-          key: ValueKey(routeAppState.selectedPath),
-          child: OtherGamesPage(),
-        ),
-      if (routeAppState.selectedPath is PlayersPath)
-        MaterialPage(
-          key: ValueKey(routeAppState.selectedPath),
-          child: PlayersPage(),
-        ),
-      if (routeAppState.selectedPath is RulesPath)
-        MaterialPage(
-          key: ValueKey(routeAppState.selectedPath),
-          child: RulesPage(),
-        ),
-      if (routeAppState.selectedPath is NotFoundPath)
-        MaterialPage(
-          key: ValueKey(routeAppState.selectedPath),
-          child: NotFoundPage(),
-        ),
-    ];
-  }
+    final selectedPath = appState.selectedPath;
 
-  void navigateToPath(BuildContext context, NazDataPage page) {
-    routeAppState.selectedPath = page.path;
-    notifyListeners();
+    return [
+      if (selectedPath is HomePath)
+        MaterialPage(
+          key: ValueKey(selectedPath),
+          child: HomePage(),
+        )
+      else if (selectedPath is AchievementsPath)
+        MaterialPage(
+          key: ValueKey(selectedPath),
+          child: AchievementsPage(),
+        )
+      else if (selectedPath is CreditsPath)
+        MaterialPage(
+          key: ValueKey(selectedPath),
+          child: CreditsPage(),
+        )
+      else if (selectedPath is OfficialCocktailsPath)
+        MaterialPage(
+          key: ValueKey(selectedPath),
+          child: OfficialCocktailsPage(),
+        )
+      else if (selectedPath is OtherGamesPath)
+        MaterialPage(
+          key: ValueKey(selectedPath),
+          child: OtherGamesPage(),
+        )
+      else if (selectedPath is PlayersPath)
+        MaterialPage(
+          key: ValueKey(selectedPath),
+          child: PlayersPage(),
+        )
+      else if (selectedPath is RulesPath)
+        MaterialPage(
+          key: ValueKey(selectedPath),
+          child: RulesPage(),
+        )
+      else if (selectedPath is NotFoundPath)
+        MaterialPage(
+          key: ValueKey(selectedPath),
+          child: NotFoundPage(),
+        )
+      else
+        throw '''Main Path not managed!
+        Path class: $selectedPath
+        '''
+    ];
   }
 }

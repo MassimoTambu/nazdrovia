@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nazdrovia/app_states/app_state.dart';
 import 'package:provider/provider.dart';
 
-import '../utilities/resizer.dart';
-import '../utilities/utilities.dart';
+import '../utils/resizer.dart';
+import '../utils/utilities.dart';
 
 class NavBar extends StatelessWidget {
   @override

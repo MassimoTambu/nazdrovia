@@ -1,6 +1,6 @@
 export 'achievements.dart';
 export 'consts.dart';
-export 'pages.dart';
 export 'player.dart';
 export 'routes.dart';
-export 'rules.dart';
+export 'rules_container.dart';
+export 'rule.dart';

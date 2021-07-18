@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nazdrovia/router/naz_route_path.dart';
 import 'package:nazdrovia/router/naz_router_delegate.dart';
-import 'package:nazdrovia/shared/models/models.dart';
-import 'package:nazdrovia/shared/utilities/utilities.dart';
+import 'package:nazdrovia/shared/utils/utilities.dart';
 import 'package:nazdrovia/shared/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -37,13 +37,22 @@ class PagesTable extends StatelessWidget {
               width: 2, color: Theme.of(context).scaffoldBackgroundColor),
           children: [
             TableRow(
-              children: [PageRow(pages[1]), PageRow(pages[2])],
+              children: [
+                PageRow(pageCategories[1]),
+                PageRow(pageCategories[2]),
+              ],
             ),
             TableRow(
-              children: [PageRow(pages[3]), PageRow(pages[4])],
+              children: [
+                PageRow(pageCategories[3]),
+                PageRow(pageCategories[4]),
+              ],
             ),
             TableRow(
-              children: [PageRow(pages[5]), PageRow(pages[6])],
+              children: [
+                PageRow(pageCategories[5]),
+                PageRow(pageCategories[6]),
+              ],
             ),
           ],
         ),
@@ -53,7 +62,7 @@ class PagesTable extends StatelessWidget {
 }
 
 class PageRow extends StatelessWidget {
-  final NazDataPage page;
+  final NazPathCategory page;
 
   const PageRow(this.page);
 
@@ -77,9 +86,11 @@ class PageRow extends StatelessWidget {
     );
   }
 
-  void navigateToPath(BuildContext context, NazDataPage page) {
-    Provider.of<NazRouterDelegate>(context, listen: false)
-        .navigateToPath(context, page);
+  void navigateToPath(BuildContext context, NazPathCategory page) {
+    final appState =
+        Provider.of<NazRouterDelegate>(context, listen: false).appState;
+
+    appState.selectedPath = page;
   }
 }
 

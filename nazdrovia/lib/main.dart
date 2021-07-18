@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nazdrovia/app_states/app_state.dart';
 import 'package:nazdrovia/router/naz_route_information_parser.dart';
 import 'package:nazdrovia/router/naz_router_delegate.dart';
-import 'package:nazdrovia/shared/utilities/utilities.dart';
+import 'package:nazdrovia/shared/utils/utilities.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -74,6 +74,10 @@ Nel metodo "createRoute" abbiamo "animation" che è l'animazione di entrata
 mentre "secondaryAnimation" è quella di uscita. NOTA: quando si fa onPop viene
 eseguita l'animazione di entrata quindi "animation" in reverse. Ancora non sono
 riuscito a trovare il modo di sovrascrivere questo meccanismo.
+
+
+
+SPIEGAZIONE DETTAGLIATA: https://docs.google.com/document/d/1Q0jx0l4-xymph9O6zLaOY4d_f7YFpNWX_eGbzYxr9wY/mobilebasic#ftnt_ref1
 */
 class NazdroviaApp extends StatelessWidget {
   final _routerDelegate = NazRouterDelegate();

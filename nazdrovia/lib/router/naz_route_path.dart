@@ -1,76 +1,113 @@
 import 'package:nazdrovia/shared/models/routes.dart';
 
-abstract class NazRoutePath {
-  final _path = '';
-  String get path => _path;
+class NazPath {
+  final String path = '';
 }
 
-class NotFoundPath implements NazRoutePath {
-  @override
-  final _path = Routes.NOTFOUND;
+class NazPathCategory implements NazPath {
+  final String title = 'naz-path-category-title';
+  final bool mainPage = false;
 
   @override
-  get path => _path;
+  final String path = '';
 }
 
-class HomePath implements NazRoutePath {
+class NotFoundPath implements NazPath {
   @override
-  final _path = Routes.HOME;
-
-  @override
-  get path => _path;
+  final path = Routes.NOTFOUND;
 }
 
-class AchievementsPath implements NazRoutePath {
+class HomePath implements NazPathCategory {
   @override
-  final _path = Routes.ACHIEVEMENTS;
+  final String path = Routes.HOME;
 
   @override
-  get path => _path;
+  final bool mainPage = true;
+
+  @override
+  final String title = 'Nazdrovia';
 }
 
-class CreditsPath implements NazRoutePath {
+class AchievementsPath implements NazPathCategory {
   @override
-  final _path = Routes.CREDITS;
+  final path = Routes.ACHIEVEMENTS;
 
   @override
-  get path => _path;
+  final bool mainPage = false;
+
+  @override
+  final String title = 'Obbiettivi';
 }
 
-class OfficialCocktailsPath implements NazRoutePath {
+class CreditsPath implements NazPathCategory {
   @override
-  final _path = Routes.OFFICIALCOCKTAILS;
+  final path = Routes.CREDITS;
 
   @override
-  get path => _path;
+  final bool mainPage = false;
+
+  @override
+  final String title = 'Crediti';
 }
 
-class OtherGamesPath implements NazRoutePath {
+class OfficialCocktailsPath implements NazPathCategory {
   @override
-  final _path = Routes.OTHERGAMES;
+  final path = Routes.OFFICIALCOCKTAILS;
 
   @override
-  get path => _path;
+  final bool mainPage = false;
+
+  @override
+  final String title = 'Cocktails Ufficiali';
 }
 
-class PlayersPath implements NazRoutePath {
+class OtherGamesPath implements NazPathCategory {
   @override
-  final _path = Routes.PLAYERS;
+  final path = Routes.OTHERGAMES;
 
   @override
-  get path => _path;
+  final bool mainPage = false;
+
+  @override
+  final String title = 'Altri giochi';
 }
 
-class RulesPath implements NazRoutePath {
+class PlayersPath implements NazPathCategory {
   @override
-  final _path = Routes.RULES;
+  final path = Routes.PLAYERS;
 
   @override
-  get path => _path;
+  final bool mainPage = false;
+
+  @override
+  final String title = 'Giocatori';
 }
+
+class RulesPath implements NazPathCategory {
+  @override
+  final path = Routes.RULES;
+
+  @override
+  final bool mainPage = false;
+
+  @override
+  final String title = 'Regole';
+}
+
+// lista di path con categorie
+
+final List<NazPathCategory> pageCategories = [
+  HomePath(),
+  AchievementsPath(),
+  CreditsPath(),
+  OfficialCocktailsPath(),
+  OtherGamesPath(),
+  PlayersPath(),
+  RulesPath(),
+];
 
 class NazPathManager {
-  static List<NazRoutePath> _nazPaths = [
+  static List<NazPath> _nazPaths = [
     HomePath(),
     AchievementsPath(),
     CreditsPath(),
@@ -81,7 +118,7 @@ class NazPathManager {
     NotFoundPath(),
   ];
 
-  static NazRoutePath findNazPath(NazRoutePath path) {
+  static NazPath findNazPath(NazPath path) {
     return _nazPaths.firstWhere((np) => path.runtimeType == np.runtimeType);
   }
 }
