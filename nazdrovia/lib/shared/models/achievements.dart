@@ -1,14 +1,14 @@
 class AchievementsContainer {
-  AchievementsCategory category;
-  List<Achievement> achievements;
+  AchievementsCategory? category;
+  List<Achievement>? achievements;
 }
 
 class Achievement {
-  int id;
-  String title;
-  String description;
-  int nasScore;
-  String icon;
+  int? id;
+  String? title;
+  String? description;
+  int? nasScore;
+  String? icon;
 }
 
 class AchievementsCategory {

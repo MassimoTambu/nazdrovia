@@ -89,9 +89,9 @@ class _DropdownThemeButtonState extends State<DropdownThemeButton> {
           );
         }).toList(),
         underline: const SizedBox(),
-        onChanged: (String newTheme) {
+        onChanged: (String? newTheme) {
           Provider.of<AppState>(context, listen: false)
-              .changeCurrentTheme(newTheme);
+              .changeCurrentTheme(newTheme!);
         },
       ),
     );

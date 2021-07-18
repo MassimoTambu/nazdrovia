@@ -88,7 +88,7 @@ class PageRow extends StatelessWidget {
 
   void navigateToPath(BuildContext context, NazPathCategory page) {
     final appState =
-        Provider.of<NazRouterDelegate>(context, listen: false).appState;
+        Provider.of<NazRouterDelegate>(context, listen: false).appState!;
 
     appState.selectedPath = page;
   }

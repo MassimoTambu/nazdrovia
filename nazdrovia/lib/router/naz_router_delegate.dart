@@ -7,14 +7,14 @@ import 'package:nazdrovia/pages/pages.dart';
 class NazRouterDelegate extends RouterDelegate<NazPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<NazPath> {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  RouteAppState _routeAppState;
+  RouteAppState? _routeAppState;
 
   NazRouterDelegate() {
     _routeAppState = RouteAppState()..addListener(notifyListeners);
   }
 
-  RouteAppState get appState => _routeAppState;
-  set appState(RouteAppState value) {
+  RouteAppState? get appState => _routeAppState;
+  set appState(RouteAppState? value) {
     if (value == appState) return;
     _routeAppState = value;
     notifyListeners();
@@ -25,8 +25,8 @@ class NazRouterDelegate extends RouterDelegate<NazPath>
   "restoreRouteInformation" del RouteInfomationParser quando navighiamo
   interagendo con l'app
   */
-  NazPath get currentConfiguration {
-    return _routeAppState.selectedPath;
+  NazPath? get currentConfiguration {
+    return _routeAppState!.selectedPath;
   }
 
   @override
@@ -43,13 +43,13 @@ class NazRouterDelegate extends RouterDelegate<NazPath>
 
   @override
   Future<void> setNewRoutePath(NazPath path) async {
-    if (_routeAppState.selectedPath != path) {
-      _routeAppState.selectedPath = path;
+    if (_routeAppState!.selectedPath != path) {
+      _routeAppState!.selectedPath = path;
     }
   }
 
   List<Page> handlePages() {
-    final selectedPath = appState.selectedPath;
+    final selectedPath = appState!.selectedPath;
 
     return [
       if (selectedPath is HomePath)

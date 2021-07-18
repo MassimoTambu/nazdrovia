@@ -35,7 +35,7 @@ class Themes {
     );
   }
 
-  ThemeMode currentTheme(String lsThemeKey) {
+  ThemeMode currentTheme(String? lsThemeKey) {
     if (lsThemeKey == lightTheme) {
       isLightTheme = true;
       return ThemeMode.light;
