@@ -12,22 +12,23 @@ class RulesPage extends StatelessWidget {
 class _RulesContainers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const BouncingScrollPhysics(),
-      // itemCount: rules.length,
-      // itemBuilder: (context, index) {
-      //   Widget listTile;
-      //   if (index == 0) {
-      //     listTile = Column(children: [
-      //       _buildRulesIntro(),
-      //       _buildRulesCategory(rules[index]);
-      //     ],);
-      //   } else {
-      //     listTile = _buildRulesCategory(rules[index]);
-      //   }
-      //   return listTile;
-      // },
-    );
+    return Container();
+    // return ListView.builder(
+    //   physics: const BouncingScrollPhysics(),
+    //   // itemCount: rules.length,
+    //   // itemBuilder: (context, index) {
+    //   //   Widget listTile;
+    //   //   if (index == 0) {
+    //   //     listTile = Column(children: [
+    //   //       _buildRulesIntro(),
+    //   //       _buildRulesCategory(rules[index]);
+    //   //     ],);
+    //   //   } else {
+    //   //     listTile = _buildRulesCategory(rules[index]);
+    //   //   }
+    //   //   return listTile;
+    //   // },
+    // );
   }
 
   Widget _buildRulesIntro() {
@@ -45,7 +46,7 @@ class _RulesContainers extends StatelessWidget {
     );
   }
 
-  Widget _buildRulesCategory() {}
+  // Widget _buildRulesCategory() {}
 }
 
 class _RulesCategory extends StatelessWidget {

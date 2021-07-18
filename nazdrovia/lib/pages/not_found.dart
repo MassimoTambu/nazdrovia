@@ -10,7 +10,7 @@ class NotFoundPage extends StatefulWidget {
 class _NotFoundPageState extends State<NotFoundPage> {
   final rnd = Random();
 
-  String firstText, secondText, thirdText;
+  late String firstText, secondText, thirdText;
 
   @override
   void initState() {
