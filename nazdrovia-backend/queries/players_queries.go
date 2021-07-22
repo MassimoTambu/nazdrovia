@@ -31,23 +31,34 @@ func (q *PlayersQueries) GetAllPlayers() ([]models.Player, error) {
 }
 
 func (q *PlayersQueries) GetAllPlayersWithAchievements() ([]models.Player, error) {
+
 	players := []models.Player{}
 
-	query := fmt.Sprintf("SELECT * FROM %s", tables.PlayersTable{}.TableName())
-
-	err := q.Select(&players, query)
-	if err != nil {
-		// Return empty object and error.
-		return players, err
-	}
+	playersChannel := make(chan error)
+	go func() {
+		query := fmt.Sprintf("SELECT * FROM %s", tables.PlayersTable{}.TableName())
+		playersChannel <- q.Select(&players, query)
+	}()
 
 	playersAchievementsRef := []models.PlayersAchievementsRef{}
-	query = fmt.Sprintf("SELECT * FROM %s", tables.PlayersAchievementsRefTable{}.TableName())
 
-	err = q.Select(&playersAchievementsRef, query)
-	if err != nil {
-		// Return empty object and error.
-		return []models.Player{}, err
+	playersAchievementsRefChannel := make(chan error)
+	go func() {
+		query := fmt.Sprintf("SELECT * FROM %s", tables.PlayersAchievementsRefTable{}.TableName())
+		playersAchievementsRefChannel <- q.Select(&playersAchievementsRef, query)
+	}()
+
+	for i := 0; i < 2; i++ {
+		select {
+		case err := <-playersChannel:
+			if err != nil {
+				return players, err
+			}
+		case err := <-playersAchievementsRefChannel:
+			if err != nil {
+				return []models.Player{}, err
+			}
+		}
 	}
 
 	for i, p := range players {

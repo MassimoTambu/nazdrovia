@@ -12,51 +12,64 @@ type RulesQueries struct {
 	*sqlx.DB
 }
 
-func (q *PlayersQueries) GetAllRulesContainersWithCategories() ([]models.RulesContainersWithCategories, error) {
+func (q *RulesQueries) GetAllRulesContainersWithCategories() ([]models.RulesContainersWithCategories, error) {
 	rulesContainersWithCategories := []models.RulesContainersWithCategories{}
 	rules := []models.Rule{}
 
 	// RULES
-	query := fmt.Sprintf("SELECT * FROM %s", tables.RuleTable{}.TableName())
 
-	// Send query to database.
-	err := q.Select(&rules, query)
-	if err != nil {
-		// Return empty object and error.
-		return rulesContainersWithCategories, err
-	}
+	rulesChannel := make(chan error)
+	go func() {
+		query := fmt.Sprintf("SELECT * FROM %s", tables.RuleTable{}.TableName())
+		rulesChannel <- q.Select(&rules, query)
+	}()
 
 	// RULESCONTAINER
 	rulesContainers := []models.RulesContainer{}
-	query = fmt.Sprintf("SELECT * FROM %s", tables.RulesContainerTable{}.TableName())
 
-	// Send query to database.
-	err = q.Select(&rulesContainers, query)
-	if err != nil {
-		// Return empty object and error.
-		return rulesContainersWithCategories, err
-	}
+	rulesContainersChannel := make(chan error)
+	go func() {
+		query := fmt.Sprintf("SELECT * FROM %s", tables.RulesContainerTable{}.TableName())
+		rulesContainersChannel <- q.Select(&rulesContainers, query)
+	}()
 
 	// RULESCONTAINERREF
 	rulesContainerRefs := []models.RulesContainerRef{}
-	query = fmt.Sprintf("SELECT * FROM %s", tables.RulesContainerRefTable{}.TableName())
 
-	// Send query to database.
-	err = q.Select(&rulesContainerRefs, query)
-	if err != nil {
-		// Return empty object and error.
-		return rulesContainersWithCategories, err
-	}
+	rulesContainersRefChannel := make(chan error)
+	go func() {
+		query := fmt.Sprintf("SELECT * FROM %s", tables.RulesContainerRefTable{}.TableName())
+		rulesContainersRefChannel <- q.Select(&rulesContainerRefs, query)
+	}()
 
 	// RULESCATEGORY
 	rulesCategory := []models.RulesCategory{}
-	query = fmt.Sprintf("SELECT * FROM %s", tables.RulesCategoryTable{}.TableName())
 
-	// Send query to database.
-	err = q.Select(&rulesCategory, query)
-	if err != nil {
-		// Return empty object and error.
-		return rulesContainersWithCategories, err
+	rulesCategoryChannel := make(chan error)
+	go func() {
+		query := fmt.Sprintf("SELECT * FROM %s", tables.RulesCategoryTable{}.TableName())
+		rulesCategoryChannel <- q.Select(&rulesCategory, query)
+	}()
+
+	for i := 0; i < 4; i++ {
+		select {
+		case err := <-rulesChannel:
+			if err != nil {
+				return rulesContainersWithCategories, err
+			}
+		case err := <-rulesContainersChannel:
+			if err != nil {
+				return rulesContainersWithCategories, err
+			}
+		case err := <-rulesContainersRefChannel:
+			if err != nil {
+				return rulesContainersWithCategories, err
+			}
+		case err := <-rulesCategoryChannel:
+			if err != nil {
+				return rulesContainersWithCategories, err
+			}
+		}
 	}
 
 	for _, rcr := range rulesContainerRefs {
