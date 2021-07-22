@@ -46,6 +46,24 @@ func GetAllAchievementsWithCategories(c *fiber.Ctx) error {
 	return response.Success(c, "All AchievementsWithCategories returned successfully", achievementsWithCategories)
 }
 
+func CreateAchievement(c *fiber.Ctx) error {
+	db, err := database.OpenDBConnection()
+
+	if err != nil {
+		response.InternalServerError(c, err)
+		return err
+	}
+
+	achievement, err := db.CreateAchievement()
+
+	if err != nil {
+		response.NotFound(c, err)
+		return err
+	}
+
+	return response.Success(c, "Achievement created successfully", achievement)
+}
+
 //endregion
 
 // GetSingleProduct from db

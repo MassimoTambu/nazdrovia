@@ -79,3 +79,7 @@ func (q *AchievementsQueries) GetAllAchievementsWithCategories() ([]models.Achie
 	// Return query result.
 	return achievementsContainer, nil
 }
+
+func (q *AchievementsQueries) CreateAchievement() (models.Achievement, error) {
+	return models.Achievement{}, nil
+}

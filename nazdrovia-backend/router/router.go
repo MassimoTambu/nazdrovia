@@ -7,31 +7,42 @@ import (
 	"gitlab.com/Snorf_97/nazdrovia/nazdrovia-backend/middleware"
 )
 
+const post string = "/post"
+const update string = "/update"
+const delete string = "/delete"
+
 const achievements string = "/achievements"
 const achievementsWithCategories string = "/achievements-with-categories"
+const achievementCreate string = achievements + post
 const players string = "/players"
 const playersWithAchievements string = "/players-with-achievements"
 const rulesContainersWithCategories string = "/rules-containers-with-categories"
 
+const token string = "/token"
+
 // SetupRoutes func
 func SetupRoutes(app *fiber.App) {
 	// Middleware
-	api := app.Group("/api/v1", logger.New(), middleware.AuthReq())
+	route := app.Group("/api/v1", logger.New() /*, middleware.AuthReq()*/)
 
 	// routes
 
 	// ACHIEVEMENTS
-	api.Get(achievements, controllers.GetAllAchievements)
-	api.Get(achievementsWithCategories, controllers.GetAllAchievementsWithCategories)
+	route.Get(achievements, controllers.GetAllAchievements)
+	route.Get(achievementsWithCategories, controllers.GetAllAchievementsWithCategories)
+	route.Post(achievementCreate, middleware.JWTProtected(), controllers.CreateAchievement)
 
 	// PLAYERS
-	api.Get(players, controllers.GetAllPlayers)
-	api.Get(playersWithAchievements, controllers.GetAllPlayersWithAchievements)
+	route.Get(players, controllers.GetAllPlayers)
+	route.Get(playersWithAchievements, controllers.GetAllPlayersWithAchievements)
 
 	// RULES
-	api.Get(rulesContainersWithCategories, controllers.GetAllRulesContainersWithCategories)
+	route.Get(rulesContainersWithCategories, controllers.GetAllRulesContainersWithCategories)
 
 	// api.Get("/:id", handler.GetSingleProduct)
 	// api.Post("/", handler.CreateProduct)
 	// api.Delete("/:id", handler.DeleteProduct)
+
+	// TEMP
+	route.Get(token, controllers.GetNewAccessToken)
 }

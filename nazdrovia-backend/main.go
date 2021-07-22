@@ -12,6 +12,8 @@ import (
 )
 
 func main() {
+
+	configs.LoadEnv()
 	// Define Fiber config.
 	config := configs.FiberConfig()
 
