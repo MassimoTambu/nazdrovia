@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/router/naz_route_path.dart';
-import 'package:nazdrovia/router/naz_router_delegate.dart';
+import 'package:nazdrovia/router/naz_app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:nazdrovia/shared/utils/utilities.dart';
 import 'package:nazdrovia/shared/widgets/widgets.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -26,6 +25,16 @@ class HomePage extends StatelessWidget {
 }
 
 class PagesTable extends StatelessWidget {
+  // lista di path con categorie
+  final List<PageRouteInfo> pageCategories = [
+    AchievementsRoute(),
+    CreditsRoute(),
+    OfficialCocktailsRoute(),
+    OtherGamesRoute(),
+    PlayersRoute(),
+    RulesRoute(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,20 +47,20 @@ class PagesTable extends StatelessWidget {
           children: [
             TableRow(
               children: [
-                PageRow(pageCategories[1]),
-                PageRow(pageCategories[2]),
+                PageRow(pageCategories[0], 'Obbiettivi'),
+                PageRow(pageCategories[1], 'Crediti'),
               ],
             ),
             TableRow(
               children: [
-                PageRow(pageCategories[3]),
-                PageRow(pageCategories[4]),
+                PageRow(pageCategories[2], 'Cocktails Ufficiali'),
+                PageRow(pageCategories[3], 'Altri giochi'),
               ],
             ),
             TableRow(
               children: [
-                PageRow(pageCategories[5]),
-                PageRow(pageCategories[6]),
+                PageRow(pageCategories[4], 'Giocatori'),
+                PageRow(pageCategories[5], 'Regole'),
               ],
             ),
           ],
@@ -62,9 +71,10 @@ class PagesTable extends StatelessWidget {
 }
 
 class PageRow extends StatelessWidget {
-  final NazPathCategory page;
+  final PageRouteInfo page;
+  final String title;
 
-  const PageRow(this.page);
+  const PageRow(this.page, this.title);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +86,7 @@ class PageRow extends StatelessWidget {
         onTap: () => navigateToPath(context, page),
         child: LayoutBuilder(
           builder: (BuildContext ctx, BoxConstraints cons) => Text(
-            page.title,
+            title,
             style: TextStyle(
               fontSize: cons.maxHeight / 8,
             ),
@@ -86,11 +96,8 @@ class PageRow extends StatelessWidget {
     );
   }
 
-  void navigateToPath(BuildContext context, NazPathCategory page) {
-    final appState =
-        Provider.of<NazRouterDelegate>(context, listen: false).appState!;
-
-    appState.selectedPath = page;
+  void navigateToPath(BuildContext context, PageRouteInfo page) {
+    context.router.push(page);
   }
 }
 

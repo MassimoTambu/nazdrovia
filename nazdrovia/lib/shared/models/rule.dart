@@ -1,5 +1,8 @@
-// part 'rule.g.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'rule.g.dart';
+
+@JsonSerializable()
 class Rule {
   final int id;
   final String number;
@@ -8,8 +11,8 @@ class Rule {
 
   const Rule(this.id, this.number, this.title, this.description);
 
-  // factory Rule.fromJson(Map<String, dynamic> json) => _$RuleFromJson(json);
-  // Map<String, dynamic> toJson() => _$RuleToJson(this);
+  factory Rule.fromJson(Map<String, dynamic> json) => _$RuleFromJson(json);
+  Map<String, dynamic> toJson() => _$RuleToJson(this);
 }
 
 abstract class RulesCategory {
