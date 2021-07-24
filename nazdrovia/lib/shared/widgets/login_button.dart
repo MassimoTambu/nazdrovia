@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nazdrovia/shared/extensions/theme_extension.dart';
+import 'package:nazdrovia/shared/services/dialog_service.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({Key? key}) : super(key: key);
+  final DialogService _dialogService;
+
+  LoginButton({Key? key})
+      : _dialogService = DialogService(),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +17,7 @@ class LoginButton extends StatelessWidget {
         size: 25,
         color: context.theme().accentColor,
       ),
-      onPressed: () {},
+      onPressed: () => _dialogService.showAuthDialog(context),
     );
   }
 }

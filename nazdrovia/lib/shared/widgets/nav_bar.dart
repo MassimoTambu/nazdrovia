@@ -47,8 +47,8 @@ class NavBar extends StatelessWidget {
                       child: ThemeButton(),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: LoginButton(),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Themes {
-  TextTheme _textTheme = TextTheme();
+  final _textTheme = TextTheme();
 
   ThemeData buildLightThemeData() {
     return ThemeData(
