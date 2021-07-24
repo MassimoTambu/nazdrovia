@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/app_states/app_state.dart';
 import 'package:nazdrovia/router/naz_app_router.gr.dart';
-import 'package:nazdrovia/shared/utils/utilities.dart';
+import 'package:nazdrovia/state_models/theme_state.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -11,24 +10,21 @@ void main() {
 class NazdroviaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AppState>(
-          create: (context) => AppState(),
-        ),
-      ],
-      child: _MaterialAppManager(),
+    return ChangeNotifierProvider<ThemeState>(
+      create: (context) => ThemeState(),
+      child: const _MaterialAppManager(),
     );
   }
 }
 
 class _MaterialAppManager extends StatefulWidget {
+  const _MaterialAppManager();
   @override
   State<_MaterialAppManager> createState() => _MaterialAppManagerState();
 }
 
 class _MaterialAppManagerState extends State<_MaterialAppManager> {
-  late AppRouter _appRouter;
+  late final AppRouter _appRouter;
 
   @override
   initState() {
@@ -38,17 +34,9 @@ class _MaterialAppManagerState extends State<_MaterialAppManager> {
 
   @override
   Widget build(BuildContext context) {
-    final lightTheme = Provider.of<AppState>(context, listen: false)
-        .themes
-        .buildLightThemeData();
-    final darkTheme = Provider.of<AppState>(context, listen: false)
-        .themes
-        .buildDarkThemeData();
-    final lsThemeKey = Provider.of<AppState>(context, listen: false)
-        .localStorage
-        .getItem(Themes.lsThemeKey);
-    final themeMode =
-        Provider.of<AppState>(context).themes.currentTheme(lsThemeKey);
+    final lightTheme = context.read<ThemeState>().themes.buildLightThemeData();
+    final darkTheme = context.read<ThemeState>().themes.buildDarkThemeData();
+    final themeMode = context.watch<ThemeState>().getCurrentTheme();
 
     return MaterialApp.router(
       theme: lightTheme,

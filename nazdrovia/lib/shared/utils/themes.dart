@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Themes {
-  static String lsThemeKey = 'THEME';
-  static String lightTheme = 'Light Theme';
-  static String darkTheme = 'Dark Theme';
-  static bool isLightTheme = false;
   TextTheme _textTheme = TextTheme();
 
   ThemeData buildLightThemeData() {
@@ -33,14 +29,5 @@ class Themes {
       backgroundColor: Color.fromARGB(255, 66, 66, 66),
       textTheme: _textTheme,
     );
-  }
-
-  ThemeMode currentTheme(String? lsThemeKey) {
-    if (lsThemeKey == lightTheme) {
-      isLightTheme = true;
-      return ThemeMode.light;
-    }
-    isLightTheme = false;
-    return ThemeMode.dark;
   }
 }

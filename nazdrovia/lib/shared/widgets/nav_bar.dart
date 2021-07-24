@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/app_states/app_state.dart';
-import 'package:provider/provider.dart';
+import 'package:nazdrovia/shared/widgets/login_button.dart';
+import 'package:nazdrovia/shared/widgets/theme_button.dart';
 
-import '../utils/resizer.dart';
 import '../utils/utilities.dart';
 
 class NavBar extends StatelessWidget {
+  const NavBar();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,60 +40,25 @@ class NavBar extends StatelessWidget {
                       );
                     },
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: DropdownThemeButton(),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: ThemeButton(),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: LoginButton(),
+                    ),
                   ),
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class DropdownThemeButton extends StatefulWidget {
-  @override
-  _DropdownThemeButtonState createState() => _DropdownThemeButtonState();
-}
-
-class _DropdownThemeButtonState extends State<DropdownThemeButton> {
-  String dropdownValue = 'One';
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 40),
-      child: DropdownButton<String>(
-        icon: Icon(
-          Themes.isLightTheme ? Icons.brightness_7 : Icons.brightness_3,
-          size: 40,
-          color: Theme.of(context).primaryColor,
-        ),
-        items: <String>[Themes.darkTheme, Themes.lightTheme]
-            .map<DropdownMenuItem<String>>((String theme) {
-          return DropdownMenuItem<String>(
-            value: theme,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(theme),
-                Icon(
-                  theme == Themes.darkTheme
-                      ? Icons.brightness_3
-                      : Icons.brightness_7,
-                ),
-              ],
-            ),
-          );
-        }).toList(),
-        underline: const SizedBox(),
-        onChanged: (String? newTheme) {
-          Provider.of<AppState>(context, listen: false)
-              .changeCurrentTheme(newTheme!);
-        },
       ),
     );
   }

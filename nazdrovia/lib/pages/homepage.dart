@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nazdrovia/router/naz_app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:nazdrovia/shared/utils/utilities.dart';
+import 'package:nazdrovia/shared/widgets/footer.dart';
 import 'package:nazdrovia/shared/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,9 +14,9 @@ class HomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              NavBar(),
-              PagesTable(),
-              Footer(),
+              const NavBar(),
+              const PagesTable(),
+              const Footer(),
             ],
           ),
         ),
@@ -25,15 +26,7 @@ class HomePage extends StatelessWidget {
 }
 
 class PagesTable extends StatelessWidget {
-  // lista di path con categorie
-  final List<PageRouteInfo> pageCategories = [
-    AchievementsRoute(),
-    CreditsRoute(),
-    OfficialCocktailsRoute(),
-    OtherGamesRoute(),
-    PlayersRoute(),
-    RulesRoute(),
-  ];
+  const PagesTable();
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +40,20 @@ class PagesTable extends StatelessWidget {
           children: [
             TableRow(
               children: [
-                PageRow(pageCategories[0], 'Obbiettivi'),
-                PageRow(pageCategories[1], 'Crediti'),
+                PageRow(AchievementsRoute(), 'Obbiettivi'),
+                PageRow(CreditsRoute(), 'Crediti'),
               ],
             ),
             TableRow(
               children: [
-                PageRow(pageCategories[2], 'Cocktails Ufficiali'),
-                PageRow(pageCategories[3], 'Altri giochi'),
+                PageRow(OfficialCocktailsRoute(), 'Cocktails Ufficiali'),
+                PageRow(OtherGamesRoute(), 'Altri giochi'),
               ],
             ),
             TableRow(
               children: [
-                PageRow(pageCategories[4], 'Giocatori'),
-                PageRow(pageCategories[5], 'Regole'),
+                PageRow(PlayersRoute(), 'Giocatori'),
+                PageRow(RulesRoute(), 'Regole'),
               ],
             ),
           ],
@@ -98,16 +91,5 @@ class PageRow extends StatelessWidget {
 
   void navigateToPath(BuildContext context, PageRouteInfo page) {
     context.router.push(page);
-  }
-}
-
-class Footer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 300,
-      color: Theme.of(context).backgroundColor,
-    );
   }
 }
