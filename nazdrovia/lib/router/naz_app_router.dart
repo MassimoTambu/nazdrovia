@@ -6,7 +6,7 @@ import 'package:nazdrovia/pages/pages.dart';
 // @CustomAutoRouter
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
-  routes: const <AutoRoute>[
+  routes: <AutoRoute>[
     AutoRoute(page: HomePage, initial: true),
     AutoRoute(page: AchievementsPage),
     AutoRoute(page: CreditsPage),

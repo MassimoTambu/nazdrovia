@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nazdrovia/router/naz_app_router.gr.dart';
-import 'package:nazdrovia/state_models/theme_state.dart';
+import 'package:nazdrovia/states/theme_state.dart';
 import 'package:provider/provider.dart';
 
 void main() {
