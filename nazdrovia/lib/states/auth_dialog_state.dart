@@ -9,6 +9,7 @@ class AuthDialogState with ChangeNotifier {
   // not a GlobalKey<MyCustomFormState>.
   final formKey = GlobalKey<FormState>();
   var isLoading = false;
+  double? loaderValue = 0.0;
 
   String? emptyValidator(String? value) {
     if (value == null || value.isEmpty) {
@@ -25,10 +26,12 @@ class AuthDialogState with ChangeNotifier {
     // Validate returns true if the form is valid, or false otherwise.
     if (formKey.currentState!.validate()) {
       isLoading = true;
+      loaderValue = null;
       notifyListeners();
       //TODO CALL API
       Future.delayed(Duration(seconds: 2), () {
         isLoading = false;
+        loaderValue = 0.0;
         notifyListeners();
       });
     }

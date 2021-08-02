@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nazdrovia/states/auth_dialog_state.dart';
+import 'package:nazdrovia/shared/extensions/theme_extension.dart';
 import 'package:provider/provider.dart';
 
 class AuthDialog extends StatelessWidget {
@@ -10,28 +11,42 @@ class AuthDialog extends StatelessWidget {
     return ChangeNotifierProvider<AuthDialogState>(
       create: (context) => AuthDialogState(),
       builder: (context, child) {
+        final state = context.read<AuthDialogState>();
         return Dialog(
           child: Form(
-            key: context.read<AuthDialogState>().formKey,
-            child: Column(
-              children: [
-                Opacity(
-                  opacity: context.watch<AuthDialogState>().isLoading ? 1 : 0,
-                  child: const LinearProgressIndicator(),
-                ),
-                const Text('Login'),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Utente'),
-                  validator: context.read<AuthDialogState>().emptyValidator,
-                ),
-                TextFormField(
-                  validator: context.read<AuthDialogState>().emptyValidator,
-                ),
-                _ActionButtons(
-                  context.read<AuthDialogState>().closeDialog,
-                  context.read<AuthDialogState>().submit,
-                ),
-              ],
+            key: state.formKey,
+            child: Container(
+              width: 300,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Opacity(
+                    opacity: context.watch<AuthDialogState>().isLoading ? 1 : 0,
+                    child: LinearProgressIndicator(
+                      value: state.loaderValue,
+                    ),
+                  ),
+                  Text(
+                    'Login',
+                    style: TextStyle(
+                        fontSize:
+                            context.theme().textTheme.headline6!.fontSize),
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(labelText: 'Utente'),
+                    validator: state.emptyValidator,
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(labelText: 'Password'),
+                    validator: state.emptyValidator,
+                  ),
+                  _ActionButtons(
+                    state.closeDialog,
+                    state.submit,
+                  ),
+                ],
+              ),
             ),
           ),
         );
