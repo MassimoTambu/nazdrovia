@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/shared/extensions/theme_extension.dart';
-import 'package:nazdrovia/shared/services/dialog_service.dart';
+import 'package:nazdrovia/models/extensions/theme_extension.dart';
+import 'package:nazdrovia/utils/services/dialog_service.dart';
 
 class LoginButton extends StatelessWidget {
   final DialogService _dialogService;

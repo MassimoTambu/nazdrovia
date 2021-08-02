@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/shared/extensions/theme_extension.dart';
-import 'package:nazdrovia/states/theme_state.dart';
+import 'package:nazdrovia/models/extensions/theme_extension.dart';
+import 'package:nazdrovia/models/states/theme_state.dart';
 import 'package:provider/provider.dart';
 
 class ThemeButton extends StatelessWidget {

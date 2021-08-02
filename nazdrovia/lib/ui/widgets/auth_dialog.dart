@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/states/auth_dialog_state.dart';
-import 'package:nazdrovia/shared/extensions/theme_extension.dart';
+import 'package:nazdrovia/models/states/auth_dialog_state.dart';
 import 'package:provider/provider.dart';
+import 'package:nazdrovia/models/extensions/theme_extension.dart';
 
 class AuthDialog extends StatelessWidget {
   AuthDialog({Key? key}) : super(key: key);

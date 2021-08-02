@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:nazdrovia/pages/pages.dart';
+import 'package:nazdrovia/ui/pages/pages.dart';
 
 // @CupertinoAutoRouter
 // @AdaptiveAutoRouter

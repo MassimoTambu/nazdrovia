@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:nazdrovia/shared/models/models.dart';
 import 'package:http/http.dart' as http;
+import 'package:nazdrovia/models/classes/rules_container.dart';
 
 class RulesService {
   static Future<List<RulesContainer>> getRules() async {

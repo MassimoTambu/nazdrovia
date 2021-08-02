@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:nazdrovia/shared/models/rule.dart';
+import 'package:nazdrovia/models/classes/rule.dart';
 
 part 'rules_container.g.dart';
 

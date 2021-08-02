@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/shared/services/local_storage_service.dart';
-import 'package:nazdrovia/shared/utils/utilities.dart';
+import 'package:nazdrovia/config/themes/themes.dart';
+import 'package:nazdrovia/models/enums/local_storage_enum.dart';
+import 'package:nazdrovia/utils/services/local_storage_service.dart';
 
 class ThemeState with ChangeNotifier {
   final _themes = Themes();
-  final _localStorage = LocalStorageService();
-  final lsThemeKey = 'THEME';
+  final lsThemeKey = LocalStorageEnum.Theme;
   final lightTheme = 'Light Theme';
   final darkTheme = 'Dark Theme';
   var isDarkTheme = true;
 
-  ThemeState() {
-    _localStorage.getInstance();
-  }
-
   Themes get themes => _themes;
 
-  void changeCurrentTheme(bool isDarkTheme) {
+  void changeCurrentTheme(bool isDarkTheme) async {
     final currentTheme = isDarkTheme ? darkTheme : lightTheme;
     this.isDarkTheme = isDarkTheme;
 
-    _localStorage.setItem(lsThemeKey, currentTheme);
+    await LocalStorageService.set<String>(lsThemeKey, currentTheme);
     notifyListeners();
   }
 
   ThemeMode getCurrentTheme() {
-    final theme = _localStorage.getItem(lsThemeKey);
+    final theme = LocalStorageService.get<String>(lsThemeKey);
     if (theme == lightTheme) {
       return ThemeMode.light;
     }

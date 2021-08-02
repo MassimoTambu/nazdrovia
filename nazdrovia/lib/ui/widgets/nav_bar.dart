@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nazdrovia/shared/widgets/login_button.dart';
-import 'package:nazdrovia/shared/widgets/theme_button.dart';
-
-import '../utils/utilities.dart';
+import 'package:nazdrovia/ui/widgets/login_button.dart';
+import 'package:nazdrovia/ui/widgets/theme_button.dart';
+import 'package:nazdrovia/utils/helpers/resizer_helper.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar();
@@ -16,9 +15,10 @@ class NavBar extends StatelessWidget {
           Align(
             alignment: Alignment.topCenter,
             child: Container(
-              width:
-                  resizeWidth(percValue: 45, context: context, fullUnder: 570),
-              height: resizeHeight(percValue: 8, context: context),
+              width: ResizerHelper.resizeWidth(
+                  percValue: 45, context: context, fullUnder: 570),
+              height:
+                  ResizerHelper.resizeHeight(percValue: 8, context: context),
               decoration: BoxDecoration(
                 color: Theme.of(context).backgroundColor,
                 borderRadius: BorderRadius.only(

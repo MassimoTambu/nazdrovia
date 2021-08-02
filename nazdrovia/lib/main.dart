@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:nazdrovia/models/states/theme_state.dart';
 import 'package:nazdrovia/router/naz_app_router.gr.dart';
-import 'package:nazdrovia/states/theme_state.dart';
+import 'package:nazdrovia/utils/services/local_storage_service.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(NazdroviaApp());
 }
 
 class NazdroviaApp extends StatelessWidget {
+  Future<void> _initApplication() async {
+    final prefs = await SharedPreferences.getInstance();
+    LocalStorageService.init(prefs);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ThemeState>(
-      create: (context) => ThemeState(),
-      child: const _MaterialAppManager(),
-    );
+    return FutureBuilder(
+        future: _initApplication(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ChangeNotifierProvider<ThemeState>(
+              create: (context) => ThemeState(),
+              child: const _MaterialAppManager(),
+            );
+          } else {
+            return CircularProgressIndicator();
+          }
+        });
   }
 }
 

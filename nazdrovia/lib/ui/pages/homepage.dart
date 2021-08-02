@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nazdrovia/router/naz_app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:nazdrovia/shared/utils/utilities.dart';
-import 'package:nazdrovia/shared/widgets/footer.dart';
-import 'package:nazdrovia/shared/widgets/widgets.dart';
+import 'package:nazdrovia/ui/widgets/widgets.dart';
+import 'package:nazdrovia/utils/helpers/resizer_helper.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -33,7 +32,8 @@ class PagesTable extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 100),
       child: SizedBox(
-        width: resizeWidth(percValue: 45, context: context, fullUnder: 570),
+        width: ResizerHelper.resizeWidth(
+            percValue: 45, context: context, fullUnder: 570),
         child: Table(
           border: TableBorder.all(
               width: 2, color: Theme.of(context).scaffoldBackgroundColor),
@@ -73,7 +73,7 @@ class PageRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 20),
-      height: resizeHeight(percValue: 22, context: context),
+      height: ResizerHelper.resizeHeight(percValue: 22, context: context),
       color: Theme.of(context).backgroundColor,
       child: InkWell(
         onTap: () => navigateToPath(context, page),
