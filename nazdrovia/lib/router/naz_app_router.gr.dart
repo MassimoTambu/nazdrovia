@@ -15,46 +15,38 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.HomePage();
-        }),
-    AchievementsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.AchievementsPage();
-        }),
-    CreditsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.CreditsPage();
-        }),
-    NotFoundRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.NotFoundPage();
-        }),
-    OfficialCocktailsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.OfficialCocktailsPage();
-        }),
-    OtherGamesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.OtherGamesPage();
-        }),
-    PlayersRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.PlayersPage();
-        }),
-    RulesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.RulesPage();
-        })
+    HomeRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.HomePage());
+    },
+    AchievementsRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.AchievementsPage());
+    },
+    CreditsRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.CreditsPage());
+    },
+    NotFoundRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.NotFoundPage());
+    },
+    OfficialCocktailsRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.OfficialCocktailsPage());
+    },
+    OtherGamesRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.OtherGamesPage());
+    },
+    PlayersRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.PlayersPage());
+    },
+    RulesRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.RulesPage());
+    }
   };
 
   @override
@@ -71,50 +63,50 @@ class AppRouter extends _i1.RootStackRouter {
       ];
 }
 
-class HomeRoute extends _i1.PageRouteInfo {
+class HomeRoute extends _i1.PageRouteInfo<void> {
   const HomeRoute() : super(name, path: '/');
 
   static const String name = 'HomeRoute';
 }
 
-class AchievementsRoute extends _i1.PageRouteInfo {
+class AchievementsRoute extends _i1.PageRouteInfo<void> {
   const AchievementsRoute() : super(name, path: '/achievements-page');
 
   static const String name = 'AchievementsRoute';
 }
 
-class CreditsRoute extends _i1.PageRouteInfo {
+class CreditsRoute extends _i1.PageRouteInfo<void> {
   const CreditsRoute() : super(name, path: '/credits-page');
 
   static const String name = 'CreditsRoute';
 }
 
-class NotFoundRoute extends _i1.PageRouteInfo {
+class NotFoundRoute extends _i1.PageRouteInfo<void> {
   const NotFoundRoute() : super(name, path: '/not-found-page');
 
   static const String name = 'NotFoundRoute';
 }
 
-class OfficialCocktailsRoute extends _i1.PageRouteInfo {
+class OfficialCocktailsRoute extends _i1.PageRouteInfo<void> {
   const OfficialCocktailsRoute()
       : super(name, path: '/official-cocktails-page');
 
   static const String name = 'OfficialCocktailsRoute';
 }
 
-class OtherGamesRoute extends _i1.PageRouteInfo {
+class OtherGamesRoute extends _i1.PageRouteInfo<void> {
   const OtherGamesRoute() : super(name, path: '/other-games-page');
 
   static const String name = 'OtherGamesRoute';
 }
 
-class PlayersRoute extends _i1.PageRouteInfo {
+class PlayersRoute extends _i1.PageRouteInfo<void> {
   const PlayersRoute() : super(name, path: '/players-page');
 
   static const String name = 'PlayersRoute';
 }
 
-class RulesRoute extends _i1.PageRouteInfo {
+class RulesRoute extends _i1.PageRouteInfo<void> {
   const RulesRoute() : super(name, path: '/rules-page');
 
   static const String name = 'RulesRoute';
