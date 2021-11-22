@@ -1,1 +1,1 @@
-Backend built in GO with Fiber v2
+Backend built in Nodejs with NestJs & Typescript
