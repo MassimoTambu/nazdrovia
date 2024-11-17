@@ -1,3 +1,33 @@
 {
-   "appBarTitle": "Nazdrovia"
+   "appBarTitle": "Nazdrovia",
+   "@appBarTitle": {
+      "description": "The title to be shown in the app bar"
+   },
+   "error": "Errore",
+   "anErrorOccurred": "Si è verificato un errore",
+   "anErrorOccurredPleaseTryAgain": "Si è verificato un errore, per favore riprova",
+   "somethingWentWrong": "Qualcosa è andato storto",
+   "somethingWentWrongAuth": "Qualcosa è andato storto durante l'autenticazione",
+   "goBack": "Torna indietro",
+   "guest": "Ospite",
+   "account": "Account",
+   "logout": "Disconnetti account",
+   "login": "Accedi",
+   "googleLogin": "Accedi con Google",
+   "facebookLogin": "Accedi con Facebook",
+   "closed": "Chiuso",
+   "open": "Aperto",
+   "pageNotFound": "404 - La pagina non è stata trovata!",
+   "email": "Email",
+   "enterEmail": "Inserisci una email",
+   "save": "Salva",
+   "yes": "Sì",
+   "no": "No",
+   "retry": "Riprova",
+   "unauthorized": "Unauthorized",
+   "okay": "Okay",
+   "successLogIn": "Accesso eseguito con successo!",
+   "successLogOut": "Il tuo account è stato disconnesso",
+   "cancel": "Annulla",
+   "confirm": "Conferma"
 }

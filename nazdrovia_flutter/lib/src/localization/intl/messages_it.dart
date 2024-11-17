@@ -22,6 +22,43 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "appBarTitle": MessageLookupByLibrary.simpleMessage("Nazdrovia")
+        "account": MessageLookupByLibrary.simpleMessage("Account"),
+        "anErrorOccurred":
+            MessageLookupByLibrary.simpleMessage("Si è verificato un errore"),
+        "anErrorOccurredPleaseTryAgain": MessageLookupByLibrary.simpleMessage(
+            "Si è verificato un errore, per favore riprova"),
+        "appBarTitle": MessageLookupByLibrary.simpleMessage("Nazdrovia"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Annulla"),
+        "closed": MessageLookupByLibrary.simpleMessage("Chiuso"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Conferma"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "enterEmail":
+            MessageLookupByLibrary.simpleMessage("Inserisci una email"),
+        "error": MessageLookupByLibrary.simpleMessage("Errore"),
+        "facebookLogin":
+            MessageLookupByLibrary.simpleMessage("Accedi con Facebook"),
+        "goBack": MessageLookupByLibrary.simpleMessage("Torna indietro"),
+        "googleLogin":
+            MessageLookupByLibrary.simpleMessage("Accedi con Google"),
+        "guest": MessageLookupByLibrary.simpleMessage("Ospite"),
+        "login": MessageLookupByLibrary.simpleMessage("Accedi"),
+        "logout": MessageLookupByLibrary.simpleMessage("Disconnetti account"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
+        "okay": MessageLookupByLibrary.simpleMessage("Okay"),
+        "open": MessageLookupByLibrary.simpleMessage("Aperto"),
+        "pageNotFound": MessageLookupByLibrary.simpleMessage(
+            "404 - La pagina non è stata trovata!"),
+        "retry": MessageLookupByLibrary.simpleMessage("Riprova"),
+        "save": MessageLookupByLibrary.simpleMessage("Salva"),
+        "somethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Qualcosa è andato storto"),
+        "somethingWentWrongAuth": MessageLookupByLibrary.simpleMessage(
+            "Qualcosa è andato storto durante l\'autenticazione"),
+        "successLogIn": MessageLookupByLibrary.simpleMessage(
+            "Accesso eseguito con successo!"),
+        "successLogOut": MessageLookupByLibrary.simpleMessage(
+            "Il tuo account è stato disconnesso"),
+        "unauthorized": MessageLookupByLibrary.simpleMessage("Unauthorized"),
+        "yes": MessageLookupByLibrary.simpleMessage("Sì")
       };
 }

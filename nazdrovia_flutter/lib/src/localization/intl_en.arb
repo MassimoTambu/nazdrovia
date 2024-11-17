@@ -1,3 +1,33 @@
 {
-   "appBarTitle": "Nazdrovia"
+   "appBarTitle": "Nazdrovia",
+   "@appBarTitle": {
+      "description": "The title to be shown in the app bar"
+   },
+   "error": "Error",
+   "anErrorOccurred": "An error occurred",
+   "anErrorOccurredPleaseTryAgain": "An error occurred, please try again",
+   "somethingWentWrong": "Something went wrong",
+   "somethingWentWrongAuth": "Something went wrong during the authentication",
+   "goBack": "Go Back",
+   "guest": "Guest",
+   "account": "Account",
+   "logout": "Logout",
+   "login": "Login",
+   "googleLogin": "Google login",
+   "facebookLogin": "Facebook login",
+   "closed": "Closed",
+   "open": "Open",
+   "pageNotFound": "404 - Page not found!",
+   "email": "Email",
+   "enterEmail": "Enter an email",
+   "save": "Save",
+   "yes": "Yes",
+   "no": "No",
+   "retry": "Retry",
+   "unauthorized": "Unauthorized",
+   "okay": "Okay",
+   "successLogIn": "Successfully logged in!",
+   "successLogOut": "Your account has been disconnected",
+   "cancel": "Cancel",
+   "confirm": "Confirm"
 }
