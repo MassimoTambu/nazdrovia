@@ -1,0 +1,6 @@
+class: AchievementCategory
+table: achievement_categories
+
+fields:
+   category: String
+   displayOrder: int, default=0

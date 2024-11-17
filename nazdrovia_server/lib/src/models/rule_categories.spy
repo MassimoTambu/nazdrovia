@@ -1,0 +1,9 @@
+class: RuleCategory
+table: rule_categories
+
+fields:
+   title: String
+   prologue: String?
+   epilogue: String?
+   rules: List<Rule>?, relation,
+   displayOrder: int, default=0

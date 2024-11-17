@@ -1,0 +1,10 @@
+class: CompletedAchievements
+table: completed_achievements
+
+fields:
+   player: Player?, relation(name=player_completed_achievements)
+   achievement: Achievement?, relation(name=achievements_completed)
+indexes:
+   enrollment_index_idx:
+      fields: playerId, achievementId
+      unique: true

@@ -1,0 +1,9 @@
+class: Rule
+table: rules
+
+fields:
+   number: String?
+   title: String?
+   description: String,
+   ruleCategory: RuleCategory?, relation,
+   displayOrder: int, default=0

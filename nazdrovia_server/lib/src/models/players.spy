@@ -1,0 +1,11 @@
+class: Player
+table: players
+
+fields:
+   name: String
+   lastName: String
+   catchPhrase: String
+   penalities: int
+   isOut: bool
+   image: String?
+   completedAchievements: List<CompletedAchievements>?, relation(name=player_completed_achievements)

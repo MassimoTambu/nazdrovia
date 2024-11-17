@@ -1,0 +1,11 @@
+class: Achievement
+table: achievements
+
+fields:
+   title: String
+   description: String
+   nasScore: int
+   category: AchievementCategory?, relation 
+   image: String?
+   playersWithAchievement: List<CompletedAchievements>?, relation(name=achievements_completed)
+   displayOrder: int, default=0

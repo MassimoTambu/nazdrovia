@@ -1,0 +1,8 @@
+achievement:
+  - getAll:
+  - getAllWithCategories:
+player:
+  - getAll:
+  - getAllWithAchievements:
+rule:
+  - getAllWithCategories:
