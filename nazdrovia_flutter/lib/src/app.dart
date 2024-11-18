@@ -25,7 +25,7 @@ class MyApp extends HookConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: Translations.delegate.supportedLocales,
-      darkTheme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: ThemeMode.light,
       scaffoldMessengerKey: scaffoldMessengerKey,
     );

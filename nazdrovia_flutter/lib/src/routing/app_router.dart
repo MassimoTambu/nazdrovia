@@ -8,7 +8,7 @@ import 'package:nazdrovia_flutter/src/routing/not_found_screen.dart';
 part 'app_router.g.dart';
 
 enum AppRoute {
-  home(''),
+  home('home'),
   achievements('achievements'),
   credits('credits'),
   officialCocktails('official-cocktails'),
@@ -30,6 +30,14 @@ GoRouter goRouter(Ref ref) {
     initialLocation: '/',
     debugLogDiagnostics: true,
     routes: [
+      GoRoute(
+        path: '/',
+        name: AppRoute.home.name,
+        builder: (context, state) {
+          // TODO
+          return Container();
+        },
+      ),
       GoRoute(
         path: 'achievements',
         name: AppRoute.achievements.name,
