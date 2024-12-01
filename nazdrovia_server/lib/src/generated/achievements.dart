@@ -99,6 +99,8 @@ abstract class Achievement implements _i1.TableRow, _i1.ProtocolSerialization {
 
   int displayOrder;
 
+  int? _achievementCategoriesAchievementsAchievementCategoriesId;
+
   @override
   _i1.Table get table => t;
 
@@ -131,6 +133,9 @@ abstract class Achievement implements _i1.TableRow, _i1.ProtocolSerialization {
         'playersWithAchievement':
             playersWithAchievement?.toJson(valueToJson: (v) => v.toJson()),
       'displayOrder': displayOrder,
+      if (_achievementCategoriesAchievementsAchievementCategoriesId != null)
+        '_achievementCategoriesAchievementsAchievementCategoriesId':
+            _achievementCategoriesAchievementsAchievementCategoriesId,
     };
   }
 
@@ -259,6 +264,68 @@ class _AchievementImpl extends Achievement {
   }
 }
 
+class AchievementImplicit extends _AchievementImpl {
+  AchievementImplicit._({
+    int? id,
+    required int titleId,
+    _i2.Texts? title,
+    required int descriptionId,
+    _i2.Texts? description,
+    required int nasScore,
+    required int categoryId,
+    _i3.AchievementCategory? category,
+    String? image,
+    List<_i4.CompletedAchievements>? playersWithAchievement,
+    int? displayOrder,
+    this.$_achievementCategoriesAchievementsAchievementCategoriesId,
+  }) : super(
+          id: id,
+          titleId: titleId,
+          title: title,
+          descriptionId: descriptionId,
+          description: description,
+          nasScore: nasScore,
+          categoryId: categoryId,
+          category: category,
+          image: image,
+          playersWithAchievement: playersWithAchievement,
+          displayOrder: displayOrder,
+        );
+
+  factory AchievementImplicit(
+    Achievement achievement, {
+    int? $_achievementCategoriesAchievementsAchievementCategoriesId,
+  }) {
+    return AchievementImplicit._(
+      id: achievement.id,
+      titleId: achievement.titleId,
+      title: achievement.title,
+      descriptionId: achievement.descriptionId,
+      description: achievement.description,
+      nasScore: achievement.nasScore,
+      categoryId: achievement.categoryId,
+      category: achievement.category,
+      image: achievement.image,
+      playersWithAchievement: achievement.playersWithAchievement,
+      displayOrder: achievement.displayOrder,
+      $_achievementCategoriesAchievementsAchievementCategoriesId:
+          $_achievementCategoriesAchievementsAchievementCategoriesId,
+    );
+  }
+
+  int? $_achievementCategoriesAchievementsAchievementCategoriesId;
+
+  @override
+  Map<String, dynamic> toJson() {
+    var jsonMap = super.toJson();
+    jsonMap.addAll({
+      '_achievementCategoriesAchievementsAchievementCategoriesId':
+          $_achievementCategoriesAchievementsAchievementCategoriesId
+    });
+    return jsonMap;
+  }
+}
+
 class AchievementTable extends _i1.Table {
   AchievementTable({super.tableRelation}) : super(tableName: 'achievements') {
     titleId = _i1.ColumnInt(
@@ -286,6 +353,10 @@ class AchievementTable extends _i1.Table {
       this,
       hasDefault: true,
     );
+    $_achievementCategoriesAchievementsAchievementCategoriesId = _i1.ColumnInt(
+      '_achievementCategoriesAchievementsAchievementCategoriesId',
+      this,
+    );
   }
 
   late final _i1.ColumnInt titleId;
@@ -309,6 +380,9 @@ class AchievementTable extends _i1.Table {
   _i1.ManyRelation<_i4.CompletedAchievementsTable>? _playersWithAchievement;
 
   late final _i1.ColumnInt displayOrder;
+
+  late final _i1.ColumnInt
+      $_achievementCategoriesAchievementsAchievementCategoriesId;
 
   _i2.TextsTable get title {
     if (_title != null) return _title!;
@@ -389,6 +463,7 @@ class AchievementTable extends _i1.Table {
         categoryId,
         image,
         displayOrder,
+        $_achievementCategoriesAchievementsAchievementCategoriesId,
       ];
 
   @override

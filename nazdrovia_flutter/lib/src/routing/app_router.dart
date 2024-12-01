@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:nazdrovia_flutter/src/features/admin/presentation/rules/admin_rule_list_screen.dart';
+import 'package:nazdrovia_flutter/src/features/admin/presentation/admin_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:nazdrovia_flutter/src/common_widgets/not_found_screen.dart';
@@ -44,7 +44,7 @@ GoRouter goRouter(Ref ref) {
         name: AppRoute.home.name,
         builder: (context, state) {
           // TODO
-          return AdminRuleListScreen();
+          return AdminScreen();
         },
       ),
       GoRoute(
@@ -100,7 +100,7 @@ GoRouter goRouter(Ref ref) {
         name: AppRoute.admin.name,
         builder: (context, state) {
           // TODO
-          return AdminRuleListScreen();
+          return AdminScreen();
         },
         routes: [
           GoRoute(

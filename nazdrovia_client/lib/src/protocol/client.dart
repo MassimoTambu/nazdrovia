@@ -28,10 +28,10 @@ class EndpointAchievementCategory extends _i1.EndpointRef {
   @override
   String get name => 'achievementCategory';
 
-  _i2.Future<List<_i3.AchievementCategory>> getAll() =>
+  _i2.Future<List<_i3.AchievementCategory>> getAllWithAchievements() =>
       caller.callServerEndpoint<List<_i3.AchievementCategory>>(
         'achievementCategory',
-        'getAll',
+        'getAllWithAchievements',
         {},
       );
 

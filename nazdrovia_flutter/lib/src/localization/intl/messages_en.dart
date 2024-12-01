@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("Account"),
         "achievements": MessageLookupByLibrary.simpleMessage("Achievements"),
+        "adminScreen": MessageLookupByLibrary.simpleMessage("Admin screen"),
         "anErrorOccurred":
             MessageLookupByLibrary.simpleMessage("An error occurred"),
         "anErrorOccurredPleaseTryAgain": MessageLookupByLibrary.simpleMessage(

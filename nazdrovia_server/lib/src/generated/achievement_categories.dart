@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'texts.dart' as _i2;
+import 'achievements.dart' as _i3;
 
 abstract class AchievementCategory
     implements _i1.TableRow, _i1.ProtocolSerialization {
@@ -18,6 +19,7 @@ abstract class AchievementCategory
     this.id,
     required this.categoryId,
     this.category,
+    this.achievements,
     int? displayOrder,
   }) : displayOrder = displayOrder ?? 0;
 
@@ -25,6 +27,7 @@ abstract class AchievementCategory
     int? id,
     required int categoryId,
     _i2.Texts? category,
+    List<_i3.Achievement>? achievements,
     int? displayOrder,
   }) = _AchievementCategoryImpl;
 
@@ -36,6 +39,9 @@ abstract class AchievementCategory
           ? null
           : _i2.Texts.fromJson(
               (jsonSerialization['category'] as Map<String, dynamic>)),
+      achievements: (jsonSerialization['achievements'] as List?)
+          ?.map((e) => _i3.Achievement.fromJson((e as Map<String, dynamic>)))
+          .toList(),
       displayOrder: jsonSerialization['displayOrder'] as int,
     );
   }
@@ -51,6 +57,8 @@ abstract class AchievementCategory
 
   _i2.Texts? category;
 
+  List<_i3.Achievement>? achievements;
+
   int displayOrder;
 
   @override
@@ -60,6 +68,7 @@ abstract class AchievementCategory
     int? id,
     int? categoryId,
     _i2.Texts? category,
+    List<_i3.Achievement>? achievements,
     int? displayOrder,
   });
   @override
@@ -68,6 +77,8 @@ abstract class AchievementCategory
       if (id != null) 'id': id,
       'categoryId': categoryId,
       if (category != null) 'category': category?.toJson(),
+      if (achievements != null)
+        'achievements': achievements?.toJson(valueToJson: (v) => v.toJson()),
       'displayOrder': displayOrder,
     };
   }
@@ -78,12 +89,21 @@ abstract class AchievementCategory
       if (id != null) 'id': id,
       'categoryId': categoryId,
       if (category != null) 'category': category?.toJsonForProtocol(),
+      if (achievements != null)
+        'achievements':
+            achievements?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
       'displayOrder': displayOrder,
     };
   }
 
-  static AchievementCategoryInclude include({_i2.TextsInclude? category}) {
-    return AchievementCategoryInclude._(category: category);
+  static AchievementCategoryInclude include({
+    _i2.TextsInclude? category,
+    _i3.AchievementIncludeList? achievements,
+  }) {
+    return AchievementCategoryInclude._(
+      category: category,
+      achievements: achievements,
+    );
   }
 
   static AchievementCategoryIncludeList includeList({
@@ -119,11 +139,13 @@ class _AchievementCategoryImpl extends AchievementCategory {
     int? id,
     required int categoryId,
     _i2.Texts? category,
+    List<_i3.Achievement>? achievements,
     int? displayOrder,
   }) : super._(
           id: id,
           categoryId: categoryId,
           category: category,
+          achievements: achievements,
           displayOrder: displayOrder,
         );
 
@@ -132,12 +154,16 @@ class _AchievementCategoryImpl extends AchievementCategory {
     Object? id = _Undefined,
     int? categoryId,
     Object? category = _Undefined,
+    Object? achievements = _Undefined,
     int? displayOrder,
   }) {
     return AchievementCategory(
       id: id is int? ? id : this.id,
       categoryId: categoryId ?? this.categoryId,
       category: category is _i2.Texts? ? category : this.category?.copyWith(),
+      achievements: achievements is List<_i3.Achievement>?
+          ? achievements
+          : this.achievements?.map((e0) => e0.copyWith()).toList(),
       displayOrder: displayOrder ?? this.displayOrder,
     );
   }
@@ -161,6 +187,10 @@ class AchievementCategoryTable extends _i1.Table {
 
   _i2.TextsTable? _category;
 
+  _i3.AchievementTable? ___achievements;
+
+  _i1.ManyRelation<_i3.AchievementTable>? _achievements;
+
   late final _i1.ColumnInt displayOrder;
 
   _i2.TextsTable get category {
@@ -176,6 +206,39 @@ class AchievementCategoryTable extends _i1.Table {
     return _category!;
   }
 
+  _i3.AchievementTable get __achievements {
+    if (___achievements != null) return ___achievements!;
+    ___achievements = _i1.createRelationTable(
+      relationFieldName: '__achievements',
+      field: AchievementCategory.t.id,
+      foreignField: _i3.Achievement.t
+          .$_achievementCategoriesAchievementsAchievementCategoriesId,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i3.AchievementTable(tableRelation: foreignTableRelation),
+    );
+    return ___achievements!;
+  }
+
+  _i1.ManyRelation<_i3.AchievementTable> get achievements {
+    if (_achievements != null) return _achievements!;
+    var relationTable = _i1.createRelationTable(
+      relationFieldName: 'achievements',
+      field: AchievementCategory.t.id,
+      foreignField: _i3.Achievement.t
+          .$_achievementCategoriesAchievementsAchievementCategoriesId,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i3.AchievementTable(tableRelation: foreignTableRelation),
+    );
+    _achievements = _i1.ManyRelation<_i3.AchievementTable>(
+      tableWithRelations: relationTable,
+      table: _i3.AchievementTable(
+          tableRelation: relationTable.tableRelation!.lastRelation),
+    );
+    return _achievements!;
+  }
+
   @override
   List<_i1.Column> get columns => [
         id,
@@ -188,19 +251,31 @@ class AchievementCategoryTable extends _i1.Table {
     if (relationField == 'category') {
       return category;
     }
+    if (relationField == 'achievements') {
+      return __achievements;
+    }
     return null;
   }
 }
 
 class AchievementCategoryInclude extends _i1.IncludeObject {
-  AchievementCategoryInclude._({_i2.TextsInclude? category}) {
+  AchievementCategoryInclude._({
+    _i2.TextsInclude? category,
+    _i3.AchievementIncludeList? achievements,
+  }) {
     _category = category;
+    _achievements = achievements;
   }
 
   _i2.TextsInclude? _category;
 
+  _i3.AchievementIncludeList? _achievements;
+
   @override
-  Map<String, _i1.Include?> get includes => {'category': _category};
+  Map<String, _i1.Include?> get includes => {
+        'category': _category,
+        'achievements': _achievements,
+      };
 
   @override
   _i1.Table get table => AchievementCategory.t;
@@ -229,7 +304,13 @@ class AchievementCategoryIncludeList extends _i1.IncludeList {
 class AchievementCategoryRepository {
   const AchievementCategoryRepository._();
 
+  final attach = const AchievementCategoryAttachRepository._();
+
   final attachRow = const AchievementCategoryAttachRowRepository._();
+
+  final detach = const AchievementCategoryDetachRepository._();
+
+  final detachRow = const AchievementCategoryDetachRowRepository._();
 
   Future<List<AchievementCategory>> find(
     _i1.Session session, {
@@ -383,6 +464,40 @@ class AchievementCategoryRepository {
   }
 }
 
+class AchievementCategoryAttachRepository {
+  const AchievementCategoryAttachRepository._();
+
+  Future<void> achievements(
+    _i1.Session session,
+    AchievementCategory achievementCategory,
+    List<_i3.Achievement> achievement, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (achievement.any((e) => e.id == null)) {
+      throw ArgumentError.notNull('achievement.id');
+    }
+    if (achievementCategory.id == null) {
+      throw ArgumentError.notNull('achievementCategory.id');
+    }
+
+    var $achievement = achievement
+        .map((e) => _i3.AchievementImplicit(
+              e,
+              $_achievementCategoriesAchievementsAchievementCategoriesId:
+                  achievementCategory.id,
+            ))
+        .toList();
+    await session.db.update<_i3.Achievement>(
+      $achievement,
+      columns: [
+        _i3.Achievement.t
+            .$_achievementCategoriesAchievementsAchievementCategoriesId
+      ],
+      transaction: transaction,
+    );
+  }
+}
+
 class AchievementCategoryAttachRowRepository {
   const AchievementCategoryAttachRowRepository._();
 
@@ -404,6 +519,90 @@ class AchievementCategoryAttachRowRepository {
     await session.db.updateRow<AchievementCategory>(
       $achievementCategory,
       columns: [AchievementCategory.t.categoryId],
+      transaction: transaction,
+    );
+  }
+
+  Future<void> achievements(
+    _i1.Session session,
+    AchievementCategory achievementCategory,
+    _i3.Achievement achievement, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (achievement.id == null) {
+      throw ArgumentError.notNull('achievement.id');
+    }
+    if (achievementCategory.id == null) {
+      throw ArgumentError.notNull('achievementCategory.id');
+    }
+
+    var $achievement = _i3.AchievementImplicit(
+      achievement,
+      $_achievementCategoriesAchievementsAchievementCategoriesId:
+          achievementCategory.id,
+    );
+    await session.db.updateRow<_i3.Achievement>(
+      $achievement,
+      columns: [
+        _i3.Achievement.t
+            .$_achievementCategoriesAchievementsAchievementCategoriesId
+      ],
+      transaction: transaction,
+    );
+  }
+}
+
+class AchievementCategoryDetachRepository {
+  const AchievementCategoryDetachRepository._();
+
+  Future<void> achievements(
+    _i1.Session session,
+    List<_i3.Achievement> achievement, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (achievement.any((e) => e.id == null)) {
+      throw ArgumentError.notNull('achievement.id');
+    }
+
+    var $achievement = achievement
+        .map((e) => _i3.AchievementImplicit(
+              e,
+              $_achievementCategoriesAchievementsAchievementCategoriesId: null,
+            ))
+        .toList();
+    await session.db.update<_i3.Achievement>(
+      $achievement,
+      columns: [
+        _i3.Achievement.t
+            .$_achievementCategoriesAchievementsAchievementCategoriesId
+      ],
+      transaction: transaction,
+    );
+  }
+}
+
+class AchievementCategoryDetachRowRepository {
+  const AchievementCategoryDetachRowRepository._();
+
+  Future<void> achievements(
+    _i1.Session session,
+    _i3.Achievement achievement, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (achievement.id == null) {
+      throw ArgumentError.notNull('achievement.id');
+    }
+
+    var $achievement = _i3.AchievementImplicit(
+      achievement,
+      $_achievementCategoriesAchievementsAchievementCategoriesId: null,
+    );
+    await session.db.updateRow<_i3.Achievement>(
+      $achievement,
+      columns: [
+        _i3.Achievement.t
+            .$_achievementCategoriesAchievementsAchievementCategoriesId
+      ],
       transaction: transaction,
     );
   }

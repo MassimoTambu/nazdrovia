@@ -31,5 +31,6 @@
    "cancel": "Annulla",
    "confirm": "Conferma",
    "noRulesFound": "Nessuna regola trovata",
-   "noAchievementsFound": "Nessun obbiettivo trovato"
+   "noAchievementsFound": "Nessun obbiettivo trovato",
+   "adminScreen": "Schermata amministratore"
 }

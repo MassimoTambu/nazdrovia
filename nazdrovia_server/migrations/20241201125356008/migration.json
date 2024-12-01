@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "achievements",
+        "schema": "public",
+        "addColumns": [
+          {
+            "name": "_achievementCategoriesAchievementsAchievementCategoriesId",
+            "columnType": 6,
+            "isNullable": true,
+            "dartType": "int?"
+          }
+        ],
+        "deleteColumns": [],
+        "modifyColumns": [],
+        "addIndexes": [],
+        "deleteIndexes": [],
+        "addForeignKeys": [
+          {
+            "constraintName": "achievements_fk_3",
+            "columns": [
+              "_achievementCategoriesAchievementsAchievementCategoriesId"
+            ],
+            "referenceTable": "achievement_categories",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "deleteForeignKeys": [],
+        "warnings": []
+      }
+    }
+  ],
+  "warnings": [],
+  "migrationApiVersion": 1
+}

@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("Account"),
+        "adminScreen":
+            MessageLookupByLibrary.simpleMessage("Schermata amministratore"),
         "anErrorOccurred":
             MessageLookupByLibrary.simpleMessage("Si è verificato un errore"),
         "anErrorOccurredPleaseTryAgain": MessageLookupByLibrary.simpleMessage(

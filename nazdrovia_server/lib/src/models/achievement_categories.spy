@@ -3,6 +3,7 @@ table: achievement_categories
 
 fields:
    category: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
+   achievements: List<Achievement>?, relation,
    displayOrder: int, default=0
 indexes:
    achievement_categories_category_idx:

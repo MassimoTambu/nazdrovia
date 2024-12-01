@@ -369,6 +369,16 @@ class Translations {
       args: [],
     );
   }
+
+  /// `Admin screen`
+  String get adminScreen {
+    return Intl.message(
+      'Admin screen',
+      name: 'adminScreen',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Translations> {

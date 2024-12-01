@@ -161,6 +161,12 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int',
           columnDefault: '0',
         ),
+        _i2.ColumnDefinition(
+          name: '_achievementCategoriesAchievementsAchievementCategoriesId',
+          columnType: _i2.ColumnType.bigint,
+          isNullable: true,
+          dartType: 'int?',
+        ),
       ],
       foreignKeys: [
         _i2.ForeignKeyDefinition(
@@ -191,6 +197,18 @@ class Protocol extends _i1.SerializationManagerServer {
           referenceColumns: ['id'],
           onUpdate: _i2.ForeignKeyAction.cascade,
           onDelete: _i2.ForeignKeyAction.setNull,
+          matchType: null,
+        ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'achievements_fk_3',
+          columns: [
+            '_achievementCategoriesAchievementsAchievementCategoriesId'
+          ],
+          referenceTable: 'achievement_categories',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],
@@ -862,6 +880,11 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     if (t == _i1.getType<_i10.Translation?>()) {
       return (data != null ? _i10.Translation.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<List<_i4.Achievement>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<_i4.Achievement>(e)).toList()
+          : null) as dynamic;
     }
     if (t == _i1.getType<List<_i5.CompletedAchievements>?>()) {
       return (data != null

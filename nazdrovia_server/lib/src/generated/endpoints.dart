@@ -76,8 +76,8 @@ class Endpoints extends _i1.EndpointDispatch {
       name: 'achievementCategory',
       endpoint: endpoints['achievementCategory']!,
       methodConnectors: {
-        'getAll': _i1.MethodConnector(
-          name: 'getAll',
+        'getAllWithAchievements': _i1.MethodConnector(
+          name: 'getAllWithAchievements',
           params: {},
           call: (
             _i1.Session session,
@@ -85,7 +85,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['achievementCategory']
                       as _i2.AchievementCategoryEndpoint)
-                  .getAll(session),
+                  .getAllWithAchievements(session),
         ),
         'insert': _i1.MethodConnector(
           name: 'insert',

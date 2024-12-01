@@ -592,26 +592,26 @@ class _UpdateRuleCategoryFutureProviderElement
       (origin as UpdateRuleCategoryFutureProvider).ruleCategory;
 }
 
-String _$achievementsWithCategoriesFutureHash() =>
-    r'bbc4572e2770f96f5be0ecd3e627d4bf1cb77e6b';
+String _$achievementCategoriesWithAchievementsFutureHash() =>
+    r'dbb8b2357217ef873fda9695ed1e0b96bb9bcbe4';
 
-/// See also [achievementsWithCategoriesFuture].
-@ProviderFor(achievementsWithCategoriesFuture)
-final achievementsWithCategoriesFutureProvider =
-    AutoDisposeFutureProvider<List<Achievement>>.internal(
-  achievementsWithCategoriesFuture,
-  name: r'achievementsWithCategoriesFutureProvider',
+/// See also [achievementCategoriesWithAchievementsFuture].
+@ProviderFor(achievementCategoriesWithAchievementsFuture)
+final achievementCategoriesWithAchievementsFutureProvider =
+    AutoDisposeFutureProvider<List<AchievementCategory>>.internal(
+  achievementCategoriesWithAchievementsFuture,
+  name: r'achievementCategoriesWithAchievementsFutureProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$achievementsWithCategoriesFutureHash,
+      : _$achievementCategoriesWithAchievementsFutureHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef AchievementsWithCategoriesFutureRef
-    = AutoDisposeFutureProviderRef<List<Achievement>>;
+typedef AchievementCategoriesWithAchievementsFutureRef
+    = AutoDisposeFutureProviderRef<List<AchievementCategory>>;
 String _$insertAchievementFutureHash() =>
     r'bd2e465d56a8f1320cb4d5d5b982d4f47ce13b60';
 

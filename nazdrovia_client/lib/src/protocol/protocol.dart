@@ -97,6 +97,11 @@ class Protocol extends _i1.SerializationManager {
     if (t == _i1.getType<_i9.Translation?>()) {
       return (data != null ? _i9.Translation.fromJson(data) : null) as T;
     }
+    if (t == _i1.getType<List<_i3.Achievement>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<_i3.Achievement>(e)).toList()
+          : null) as dynamic;
+    }
     if (t == _i1.getType<List<_i4.CompletedAchievements>?>()) {
       return (data != null
           ? (data as List)
