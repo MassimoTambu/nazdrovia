@@ -14,6 +14,7 @@ abstract class AdminRepository {
   Future<void> updateRule(Rule rule);
   Future<void> insertRuleCategory(RuleCategory ruleCategory);
   Future<void> updateRuleCategory(RuleCategory ruleCategory);
+  Future<List<AchievementCategory>> getAchievementCategories();
   Future<List<AchievementCategory>> getAchievementCategoriesWithAchievements();
   Future<void> insertAchievement(Achievement achievement);
   Future<void> updateAchievement(Achievement achievement);
@@ -51,6 +52,11 @@ Future<void> insertRuleCategoryFuture(Ref ref, RuleCategory ruleCategory) {
 @riverpod
 Future<void> updateRuleCategoryFuture(Ref ref, RuleCategory ruleCategory) {
   return ref.read(adminRepositoryProvider).updateRuleCategory(ruleCategory);
+}
+
+@riverpod
+Future<List<AchievementCategory>> achievementCategoriesFuture(Ref ref) {
+  return ref.watch(adminRepositoryProvider).getAchievementCategories();
 }
 
 @riverpod

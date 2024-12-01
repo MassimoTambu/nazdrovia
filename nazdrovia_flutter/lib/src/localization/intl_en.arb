@@ -34,5 +34,15 @@
    "rules": "Rules",
    "noRulesFound": "No rules found",
    "noAchievementsFound": "No achievements found",
-   "adminScreen": "Admin screen"
+   "adminScreen": "Admin screen",
+   "newRule": "New rule",
+   "newAchievement": "New achievement",
+   "enterTitle": "Enter title",
+   "enterDescription": "Enter description",
+   "enterNasScore": "Enter Nas score",
+   "selectCategory": "Select category",
+   "mandatoryField": "This field is mandatory",
+   "mustBeANumber": "Must be a number",
+   "achievementCreated": "Achievement created",
+   "ruleCreated": "Rule created"
 }

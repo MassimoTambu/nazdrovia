@@ -379,6 +379,106 @@ class Translations {
       args: [],
     );
   }
+
+  /// `New rule`
+  String get newRule {
+    return Intl.message(
+      'New rule',
+      name: 'newRule',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New achievement`
+  String get newAchievement {
+    return Intl.message(
+      'New achievement',
+      name: 'newAchievement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter title`
+  String get enterTitle {
+    return Intl.message(
+      'Enter title',
+      name: 'enterTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter description`
+  String get enterDescription {
+    return Intl.message(
+      'Enter description',
+      name: 'enterDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Nas score`
+  String get enterNasScore {
+    return Intl.message(
+      'Enter Nas score',
+      name: 'enterNasScore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select category`
+  String get selectCategory {
+    return Intl.message(
+      'Select category',
+      name: 'selectCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field is mandatory`
+  String get mandatoryField {
+    return Intl.message(
+      'This field is mandatory',
+      name: 'mandatoryField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must be a number`
+  String get mustBeANumber {
+    return Intl.message(
+      'Must be a number',
+      name: 'mustBeANumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Achievement created`
+  String get achievementCreated {
+    return Intl.message(
+      'Achievement created',
+      name: 'achievementCreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rule created`
+  String get ruleCreated {
+    return Intl.message(
+      'Rule created',
+      name: 'ruleCreated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Translations> {

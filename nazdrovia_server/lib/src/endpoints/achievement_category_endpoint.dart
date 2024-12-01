@@ -2,6 +2,13 @@ import 'package:nazdrovia_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
 class AchievementCategoryEndpoint extends Endpoint {
+  Future<List<AchievementCategory>> getAll(Session session) async {
+    return AchievementCategory.db.find(
+      session,
+      orderBy: (t) => t.displayOrder,
+    );
+  }
+
   Future<List<AchievementCategory>> getAllWithAchievements(
     Session session,
   ) async {

@@ -32,5 +32,15 @@
    "confirm": "Conferma",
    "noRulesFound": "Nessuna regola trovata",
    "noAchievementsFound": "Nessun obbiettivo trovato",
-   "adminScreen": "Schermata amministratore"
+   "adminScreen": "Schermata amministratore",
+   "newRule": "Nuova regola",
+   "newAchievement": "Nuovo obbiettivo",
+   "enterTitle": "Inserisci titolo",
+   "enterDescription": "Inserisci descrizione",
+   "enterNasScore": "Inserisci Nas score",
+   "selectCategory": "Seleziona categoria",
+   "mandatoryField": "Questo campo è obbligatorio",
+   "mustBeANumber": "Deve essere un numero",
+   "achievementCreated": "Obbiettivo creato",
+   "ruleCreated": "Regola creata"
 }

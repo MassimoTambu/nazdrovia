@@ -14,6 +14,7 @@ class AdminAchievementList extends ConsumerWidget {
       value: ref.watch(achievementCategoriesWithAchievementsFutureProvider),
       data: (data) => ListView.builder(
         itemCount: data.length,
+        shrinkWrap: true,
         itemBuilder: (context, index) => ProviderScope(
           overrides: [
             currentAdminAchievementCategoryContainerProvider

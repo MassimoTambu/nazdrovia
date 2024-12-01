@@ -71,6 +71,19 @@ class ServerpodAdminRepository implements AdminRepository {
   }
 
   @override
+  Future<List<AchievementCategory>> getAchievementCategories() async {
+    ref.read(loggerProvider).d('getAchievementCategories');
+    try {
+      return ref.read(serverpodProvider).achievementCategory.getAll();
+    } catch (e, st) {
+      ref
+          .read(loggerProvider)
+          .e('getAchievementCategories failed', error: e, stackTrace: st);
+      rethrow;
+    }
+  }
+
+  @override
   Future<List<AchievementCategory>>
       getAchievementCategoriesWithAchievements() async {
     ref.read(loggerProvider).d('getAchievementCategoriesWithAchievements');

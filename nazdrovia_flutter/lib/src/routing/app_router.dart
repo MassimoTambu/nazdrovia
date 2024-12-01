@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nazdrovia_flutter/src/features/admin/presentation/achievements/admin_new_achievement_screen.dart';
 import 'package:nazdrovia_flutter/src/features/admin/presentation/admin_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -99,35 +100,22 @@ GoRouter goRouter(Ref ref) {
         path: '/admin',
         name: AppRoute.admin.name,
         builder: (context, state) {
-          // TODO
+          // TODO auth
           return AdminScreen();
         },
         routes: [
           GoRoute(
-            path: 'achievements',
-            name: AppRoute.adminAchievements.name,
+            path: 'achievements/new',
+            name: AppRoute.adminNewAchievement.name,
+            builder: (context, state) => AdminNewAchievementScreen(),
+          ),
+          GoRoute(
+            path: 'achievements/edit',
+            name: AppRoute.adminEditAchievement.name,
             builder: (context, state) {
               // TODO
               return Container();
             },
-            routes: [
-              GoRoute(
-                path: 'new',
-                name: AppRoute.adminNewAchievement.name,
-                builder: (context, state) {
-                  // TODO
-                  return Container();
-                },
-              ),
-              GoRoute(
-                path: 'edit',
-                name: AppRoute.adminEditAchievement.name,
-                builder: (context, state) {
-                  // TODO
-                  return Container();
-                },
-              ),
-            ],
           ),
           GoRoute(
             path: 'rules',

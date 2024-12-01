@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("Account"),
+        "achievementCreated":
+            MessageLookupByLibrary.simpleMessage("Achievement created"),
         "achievements": MessageLookupByLibrary.simpleMessage("Achievements"),
         "adminScreen": MessageLookupByLibrary.simpleMessage("Admin screen"),
         "anErrorOccurred":
@@ -34,7 +36,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "closed": MessageLookupByLibrary.simpleMessage("Closed"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "enterDescription":
+            MessageLookupByLibrary.simpleMessage("Enter description"),
         "enterEmail": MessageLookupByLibrary.simpleMessage("Enter an email"),
+        "enterNasScore":
+            MessageLookupByLibrary.simpleMessage("Enter Nas score"),
+        "enterTitle": MessageLookupByLibrary.simpleMessage("Enter title"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "facebookLogin": MessageLookupByLibrary.simpleMessage("Facebook login"),
         "goBack": MessageLookupByLibrary.simpleMessage("Go Back"),
@@ -42,6 +49,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest": MessageLookupByLibrary.simpleMessage("Guest"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "mandatoryField":
+            MessageLookupByLibrary.simpleMessage("This field is mandatory"),
+        "mustBeANumber":
+            MessageLookupByLibrary.simpleMessage("Must be a number"),
+        "newAchievement":
+            MessageLookupByLibrary.simpleMessage("New achievement"),
+        "newRule": MessageLookupByLibrary.simpleMessage("New rule"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noAchievementsFound":
             MessageLookupByLibrary.simpleMessage("No achievements found"),
@@ -51,8 +65,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "pageNotFound":
             MessageLookupByLibrary.simpleMessage("404 - Page not found!"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+        "ruleCreated": MessageLookupByLibrary.simpleMessage("Rule created"),
         "rules": MessageLookupByLibrary.simpleMessage("Rules"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "selectCategory":
+            MessageLookupByLibrary.simpleMessage("Select category"),
         "somethingWentWrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "somethingWentWrongAuth": MessageLookupByLibrary.simpleMessage(

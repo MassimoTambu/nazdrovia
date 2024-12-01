@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:nazdrovia_flutter/src/features/admin/presentation/achievements/admin_achievement_list.dart';
+import 'package:nazdrovia_flutter/src/features/admin/presentation/achievements/admin_achievements_view.dart';
 import 'package:nazdrovia_flutter/src/features/admin/presentation/rules/admin_rule_list.dart';
 import 'package:nazdrovia_flutter/src/localization/context_tr.dart';
 import 'package:nazdrovia_flutter/src/routing/app_router.dart';
@@ -57,7 +57,7 @@ class AdminScreen extends HookConsumerWidget {
       body: TabBarView(
         controller: controller,
         children: [
-          AdminAchievementList(),
+          AdminAchievementsView(),
           AdminRuleList(),
         ],
       ),
