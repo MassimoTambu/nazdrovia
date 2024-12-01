@@ -1,7 +1,118 @@
 BEGIN;
 
 --
--- Class CloudStorageEntry as table serverpod_cloud_storage
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "achievement_categories" (
+    "id" bigserial PRIMARY KEY,
+    "categoryId" bigint NOT NULL,
+    "displayOrder" bigint NOT NULL DEFAULT 0
+);
+
+-- Indexes
+CREATE INDEX "achievement_categories_category_idx" ON "achievement_categories" USING btree ("categoryId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "achievements" (
+    "id" bigserial PRIMARY KEY,
+    "titleId" bigint NOT NULL,
+    "descriptionId" bigint NOT NULL,
+    "nasScore" bigint NOT NULL,
+    "categoryId" bigint NOT NULL,
+    "image" text,
+    "displayOrder" bigint NOT NULL DEFAULT 0
+);
+
+-- Indexes
+CREATE INDEX "achievements_title_idx" ON "achievements" USING btree ("titleId");
+CREATE INDEX "achievements_description_idx" ON "achievements" USING btree ("descriptionId");
+CREATE INDEX "achievements_category_idx" ON "achievements" USING btree ("categoryId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "completed_achievements" (
+    "id" bigserial PRIMARY KEY,
+    "playerId" bigint NOT NULL,
+    "achievementId" bigint NOT NULL
+);
+
+-- Indexes
+CREATE UNIQUE INDEX "completed_achievements_enrollment_idx" ON "completed_achievements" USING btree ("playerId", "achievementId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "players" (
+    "id" bigserial PRIMARY KEY,
+    "name" text NOT NULL,
+    "lastName" text NOT NULL,
+    "catchPhrase" text NOT NULL,
+    "penalities" bigint NOT NULL,
+    "isOut" boolean NOT NULL,
+    "image" text
+);
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "rule_categories" (
+    "id" bigserial PRIMARY KEY,
+    "titleId" bigint NOT NULL,
+    "prologueId" bigint NOT NULL,
+    "epilogueId" bigint NOT NULL,
+    "displayOrder" bigint NOT NULL DEFAULT 0
+);
+
+-- Indexes
+CREATE INDEX "rule_categories_title_idx" ON "rule_categories" USING btree ("titleId");
+CREATE INDEX "rule_categories_prologue_idx" ON "rule_categories" USING btree ("prologueId");
+CREATE INDEX "rule_categories_epilogue_idx" ON "rule_categories" USING btree ("epilogueId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "rules" (
+    "id" bigserial PRIMARY KEY,
+    "number" text,
+    "titleId" bigint NOT NULL,
+    "descriptionId" bigint NOT NULL,
+    "ruleCategoryId" bigint NOT NULL,
+    "displayOrder" bigint NOT NULL DEFAULT 0,
+    "_ruleCategoriesRulesRuleCategoriesId" bigint
+);
+
+-- Indexes
+CREATE INDEX "rules_title_idx" ON "rules" USING btree ("titleId");
+CREATE INDEX "rules_description_idx" ON "rules" USING btree ("descriptionId");
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "texts" (
+    "id" bigserial PRIMARY KEY,
+    "originalText" text NOT NULL
+);
+
+--
+-- ACTION CREATE TABLE
+--
+CREATE TABLE "translations" (
+    "id" bigserial PRIMARY KEY,
+    "textId" bigint NOT NULL,
+    "languageCode" text NOT NULL,
+    "translatedText" text NOT NULL,
+    "_textsTranslationsTextsId" bigint
+);
+
+-- Indexes
+CREATE INDEX "translations_text_idx" ON "translations" USING btree ("textId");
+CREATE INDEX "translations_language_code_idx" ON "translations" USING btree ("languageCode");
+
+--
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_cloud_storage" (
     "id" bigserial PRIMARY KEY,
@@ -18,7 +129,7 @@ CREATE UNIQUE INDEX "serverpod_cloud_storage_path_idx" ON "serverpod_cloud_stora
 CREATE INDEX "serverpod_cloud_storage_expiration" ON "serverpod_cloud_storage" USING btree ("expiration");
 
 --
--- Class CloudStorageDirectUploadEntry as table serverpod_cloud_storage_direct_upload
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_cloud_storage_direct_upload" (
     "id" bigserial PRIMARY KEY,
@@ -32,7 +143,7 @@ CREATE TABLE "serverpod_cloud_storage_direct_upload" (
 CREATE UNIQUE INDEX "serverpod_cloud_storage_direct_upload_storage_path" ON "serverpod_cloud_storage_direct_upload" USING btree ("storageId", "path");
 
 --
--- Class FutureCallEntry as table serverpod_future_call
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_future_call" (
     "id" bigserial PRIMARY KEY,
@@ -49,7 +160,7 @@ CREATE INDEX "serverpod_future_call_serverId_idx" ON "serverpod_future_call" USI
 CREATE INDEX "serverpod_future_call_identifier_idx" ON "serverpod_future_call" USING btree ("identifier");
 
 --
--- Class ServerHealthConnectionInfo as table serverpod_health_connection_info
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_health_connection_info" (
     "id" bigserial PRIMARY KEY,
@@ -65,7 +176,7 @@ CREATE TABLE "serverpod_health_connection_info" (
 CREATE UNIQUE INDEX "serverpod_health_connection_info_timestamp_idx" ON "serverpod_health_connection_info" USING btree ("timestamp", "serverId", "granularity");
 
 --
--- Class ServerHealthMetric as table serverpod_health_metric
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_health_metric" (
     "id" bigserial PRIMARY KEY,
@@ -81,7 +192,7 @@ CREATE TABLE "serverpod_health_metric" (
 CREATE UNIQUE INDEX "serverpod_health_metric_timestamp_idx" ON "serverpod_health_metric" USING btree ("timestamp", "serverId", "name", "granularity");
 
 --
--- Class LogEntry as table serverpod_log
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_log" (
     "id" bigserial PRIMARY KEY,
@@ -101,7 +212,7 @@ CREATE TABLE "serverpod_log" (
 CREATE INDEX "serverpod_log_sessionLogId_idx" ON "serverpod_log" USING btree ("sessionLogId");
 
 --
--- Class MessageLogEntry as table serverpod_message_log
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_message_log" (
     "id" bigserial PRIMARY KEY,
@@ -118,7 +229,7 @@ CREATE TABLE "serverpod_message_log" (
 );
 
 --
--- Class MethodInfo as table serverpod_method
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_method" (
     "id" bigserial PRIMARY KEY,
@@ -130,7 +241,7 @@ CREATE TABLE "serverpod_method" (
 CREATE UNIQUE INDEX "serverpod_method_endpoint_method_idx" ON "serverpod_method" USING btree ("endpoint", "method");
 
 --
--- Class DatabaseMigrationVersion as table serverpod_migrations
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_migrations" (
     "id" bigserial PRIMARY KEY,
@@ -143,7 +254,7 @@ CREATE TABLE "serverpod_migrations" (
 CREATE UNIQUE INDEX "serverpod_migrations_ids" ON "serverpod_migrations" USING btree ("module");
 
 --
--- Class QueryLogEntry as table serverpod_query_log
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_query_log" (
     "id" bigserial PRIMARY KEY,
@@ -163,7 +274,7 @@ CREATE TABLE "serverpod_query_log" (
 CREATE INDEX "serverpod_query_log_sessionLogId_idx" ON "serverpod_query_log" USING btree ("sessionLogId");
 
 --
--- Class ReadWriteTestEntry as table serverpod_readwrite_test
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_readwrite_test" (
     "id" bigserial PRIMARY KEY,
@@ -171,7 +282,7 @@ CREATE TABLE "serverpod_readwrite_test" (
 );
 
 --
--- Class RuntimeSettings as table serverpod_runtime_settings
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_runtime_settings" (
     "id" bigserial PRIMARY KEY,
@@ -182,7 +293,7 @@ CREATE TABLE "serverpod_runtime_settings" (
 );
 
 --
--- Class SessionLogEntry as table serverpod_session_log
+-- ACTION CREATE TABLE
 --
 CREATE TABLE "serverpod_session_log" (
     "id" bigserial PRIMARY KEY,
@@ -207,7 +318,121 @@ CREATE INDEX "serverpod_session_log_touched_idx" ON "serverpod_session_log" USIN
 CREATE INDEX "serverpod_session_log_isopen_idx" ON "serverpod_session_log" USING btree ("isOpen");
 
 --
--- Foreign relations for "serverpod_log" table
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "achievement_categories"
+    ADD CONSTRAINT "achievement_categories_fk_0"
+    FOREIGN KEY("categoryId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+
+--
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "achievements"
+    ADD CONSTRAINT "achievements_fk_0"
+    FOREIGN KEY("titleId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "achievements"
+    ADD CONSTRAINT "achievements_fk_1"
+    FOREIGN KEY("descriptionId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "achievements"
+    ADD CONSTRAINT "achievements_fk_2"
+    FOREIGN KEY("categoryId")
+    REFERENCES "achievement_categories"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+
+--
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "completed_achievements"
+    ADD CONSTRAINT "completed_achievements_fk_0"
+    FOREIGN KEY("playerId")
+    REFERENCES "players"("id")
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+ALTER TABLE ONLY "completed_achievements"
+    ADD CONSTRAINT "completed_achievements_fk_1"
+    FOREIGN KEY("achievementId")
+    REFERENCES "achievements"("id")
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+--
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "rule_categories"
+    ADD CONSTRAINT "rule_categories_fk_0"
+    FOREIGN KEY("titleId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rule_categories"
+    ADD CONSTRAINT "rule_categories_fk_1"
+    FOREIGN KEY("prologueId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rule_categories"
+    ADD CONSTRAINT "rule_categories_fk_2"
+    FOREIGN KEY("epilogueId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+
+--
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "rules"
+    ADD CONSTRAINT "rules_fk_0"
+    FOREIGN KEY("titleId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rules"
+    ADD CONSTRAINT "rules_fk_1"
+    FOREIGN KEY("descriptionId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rules"
+    ADD CONSTRAINT "rules_fk_2"
+    FOREIGN KEY("ruleCategoryId")
+    REFERENCES "rule_categories"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rules"
+    ADD CONSTRAINT "rules_fk_3"
+    FOREIGN KEY("_ruleCategoriesRulesRuleCategoriesId")
+    REFERENCES "rule_categories"("id")
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+--
+-- ACTION CREATE FOREIGN KEY
+--
+ALTER TABLE ONLY "translations"
+    ADD CONSTRAINT "translations_fk_0"
+    FOREIGN KEY("textId")
+    REFERENCES "texts"("id")
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "translations"
+    ADD CONSTRAINT "translations_fk_1"
+    FOREIGN KEY("_textsTranslationsTextsId")
+    REFERENCES "texts"("id")
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+--
+-- ACTION CREATE FOREIGN KEY
 --
 ALTER TABLE ONLY "serverpod_log"
     ADD CONSTRAINT "serverpod_log_fk_0"
@@ -217,7 +442,7 @@ ALTER TABLE ONLY "serverpod_log"
     ON UPDATE NO ACTION;
 
 --
--- Foreign relations for "serverpod_message_log" table
+-- ACTION CREATE FOREIGN KEY
 --
 ALTER TABLE ONLY "serverpod_message_log"
     ADD CONSTRAINT "serverpod_message_log_fk_0"
@@ -227,7 +452,7 @@ ALTER TABLE ONLY "serverpod_message_log"
     ON UPDATE NO ACTION;
 
 --
--- Foreign relations for "serverpod_query_log" table
+-- ACTION CREATE FOREIGN KEY
 --
 ALTER TABLE ONLY "serverpod_query_log"
     ADD CONSTRAINT "serverpod_query_log_fk_0"
@@ -241,9 +466,9 @@ ALTER TABLE ONLY "serverpod_query_log"
 -- MIGRATION VERSION FOR nazdrovia
 --
 INSERT INTO "serverpod_migrations" ("module", "version", "timestamp")
-    VALUES ('nazdrovia', '20241110092044895', now())
+    VALUES ('nazdrovia', '20241201121844032', now())
     ON CONFLICT ("module")
-    DO UPDATE SET "version" = '20241110092044895', "timestamp" = now();
+    DO UPDATE SET "version" = '20241201121844032', "timestamp" = now();
 
 --
 -- MIGRATION VERSION FOR serverpod

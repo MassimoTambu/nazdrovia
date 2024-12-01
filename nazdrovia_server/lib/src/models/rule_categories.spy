@@ -2,8 +2,15 @@ class: RuleCategory
 table: rule_categories
 
 fields:
-   title: String
-   prologue: String?
-   epilogue: String?
+   title: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
+   prologue: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
+   epilogue: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
    rules: List<Rule>?, relation,
    displayOrder: int, default=0
+indexes:
+   rule_categories_title_idx:
+      fields: titleId
+   rule_categories_prologue_idx:
+      fields: prologueId
+   rule_categories_epilogue_idx:
+      fields: epilogueId

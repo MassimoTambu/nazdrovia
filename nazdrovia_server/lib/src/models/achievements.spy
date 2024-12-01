@@ -2,10 +2,17 @@ class: Achievement
 table: achievements
 
 fields:
-   title: String
-   description: String
+   title: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
+   description: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
    nasScore: int
-   category: AchievementCategory?, relation 
+   category: AchievementCategory?, relation(onUpdate=Cascade, onDelete=SetNull)
    image: String?
    playersWithAchievement: List<CompletedAchievements>?, relation(name=achievements_completed)
    displayOrder: int, default=0
+indexes:
+   achievements_title_idx:
+      fields: titleId
+   achievements_description_idx:
+      fields: descriptionId
+   achievements_category_idx:
+      fields: categoryId

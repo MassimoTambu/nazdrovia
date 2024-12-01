@@ -29,5 +29,7 @@
    "successLogIn": "Accesso eseguito con successo!",
    "successLogOut": "Il tuo account è stato disconnesso",
    "cancel": "Annulla",
-   "confirm": "Conferma"
+   "confirm": "Conferma",
+   "noRulesFound": "Nessuna regola trovata",
+   "noAchievementsFound": "Nessun obbiettivo trovato"
 }

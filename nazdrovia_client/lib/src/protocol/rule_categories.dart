@@ -10,13 +10,17 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'texts.dart' as _i2;
+import 'rules.dart' as _i3;
 
 abstract class RuleCategory implements _i1.SerializableModel {
   RuleCategory._({
     this.id,
-    required this.title,
+    required this.titleId,
+    this.title,
+    required this.prologueId,
     this.prologue,
+    required this.epilogueId,
     this.epilogue,
     this.rules,
     int? displayOrder,
@@ -24,21 +28,36 @@ abstract class RuleCategory implements _i1.SerializableModel {
 
   factory RuleCategory({
     int? id,
-    required String title,
-    String? prologue,
-    String? epilogue,
-    List<_i2.Rule>? rules,
+    required int titleId,
+    _i2.Texts? title,
+    required int prologueId,
+    _i2.Texts? prologue,
+    required int epilogueId,
+    _i2.Texts? epilogue,
+    List<_i3.Rule>? rules,
     int? displayOrder,
   }) = _RuleCategoryImpl;
 
   factory RuleCategory.fromJson(Map<String, dynamic> jsonSerialization) {
     return RuleCategory(
       id: jsonSerialization['id'] as int?,
-      title: jsonSerialization['title'] as String,
-      prologue: jsonSerialization['prologue'] as String?,
-      epilogue: jsonSerialization['epilogue'] as String?,
+      titleId: jsonSerialization['titleId'] as int,
+      title: jsonSerialization['title'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['title'] as Map<String, dynamic>)),
+      prologueId: jsonSerialization['prologueId'] as int,
+      prologue: jsonSerialization['prologue'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['prologue'] as Map<String, dynamic>)),
+      epilogueId: jsonSerialization['epilogueId'] as int,
+      epilogue: jsonSerialization['epilogue'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['epilogue'] as Map<String, dynamic>)),
       rules: (jsonSerialization['rules'] as List?)
-          ?.map((e) => _i2.Rule.fromJson((e as Map<String, dynamic>)))
+          ?.map((e) => _i3.Rule.fromJson((e as Map<String, dynamic>)))
           .toList(),
       displayOrder: jsonSerialization['displayOrder'] as int,
     );
@@ -49,31 +68,43 @@ abstract class RuleCategory implements _i1.SerializableModel {
   /// the id will be null.
   int? id;
 
-  String title;
+  int titleId;
 
-  String? prologue;
+  _i2.Texts? title;
 
-  String? epilogue;
+  int prologueId;
 
-  List<_i2.Rule>? rules;
+  _i2.Texts? prologue;
+
+  int epilogueId;
+
+  _i2.Texts? epilogue;
+
+  List<_i3.Rule>? rules;
 
   int displayOrder;
 
   RuleCategory copyWith({
     int? id,
-    String? title,
-    String? prologue,
-    String? epilogue,
-    List<_i2.Rule>? rules,
+    int? titleId,
+    _i2.Texts? title,
+    int? prologueId,
+    _i2.Texts? prologue,
+    int? epilogueId,
+    _i2.Texts? epilogue,
+    List<_i3.Rule>? rules,
     int? displayOrder,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       if (id != null) 'id': id,
-      'title': title,
-      if (prologue != null) 'prologue': prologue,
-      if (epilogue != null) 'epilogue': epilogue,
+      'titleId': titleId,
+      if (title != null) 'title': title?.toJson(),
+      'prologueId': prologueId,
+      if (prologue != null) 'prologue': prologue?.toJson(),
+      'epilogueId': epilogueId,
+      if (epilogue != null) 'epilogue': epilogue?.toJson(),
       if (rules != null) 'rules': rules?.toJson(valueToJson: (v) => v.toJson()),
       'displayOrder': displayOrder,
     };
@@ -90,15 +121,21 @@ class _Undefined {}
 class _RuleCategoryImpl extends RuleCategory {
   _RuleCategoryImpl({
     int? id,
-    required String title,
-    String? prologue,
-    String? epilogue,
-    List<_i2.Rule>? rules,
+    required int titleId,
+    _i2.Texts? title,
+    required int prologueId,
+    _i2.Texts? prologue,
+    required int epilogueId,
+    _i2.Texts? epilogue,
+    List<_i3.Rule>? rules,
     int? displayOrder,
   }) : super._(
           id: id,
+          titleId: titleId,
           title: title,
+          prologueId: prologueId,
           prologue: prologue,
+          epilogueId: epilogueId,
           epilogue: epilogue,
           rules: rules,
           displayOrder: displayOrder,
@@ -107,18 +144,24 @@ class _RuleCategoryImpl extends RuleCategory {
   @override
   RuleCategory copyWith({
     Object? id = _Undefined,
-    String? title,
+    int? titleId,
+    Object? title = _Undefined,
+    int? prologueId,
     Object? prologue = _Undefined,
+    int? epilogueId,
     Object? epilogue = _Undefined,
     Object? rules = _Undefined,
     int? displayOrder,
   }) {
     return RuleCategory(
       id: id is int? ? id : this.id,
-      title: title ?? this.title,
-      prologue: prologue is String? ? prologue : this.prologue,
-      epilogue: epilogue is String? ? epilogue : this.epilogue,
-      rules: rules is List<_i2.Rule>?
+      titleId: titleId ?? this.titleId,
+      title: title is _i2.Texts? ? title : this.title?.copyWith(),
+      prologueId: prologueId ?? this.prologueId,
+      prologue: prologue is _i2.Texts? ? prologue : this.prologue?.copyWith(),
+      epilogueId: epilogueId ?? this.epilogueId,
+      epilogue: epilogue is _i2.Texts? ? epilogue : this.epilogue?.copyWith(),
+      rules: rules is List<_i3.Rule>?
           ? rules
           : this.rules?.map((e0) => e0.copyWith()).toList(),
       displayOrder: displayOrder ?? this.displayOrder,

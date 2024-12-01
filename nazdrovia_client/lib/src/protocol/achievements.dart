@@ -10,13 +10,17 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'texts.dart' as _i2;
+import 'achievement_categories.dart' as _i3;
+import 'achievements_obtained.dart' as _i4;
 
 abstract class Achievement implements _i1.SerializableModel {
   Achievement._({
     this.id,
-    required this.title,
-    required this.description,
+    required this.titleId,
+    this.title,
+    required this.descriptionId,
+    this.description,
     required this.nasScore,
     required this.categoryId,
     this.category,
@@ -27,32 +31,42 @@ abstract class Achievement implements _i1.SerializableModel {
 
   factory Achievement({
     int? id,
-    required String title,
-    required String description,
+    required int titleId,
+    _i2.Texts? title,
+    required int descriptionId,
+    _i2.Texts? description,
     required int nasScore,
     required int categoryId,
-    _i2.AchievementCategory? category,
+    _i3.AchievementCategory? category,
     String? image,
-    List<_i2.CompletedAchievements>? playersWithAchievement,
+    List<_i4.CompletedAchievements>? playersWithAchievement,
     int? displayOrder,
   }) = _AchievementImpl;
 
   factory Achievement.fromJson(Map<String, dynamic> jsonSerialization) {
     return Achievement(
       id: jsonSerialization['id'] as int?,
-      title: jsonSerialization['title'] as String,
-      description: jsonSerialization['description'] as String,
+      titleId: jsonSerialization['titleId'] as int,
+      title: jsonSerialization['title'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['title'] as Map<String, dynamic>)),
+      descriptionId: jsonSerialization['descriptionId'] as int,
+      description: jsonSerialization['description'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['description'] as Map<String, dynamic>)),
       nasScore: jsonSerialization['nasScore'] as int,
       categoryId: jsonSerialization['categoryId'] as int,
       category: jsonSerialization['category'] == null
           ? null
-          : _i2.AchievementCategory.fromJson(
+          : _i3.AchievementCategory.fromJson(
               (jsonSerialization['category'] as Map<String, dynamic>)),
       image: jsonSerialization['image'] as String?,
       playersWithAchievement: (jsonSerialization['playersWithAchievement']
               as List?)
           ?.map((e) =>
-              _i2.CompletedAchievements.fromJson((e as Map<String, dynamic>)))
+              _i4.CompletedAchievements.fromJson((e as Map<String, dynamic>)))
           .toList(),
       displayOrder: jsonSerialization['displayOrder'] as int,
     );
@@ -63,39 +77,47 @@ abstract class Achievement implements _i1.SerializableModel {
   /// the id will be null.
   int? id;
 
-  String title;
+  int titleId;
 
-  String description;
+  _i2.Texts? title;
+
+  int descriptionId;
+
+  _i2.Texts? description;
 
   int nasScore;
 
   int categoryId;
 
-  _i2.AchievementCategory? category;
+  _i3.AchievementCategory? category;
 
   String? image;
 
-  List<_i2.CompletedAchievements>? playersWithAchievement;
+  List<_i4.CompletedAchievements>? playersWithAchievement;
 
   int displayOrder;
 
   Achievement copyWith({
     int? id,
-    String? title,
-    String? description,
+    int? titleId,
+    _i2.Texts? title,
+    int? descriptionId,
+    _i2.Texts? description,
     int? nasScore,
     int? categoryId,
-    _i2.AchievementCategory? category,
+    _i3.AchievementCategory? category,
     String? image,
-    List<_i2.CompletedAchievements>? playersWithAchievement,
+    List<_i4.CompletedAchievements>? playersWithAchievement,
     int? displayOrder,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       if (id != null) 'id': id,
-      'title': title,
-      'description': description,
+      'titleId': titleId,
+      if (title != null) 'title': title?.toJson(),
+      'descriptionId': descriptionId,
+      if (description != null) 'description': description?.toJson(),
       'nasScore': nasScore,
       'categoryId': categoryId,
       if (category != null) 'category': category?.toJson(),
@@ -118,17 +140,21 @@ class _Undefined {}
 class _AchievementImpl extends Achievement {
   _AchievementImpl({
     int? id,
-    required String title,
-    required String description,
+    required int titleId,
+    _i2.Texts? title,
+    required int descriptionId,
+    _i2.Texts? description,
     required int nasScore,
     required int categoryId,
-    _i2.AchievementCategory? category,
+    _i3.AchievementCategory? category,
     String? image,
-    List<_i2.CompletedAchievements>? playersWithAchievement,
+    List<_i4.CompletedAchievements>? playersWithAchievement,
     int? displayOrder,
   }) : super._(
           id: id,
+          titleId: titleId,
           title: title,
+          descriptionId: descriptionId,
           description: description,
           nasScore: nasScore,
           categoryId: categoryId,
@@ -141,8 +167,10 @@ class _AchievementImpl extends Achievement {
   @override
   Achievement copyWith({
     Object? id = _Undefined,
-    String? title,
-    String? description,
+    int? titleId,
+    Object? title = _Undefined,
+    int? descriptionId,
+    Object? description = _Undefined,
     int? nasScore,
     int? categoryId,
     Object? category = _Undefined,
@@ -152,16 +180,20 @@ class _AchievementImpl extends Achievement {
   }) {
     return Achievement(
       id: id is int? ? id : this.id,
-      title: title ?? this.title,
-      description: description ?? this.description,
+      titleId: titleId ?? this.titleId,
+      title: title is _i2.Texts? ? title : this.title?.copyWith(),
+      descriptionId: descriptionId ?? this.descriptionId,
+      description: description is _i2.Texts?
+          ? description
+          : this.description?.copyWith(),
       nasScore: nasScore ?? this.nasScore,
       categoryId: categoryId ?? this.categoryId,
-      category: category is _i2.AchievementCategory?
+      category: category is _i3.AchievementCategory?
           ? category
           : this.category?.copyWith(),
       image: image is String? ? image : this.image,
       playersWithAchievement: playersWithAchievement
-              is List<_i2.CompletedAchievements>?
+              is List<_i4.CompletedAchievements>?
           ? playersWithAchievement
           : this.playersWithAchievement?.map((e0) => e0.copyWith()).toList(),
       displayOrder: displayOrder ?? this.displayOrder,

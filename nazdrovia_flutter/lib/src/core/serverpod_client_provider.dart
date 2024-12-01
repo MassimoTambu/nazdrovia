@@ -12,5 +12,5 @@ part 'serverpod_client_provider.g.dart';
 // the default port. You will need to modify this to connect to staging or
 // production servers.
 @riverpod
-Client dio(Ref ref) => Client('http://$localhost:8080/')
+Client serverpod(Ref ref) => Client('http://$localhost:8080/')
   ..connectivityMonitor = FlutterConnectivityMonitor();

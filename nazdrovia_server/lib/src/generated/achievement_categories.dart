@@ -8,29 +8,34 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 
-// ignore_for_file: invalid_use_of_visible_for_testing_member
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import 'texts.dart' as _i2;
 
 abstract class AchievementCategory
     implements _i1.TableRow, _i1.ProtocolSerialization {
   AchievementCategory._({
     this.id,
-    required this.category,
+    required this.categoryId,
+    this.category,
     int? displayOrder,
   }) : displayOrder = displayOrder ?? 0;
 
   factory AchievementCategory({
     int? id,
-    required String category,
+    required int categoryId,
+    _i2.Texts? category,
     int? displayOrder,
   }) = _AchievementCategoryImpl;
 
   factory AchievementCategory.fromJson(Map<String, dynamic> jsonSerialization) {
     return AchievementCategory(
       id: jsonSerialization['id'] as int?,
-      category: jsonSerialization['category'] as String,
+      categoryId: jsonSerialization['categoryId'] as int,
+      category: jsonSerialization['category'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['category'] as Map<String, dynamic>)),
       displayOrder: jsonSerialization['displayOrder'] as int,
     );
   }
@@ -42,7 +47,9 @@ abstract class AchievementCategory
   @override
   int? id;
 
-  String category;
+  int categoryId;
+
+  _i2.Texts? category;
 
   int displayOrder;
 
@@ -51,14 +58,16 @@ abstract class AchievementCategory
 
   AchievementCategory copyWith({
     int? id,
-    String? category,
+    int? categoryId,
+    _i2.Texts? category,
     int? displayOrder,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       if (id != null) 'id': id,
-      'category': category,
+      'categoryId': categoryId,
+      if (category != null) 'category': category?.toJson(),
       'displayOrder': displayOrder,
     };
   }
@@ -67,13 +76,14 @@ abstract class AchievementCategory
   Map<String, dynamic> toJsonForProtocol() {
     return {
       if (id != null) 'id': id,
-      'category': category,
+      'categoryId': categoryId,
+      if (category != null) 'category': category?.toJsonForProtocol(),
       'displayOrder': displayOrder,
     };
   }
 
-  static AchievementCategoryInclude include() {
-    return AchievementCategoryInclude._();
+  static AchievementCategoryInclude include({_i2.TextsInclude? category}) {
+    return AchievementCategoryInclude._(category: category);
   }
 
   static AchievementCategoryIncludeList includeList({
@@ -107,10 +117,12 @@ class _Undefined {}
 class _AchievementCategoryImpl extends AchievementCategory {
   _AchievementCategoryImpl({
     int? id,
-    required String category,
+    required int categoryId,
+    _i2.Texts? category,
     int? displayOrder,
   }) : super._(
           id: id,
+          categoryId: categoryId,
           category: category,
           displayOrder: displayOrder,
         );
@@ -118,12 +130,14 @@ class _AchievementCategoryImpl extends AchievementCategory {
   @override
   AchievementCategory copyWith({
     Object? id = _Undefined,
-    String? category,
+    int? categoryId,
+    Object? category = _Undefined,
     int? displayOrder,
   }) {
     return AchievementCategory(
       id: id is int? ? id : this.id,
-      category: category ?? this.category,
+      categoryId: categoryId ?? this.categoryId,
+      category: category is _i2.Texts? ? category : this.category?.copyWith(),
       displayOrder: displayOrder ?? this.displayOrder,
     );
   }
@@ -132,8 +146,8 @@ class _AchievementCategoryImpl extends AchievementCategory {
 class AchievementCategoryTable extends _i1.Table {
   AchievementCategoryTable({super.tableRelation})
       : super(tableName: 'achievement_categories') {
-    category = _i1.ColumnString(
-      'category',
+    categoryId = _i1.ColumnInt(
+      'categoryId',
       this,
     );
     displayOrder = _i1.ColumnInt(
@@ -143,23 +157,50 @@ class AchievementCategoryTable extends _i1.Table {
     );
   }
 
-  late final _i1.ColumnString category;
+  late final _i1.ColumnInt categoryId;
+
+  _i2.TextsTable? _category;
 
   late final _i1.ColumnInt displayOrder;
+
+  _i2.TextsTable get category {
+    if (_category != null) return _category!;
+    _category = _i1.createRelationTable(
+      relationFieldName: 'category',
+      field: AchievementCategory.t.categoryId,
+      foreignField: _i2.Texts.t.id,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i2.TextsTable(tableRelation: foreignTableRelation),
+    );
+    return _category!;
+  }
 
   @override
   List<_i1.Column> get columns => [
         id,
-        category,
+        categoryId,
         displayOrder,
       ];
+
+  @override
+  _i1.Table? getRelationTable(String relationField) {
+    if (relationField == 'category') {
+      return category;
+    }
+    return null;
+  }
 }
 
 class AchievementCategoryInclude extends _i1.IncludeObject {
-  AchievementCategoryInclude._();
+  AchievementCategoryInclude._({_i2.TextsInclude? category}) {
+    _category = category;
+  }
+
+  _i2.TextsInclude? _category;
 
   @override
-  Map<String, _i1.Include?> get includes => {};
+  Map<String, _i1.Include?> get includes => {'category': _category};
 
   @override
   _i1.Table get table => AchievementCategory.t;
@@ -188,6 +229,8 @@ class AchievementCategoryIncludeList extends _i1.IncludeList {
 class AchievementCategoryRepository {
   const AchievementCategoryRepository._();
 
+  final attachRow = const AchievementCategoryAttachRowRepository._();
+
   Future<List<AchievementCategory>> find(
     _i1.Session session, {
     _i1.WhereExpressionBuilder<AchievementCategoryTable>? where,
@@ -197,6 +240,7 @@ class AchievementCategoryRepository {
     bool orderDescending = false,
     _i1.OrderByListBuilder<AchievementCategoryTable>? orderByList,
     _i1.Transaction? transaction,
+    AchievementCategoryInclude? include,
   }) async {
     return session.db.find<AchievementCategory>(
       where: where?.call(AchievementCategory.t),
@@ -205,7 +249,8 @@ class AchievementCategoryRepository {
       orderDescending: orderDescending,
       limit: limit,
       offset: offset,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
+      include: include,
     );
   }
 
@@ -217,6 +262,7 @@ class AchievementCategoryRepository {
     bool orderDescending = false,
     _i1.OrderByListBuilder<AchievementCategoryTable>? orderByList,
     _i1.Transaction? transaction,
+    AchievementCategoryInclude? include,
   }) async {
     return session.db.findFirstRow<AchievementCategory>(
       where: where?.call(AchievementCategory.t),
@@ -224,7 +270,8 @@ class AchievementCategoryRepository {
       orderByList: orderByList?.call(AchievementCategory.t),
       orderDescending: orderDescending,
       offset: offset,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
+      include: include,
     );
   }
 
@@ -232,10 +279,12 @@ class AchievementCategoryRepository {
     _i1.Session session,
     int id, {
     _i1.Transaction? transaction,
+    AchievementCategoryInclude? include,
   }) async {
     return session.db.findById<AchievementCategory>(
       id,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
+      include: include,
     );
   }
 
@@ -246,7 +295,7 @@ class AchievementCategoryRepository {
   }) async {
     return session.db.insert<AchievementCategory>(
       rows,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -257,7 +306,7 @@ class AchievementCategoryRepository {
   }) async {
     return session.db.insertRow<AchievementCategory>(
       row,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -270,7 +319,7 @@ class AchievementCategoryRepository {
     return session.db.update<AchievementCategory>(
       rows,
       columns: columns?.call(AchievementCategory.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -283,7 +332,7 @@ class AchievementCategoryRepository {
     return session.db.updateRow<AchievementCategory>(
       row,
       columns: columns?.call(AchievementCategory.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -294,7 +343,7 @@ class AchievementCategoryRepository {
   }) async {
     return session.db.delete<AchievementCategory>(
       rows,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -305,7 +354,7 @@ class AchievementCategoryRepository {
   }) async {
     return session.db.deleteRow<AchievementCategory>(
       row,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -316,7 +365,7 @@ class AchievementCategoryRepository {
   }) async {
     return session.db.deleteWhere<AchievementCategory>(
       where: where(AchievementCategory.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -329,7 +378,33 @@ class AchievementCategoryRepository {
     return session.db.count<AchievementCategory>(
       where: where?.call(AchievementCategory.t),
       limit: limit,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
+    );
+  }
+}
+
+class AchievementCategoryAttachRowRepository {
+  const AchievementCategoryAttachRowRepository._();
+
+  Future<void> category(
+    _i1.Session session,
+    AchievementCategory achievementCategory,
+    _i2.Texts category, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (achievementCategory.id == null) {
+      throw ArgumentError.notNull('achievementCategory.id');
+    }
+    if (category.id == null) {
+      throw ArgumentError.notNull('category.id');
+    }
+
+    var $achievementCategory =
+        achievementCategory.copyWith(categoryId: category.id);
+    await session.db.updateRow<AchievementCategory>(
+      $achievementCategory,
+      columns: [AchievementCategory.t.categoryId],
+      transaction: transaction,
     );
   }
 }

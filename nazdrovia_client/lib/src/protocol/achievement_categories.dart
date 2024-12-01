@@ -10,24 +10,31 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'texts.dart' as _i2;
 
 abstract class AchievementCategory implements _i1.SerializableModel {
   AchievementCategory._({
     this.id,
-    required this.category,
+    required this.categoryId,
+    this.category,
     int? displayOrder,
   }) : displayOrder = displayOrder ?? 0;
 
   factory AchievementCategory({
     int? id,
-    required String category,
+    required int categoryId,
+    _i2.Texts? category,
     int? displayOrder,
   }) = _AchievementCategoryImpl;
 
   factory AchievementCategory.fromJson(Map<String, dynamic> jsonSerialization) {
     return AchievementCategory(
       id: jsonSerialization['id'] as int?,
-      category: jsonSerialization['category'] as String,
+      categoryId: jsonSerialization['categoryId'] as int,
+      category: jsonSerialization['category'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['category'] as Map<String, dynamic>)),
       displayOrder: jsonSerialization['displayOrder'] as int,
     );
   }
@@ -37,20 +44,24 @@ abstract class AchievementCategory implements _i1.SerializableModel {
   /// the id will be null.
   int? id;
 
-  String category;
+  int categoryId;
+
+  _i2.Texts? category;
 
   int displayOrder;
 
   AchievementCategory copyWith({
     int? id,
-    String? category,
+    int? categoryId,
+    _i2.Texts? category,
     int? displayOrder,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       if (id != null) 'id': id,
-      'category': category,
+      'categoryId': categoryId,
+      if (category != null) 'category': category?.toJson(),
       'displayOrder': displayOrder,
     };
   }
@@ -66,10 +77,12 @@ class _Undefined {}
 class _AchievementCategoryImpl extends AchievementCategory {
   _AchievementCategoryImpl({
     int? id,
-    required String category,
+    required int categoryId,
+    _i2.Texts? category,
     int? displayOrder,
   }) : super._(
           id: id,
+          categoryId: categoryId,
           category: category,
           displayOrder: displayOrder,
         );
@@ -77,12 +90,14 @@ class _AchievementCategoryImpl extends AchievementCategory {
   @override
   AchievementCategory copyWith({
     Object? id = _Undefined,
-    String? category,
+    int? categoryId,
+    Object? category = _Undefined,
     int? displayOrder,
   }) {
     return AchievementCategory(
       id: id is int? ? id : this.id,
-      category: category ?? this.category,
+      categoryId: categoryId ?? this.categoryId,
+      category: category is _i2.Texts? ? category : this.category?.copyWith(),
       displayOrder: displayOrder ?? this.displayOrder,
     );
   }

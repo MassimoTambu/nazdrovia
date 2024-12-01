@@ -10,14 +10,17 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'texts.dart' as _i2;
+import 'rule_categories.dart' as _i3;
 
 abstract class Rule implements _i1.SerializableModel {
   Rule._({
     this.id,
     this.number,
+    required this.titleId,
     this.title,
-    required this.description,
+    required this.descriptionId,
+    this.description,
     required this.ruleCategoryId,
     this.ruleCategory,
     int? displayOrder,
@@ -26,10 +29,12 @@ abstract class Rule implements _i1.SerializableModel {
   factory Rule({
     int? id,
     String? number,
-    String? title,
-    required String description,
+    required int titleId,
+    _i2.Texts? title,
+    required int descriptionId,
+    _i2.Texts? description,
     required int ruleCategoryId,
-    _i2.RuleCategory? ruleCategory,
+    _i3.RuleCategory? ruleCategory,
     int? displayOrder,
   }) = _RuleImpl;
 
@@ -37,12 +42,20 @@ abstract class Rule implements _i1.SerializableModel {
     return Rule(
       id: jsonSerialization['id'] as int?,
       number: jsonSerialization['number'] as String?,
-      title: jsonSerialization['title'] as String?,
-      description: jsonSerialization['description'] as String,
+      titleId: jsonSerialization['titleId'] as int,
+      title: jsonSerialization['title'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['title'] as Map<String, dynamic>)),
+      descriptionId: jsonSerialization['descriptionId'] as int,
+      description: jsonSerialization['description'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['description'] as Map<String, dynamic>)),
       ruleCategoryId: jsonSerialization['ruleCategoryId'] as int,
       ruleCategory: jsonSerialization['ruleCategory'] == null
           ? null
-          : _i2.RuleCategory.fromJson(
+          : _i3.RuleCategory.fromJson(
               (jsonSerialization['ruleCategory'] as Map<String, dynamic>)),
       displayOrder: jsonSerialization['displayOrder'] as int,
     );
@@ -55,23 +68,29 @@ abstract class Rule implements _i1.SerializableModel {
 
   String? number;
 
-  String? title;
+  int titleId;
 
-  String description;
+  _i2.Texts? title;
+
+  int descriptionId;
+
+  _i2.Texts? description;
 
   int ruleCategoryId;
 
-  _i2.RuleCategory? ruleCategory;
+  _i3.RuleCategory? ruleCategory;
 
   int displayOrder;
 
   Rule copyWith({
     int? id,
     String? number,
-    String? title,
-    String? description,
+    int? titleId,
+    _i2.Texts? title,
+    int? descriptionId,
+    _i2.Texts? description,
     int? ruleCategoryId,
-    _i2.RuleCategory? ruleCategory,
+    _i3.RuleCategory? ruleCategory,
     int? displayOrder,
   });
   @override
@@ -79,8 +98,10 @@ abstract class Rule implements _i1.SerializableModel {
     return {
       if (id != null) 'id': id,
       if (number != null) 'number': number,
-      if (title != null) 'title': title,
-      'description': description,
+      'titleId': titleId,
+      if (title != null) 'title': title?.toJson(),
+      'descriptionId': descriptionId,
+      if (description != null) 'description': description?.toJson(),
       'ruleCategoryId': ruleCategoryId,
       if (ruleCategory != null) 'ruleCategory': ruleCategory?.toJson(),
       'displayOrder': displayOrder,
@@ -99,15 +120,19 @@ class _RuleImpl extends Rule {
   _RuleImpl({
     int? id,
     String? number,
-    String? title,
-    required String description,
+    required int titleId,
+    _i2.Texts? title,
+    required int descriptionId,
+    _i2.Texts? description,
     required int ruleCategoryId,
-    _i2.RuleCategory? ruleCategory,
+    _i3.RuleCategory? ruleCategory,
     int? displayOrder,
   }) : super._(
           id: id,
           number: number,
+          titleId: titleId,
           title: title,
+          descriptionId: descriptionId,
           description: description,
           ruleCategoryId: ruleCategoryId,
           ruleCategory: ruleCategory,
@@ -118,8 +143,10 @@ class _RuleImpl extends Rule {
   Rule copyWith({
     Object? id = _Undefined,
     Object? number = _Undefined,
+    int? titleId,
     Object? title = _Undefined,
-    String? description,
+    int? descriptionId,
+    Object? description = _Undefined,
     int? ruleCategoryId,
     Object? ruleCategory = _Undefined,
     int? displayOrder,
@@ -127,10 +154,14 @@ class _RuleImpl extends Rule {
     return Rule(
       id: id is int? ? id : this.id,
       number: number is String? ? number : this.number,
-      title: title is String? ? title : this.title,
-      description: description ?? this.description,
+      titleId: titleId ?? this.titleId,
+      title: title is _i2.Texts? ? title : this.title?.copyWith(),
+      descriptionId: descriptionId ?? this.descriptionId,
+      description: description is _i2.Texts?
+          ? description
+          : this.description?.copyWith(),
       ruleCategoryId: ruleCategoryId ?? this.ruleCategoryId,
-      ruleCategory: ruleCategory is _i2.RuleCategory?
+      ruleCategory: ruleCategory is _i3.RuleCategory?
           ? ruleCategory
           : this.ruleCategory?.copyWith(),
       displayOrder: displayOrder ?? this.displayOrder,

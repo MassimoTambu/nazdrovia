@@ -8,18 +8,19 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 
-// ignore_for_file: invalid_use_of_visible_for_testing_member
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'texts.dart' as _i2;
+import 'rule_categories.dart' as _i3;
 
 abstract class Rule implements _i1.TableRow, _i1.ProtocolSerialization {
   Rule._({
     this.id,
     this.number,
+    required this.titleId,
     this.title,
-    required this.description,
+    required this.descriptionId,
+    this.description,
     required this.ruleCategoryId,
     this.ruleCategory,
     int? displayOrder,
@@ -28,10 +29,12 @@ abstract class Rule implements _i1.TableRow, _i1.ProtocolSerialization {
   factory Rule({
     int? id,
     String? number,
-    String? title,
-    required String description,
+    required int titleId,
+    _i2.Texts? title,
+    required int descriptionId,
+    _i2.Texts? description,
     required int ruleCategoryId,
-    _i2.RuleCategory? ruleCategory,
+    _i3.RuleCategory? ruleCategory,
     int? displayOrder,
   }) = _RuleImpl;
 
@@ -39,12 +42,20 @@ abstract class Rule implements _i1.TableRow, _i1.ProtocolSerialization {
     return Rule(
       id: jsonSerialization['id'] as int?,
       number: jsonSerialization['number'] as String?,
-      title: jsonSerialization['title'] as String?,
-      description: jsonSerialization['description'] as String,
+      titleId: jsonSerialization['titleId'] as int,
+      title: jsonSerialization['title'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['title'] as Map<String, dynamic>)),
+      descriptionId: jsonSerialization['descriptionId'] as int,
+      description: jsonSerialization['description'] == null
+          ? null
+          : _i2.Texts.fromJson(
+              (jsonSerialization['description'] as Map<String, dynamic>)),
       ruleCategoryId: jsonSerialization['ruleCategoryId'] as int,
       ruleCategory: jsonSerialization['ruleCategory'] == null
           ? null
-          : _i2.RuleCategory.fromJson(
+          : _i3.RuleCategory.fromJson(
               (jsonSerialization['ruleCategory'] as Map<String, dynamic>)),
       displayOrder: jsonSerialization['displayOrder'] as int,
     );
@@ -59,13 +70,17 @@ abstract class Rule implements _i1.TableRow, _i1.ProtocolSerialization {
 
   String? number;
 
-  String? title;
+  int titleId;
 
-  String description;
+  _i2.Texts? title;
+
+  int descriptionId;
+
+  _i2.Texts? description;
 
   int ruleCategoryId;
 
-  _i2.RuleCategory? ruleCategory;
+  _i3.RuleCategory? ruleCategory;
 
   int displayOrder;
 
@@ -77,10 +92,12 @@ abstract class Rule implements _i1.TableRow, _i1.ProtocolSerialization {
   Rule copyWith({
     int? id,
     String? number,
-    String? title,
-    String? description,
+    int? titleId,
+    _i2.Texts? title,
+    int? descriptionId,
+    _i2.Texts? description,
     int? ruleCategoryId,
-    _i2.RuleCategory? ruleCategory,
+    _i3.RuleCategory? ruleCategory,
     int? displayOrder,
   });
   @override
@@ -88,8 +105,10 @@ abstract class Rule implements _i1.TableRow, _i1.ProtocolSerialization {
     return {
       if (id != null) 'id': id,
       if (number != null) 'number': number,
-      if (title != null) 'title': title,
-      'description': description,
+      'titleId': titleId,
+      if (title != null) 'title': title?.toJson(),
+      'descriptionId': descriptionId,
+      if (description != null) 'description': description?.toJson(),
       'ruleCategoryId': ruleCategoryId,
       if (ruleCategory != null) 'ruleCategory': ruleCategory?.toJson(),
       'displayOrder': displayOrder,
@@ -104,8 +123,10 @@ abstract class Rule implements _i1.TableRow, _i1.ProtocolSerialization {
     return {
       if (id != null) 'id': id,
       if (number != null) 'number': number,
-      if (title != null) 'title': title,
-      'description': description,
+      'titleId': titleId,
+      if (title != null) 'title': title?.toJsonForProtocol(),
+      'descriptionId': descriptionId,
+      if (description != null) 'description': description?.toJsonForProtocol(),
       'ruleCategoryId': ruleCategoryId,
       if (ruleCategory != null)
         'ruleCategory': ruleCategory?.toJsonForProtocol(),
@@ -113,8 +134,16 @@ abstract class Rule implements _i1.TableRow, _i1.ProtocolSerialization {
     };
   }
 
-  static RuleInclude include({_i2.RuleCategoryInclude? ruleCategory}) {
-    return RuleInclude._(ruleCategory: ruleCategory);
+  static RuleInclude include({
+    _i2.TextsInclude? title,
+    _i2.TextsInclude? description,
+    _i3.RuleCategoryInclude? ruleCategory,
+  }) {
+    return RuleInclude._(
+      title: title,
+      description: description,
+      ruleCategory: ruleCategory,
+    );
   }
 
   static RuleIncludeList includeList({
@@ -149,15 +178,19 @@ class _RuleImpl extends Rule {
   _RuleImpl({
     int? id,
     String? number,
-    String? title,
-    required String description,
+    required int titleId,
+    _i2.Texts? title,
+    required int descriptionId,
+    _i2.Texts? description,
     required int ruleCategoryId,
-    _i2.RuleCategory? ruleCategory,
+    _i3.RuleCategory? ruleCategory,
     int? displayOrder,
   }) : super._(
           id: id,
           number: number,
+          titleId: titleId,
           title: title,
+          descriptionId: descriptionId,
           description: description,
           ruleCategoryId: ruleCategoryId,
           ruleCategory: ruleCategory,
@@ -168,8 +201,10 @@ class _RuleImpl extends Rule {
   Rule copyWith({
     Object? id = _Undefined,
     Object? number = _Undefined,
+    int? titleId,
     Object? title = _Undefined,
-    String? description,
+    int? descriptionId,
+    Object? description = _Undefined,
     int? ruleCategoryId,
     Object? ruleCategory = _Undefined,
     int? displayOrder,
@@ -177,10 +212,14 @@ class _RuleImpl extends Rule {
     return Rule(
       id: id is int? ? id : this.id,
       number: number is String? ? number : this.number,
-      title: title is String? ? title : this.title,
-      description: description ?? this.description,
+      titleId: titleId ?? this.titleId,
+      title: title is _i2.Texts? ? title : this.title?.copyWith(),
+      descriptionId: descriptionId ?? this.descriptionId,
+      description: description is _i2.Texts?
+          ? description
+          : this.description?.copyWith(),
       ruleCategoryId: ruleCategoryId ?? this.ruleCategoryId,
-      ruleCategory: ruleCategory is _i2.RuleCategory?
+      ruleCategory: ruleCategory is _i3.RuleCategory?
           ? ruleCategory
           : this.ruleCategory?.copyWith(),
       displayOrder: displayOrder ?? this.displayOrder,
@@ -192,16 +231,20 @@ class RuleImplicit extends _RuleImpl {
   RuleImplicit._({
     int? id,
     String? number,
-    String? title,
-    required String description,
+    required int titleId,
+    _i2.Texts? title,
+    required int descriptionId,
+    _i2.Texts? description,
     required int ruleCategoryId,
-    _i2.RuleCategory? ruleCategory,
+    _i3.RuleCategory? ruleCategory,
     int? displayOrder,
     this.$_ruleCategoriesRulesRuleCategoriesId,
   }) : super(
           id: id,
           number: number,
+          titleId: titleId,
           title: title,
+          descriptionId: descriptionId,
           description: description,
           ruleCategoryId: ruleCategoryId,
           ruleCategory: ruleCategory,
@@ -215,7 +258,9 @@ class RuleImplicit extends _RuleImpl {
     return RuleImplicit._(
       id: rule.id,
       number: rule.number,
+      titleId: rule.titleId,
       title: rule.title,
+      descriptionId: rule.descriptionId,
       description: rule.description,
       ruleCategoryId: rule.ruleCategoryId,
       ruleCategory: rule.ruleCategory,
@@ -244,12 +289,12 @@ class RuleTable extends _i1.Table {
       'number',
       this,
     );
-    title = _i1.ColumnString(
-      'title',
+    titleId = _i1.ColumnInt(
+      'titleId',
       this,
     );
-    description = _i1.ColumnString(
-      'description',
+    descriptionId = _i1.ColumnInt(
+      'descriptionId',
       this,
     );
     ruleCategoryId = _i1.ColumnInt(
@@ -269,27 +314,57 @@ class RuleTable extends _i1.Table {
 
   late final _i1.ColumnString number;
 
-  late final _i1.ColumnString title;
+  late final _i1.ColumnInt titleId;
 
-  late final _i1.ColumnString description;
+  _i2.TextsTable? _title;
+
+  late final _i1.ColumnInt descriptionId;
+
+  _i2.TextsTable? _description;
 
   late final _i1.ColumnInt ruleCategoryId;
 
-  _i2.RuleCategoryTable? _ruleCategory;
+  _i3.RuleCategoryTable? _ruleCategory;
 
   late final _i1.ColumnInt displayOrder;
 
   late final _i1.ColumnInt $_ruleCategoriesRulesRuleCategoriesId;
 
-  _i2.RuleCategoryTable get ruleCategory {
+  _i2.TextsTable get title {
+    if (_title != null) return _title!;
+    _title = _i1.createRelationTable(
+      relationFieldName: 'title',
+      field: Rule.t.titleId,
+      foreignField: _i2.Texts.t.id,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i2.TextsTable(tableRelation: foreignTableRelation),
+    );
+    return _title!;
+  }
+
+  _i2.TextsTable get description {
+    if (_description != null) return _description!;
+    _description = _i1.createRelationTable(
+      relationFieldName: 'description',
+      field: Rule.t.descriptionId,
+      foreignField: _i2.Texts.t.id,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i2.TextsTable(tableRelation: foreignTableRelation),
+    );
+    return _description!;
+  }
+
+  _i3.RuleCategoryTable get ruleCategory {
     if (_ruleCategory != null) return _ruleCategory!;
     _ruleCategory = _i1.createRelationTable(
       relationFieldName: 'ruleCategory',
       field: Rule.t.ruleCategoryId,
-      foreignField: _i2.RuleCategory.t.id,
+      foreignField: _i3.RuleCategory.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.RuleCategoryTable(tableRelation: foreignTableRelation),
+          _i3.RuleCategoryTable(tableRelation: foreignTableRelation),
     );
     return _ruleCategory!;
   }
@@ -298,8 +373,8 @@ class RuleTable extends _i1.Table {
   List<_i1.Column> get columns => [
         id,
         number,
-        title,
-        description,
+        titleId,
+        descriptionId,
         ruleCategoryId,
         displayOrder,
         $_ruleCategoriesRulesRuleCategoriesId,
@@ -307,6 +382,12 @@ class RuleTable extends _i1.Table {
 
   @override
   _i1.Table? getRelationTable(String relationField) {
+    if (relationField == 'title') {
+      return title;
+    }
+    if (relationField == 'description') {
+      return description;
+    }
     if (relationField == 'ruleCategory') {
       return ruleCategory;
     }
@@ -315,14 +396,28 @@ class RuleTable extends _i1.Table {
 }
 
 class RuleInclude extends _i1.IncludeObject {
-  RuleInclude._({_i2.RuleCategoryInclude? ruleCategory}) {
+  RuleInclude._({
+    _i2.TextsInclude? title,
+    _i2.TextsInclude? description,
+    _i3.RuleCategoryInclude? ruleCategory,
+  }) {
+    _title = title;
+    _description = description;
     _ruleCategory = ruleCategory;
   }
 
-  _i2.RuleCategoryInclude? _ruleCategory;
+  _i2.TextsInclude? _title;
+
+  _i2.TextsInclude? _description;
+
+  _i3.RuleCategoryInclude? _ruleCategory;
 
   @override
-  Map<String, _i1.Include?> get includes => {'ruleCategory': _ruleCategory};
+  Map<String, _i1.Include?> get includes => {
+        'title': _title,
+        'description': _description,
+        'ruleCategory': _ruleCategory,
+      };
 
   @override
   _i1.Table get table => Rule.t;
@@ -371,7 +466,7 @@ class RuleRepository {
       orderDescending: orderDescending,
       limit: limit,
       offset: offset,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
       include: include,
     );
   }
@@ -392,7 +487,7 @@ class RuleRepository {
       orderByList: orderByList?.call(Rule.t),
       orderDescending: orderDescending,
       offset: offset,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
       include: include,
     );
   }
@@ -405,7 +500,7 @@ class RuleRepository {
   }) async {
     return session.db.findById<Rule>(
       id,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
       include: include,
     );
   }
@@ -417,7 +512,7 @@ class RuleRepository {
   }) async {
     return session.db.insert<Rule>(
       rows,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -428,7 +523,7 @@ class RuleRepository {
   }) async {
     return session.db.insertRow<Rule>(
       row,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -441,7 +536,7 @@ class RuleRepository {
     return session.db.update<Rule>(
       rows,
       columns: columns?.call(Rule.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -454,7 +549,7 @@ class RuleRepository {
     return session.db.updateRow<Rule>(
       row,
       columns: columns?.call(Rule.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -465,7 +560,7 @@ class RuleRepository {
   }) async {
     return session.db.delete<Rule>(
       rows,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -476,7 +571,7 @@ class RuleRepository {
   }) async {
     return session.db.deleteRow<Rule>(
       row,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -487,7 +582,7 @@ class RuleRepository {
   }) async {
     return session.db.deleteWhere<Rule>(
       where: where(Rule.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -500,7 +595,7 @@ class RuleRepository {
     return session.db.count<Rule>(
       where: where?.call(Rule.t),
       limit: limit,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 }
@@ -508,10 +603,52 @@ class RuleRepository {
 class RuleAttachRowRepository {
   const RuleAttachRowRepository._();
 
+  Future<void> title(
+    _i1.Session session,
+    Rule rule,
+    _i2.Texts title, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (rule.id == null) {
+      throw ArgumentError.notNull('rule.id');
+    }
+    if (title.id == null) {
+      throw ArgumentError.notNull('title.id');
+    }
+
+    var $rule = rule.copyWith(titleId: title.id);
+    await session.db.updateRow<Rule>(
+      $rule,
+      columns: [Rule.t.titleId],
+      transaction: transaction,
+    );
+  }
+
+  Future<void> description(
+    _i1.Session session,
+    Rule rule,
+    _i2.Texts description, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (rule.id == null) {
+      throw ArgumentError.notNull('rule.id');
+    }
+    if (description.id == null) {
+      throw ArgumentError.notNull('description.id');
+    }
+
+    var $rule = rule.copyWith(descriptionId: description.id);
+    await session.db.updateRow<Rule>(
+      $rule,
+      columns: [Rule.t.descriptionId],
+      transaction: transaction,
+    );
+  }
+
   Future<void> ruleCategory(
     _i1.Session session,
     Rule rule,
-    _i2.RuleCategory ruleCategory, {
+    _i3.RuleCategory ruleCategory, {
     _i1.Transaction? transaction,
   }) async {
     if (rule.id == null) {
@@ -525,7 +662,7 @@ class RuleAttachRowRepository {
     await session.db.updateRow<Rule>(
       $rule,
       columns: [Rule.t.ruleCategoryId],
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 }

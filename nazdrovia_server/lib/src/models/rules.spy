@@ -3,7 +3,12 @@ table: rules
 
 fields:
    number: String?
-   title: String?
-   description: String,
-   ruleCategory: RuleCategory?, relation,
+   title: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
+   description: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
+   ruleCategory: RuleCategory?, relation(onUpdate=Cascade, onDelete=SetNull)
    displayOrder: int, default=0
+indexes:
+   rules_title_idx:
+      fields: titleId
+   rules_description_idx:
+      fields: descriptionId

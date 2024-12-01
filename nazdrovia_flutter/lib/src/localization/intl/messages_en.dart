@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("Account"),
+        "achievements": MessageLookupByLibrary.simpleMessage("Achievements"),
         "anErrorOccurred":
             MessageLookupByLibrary.simpleMessage("An error occurred"),
         "anErrorOccurredPleaseTryAgain": MessageLookupByLibrary.simpleMessage(
@@ -41,11 +42,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "noAchievementsFound":
+            MessageLookupByLibrary.simpleMessage("No achievements found"),
+        "noRulesFound": MessageLookupByLibrary.simpleMessage("No rules found"),
         "okay": MessageLookupByLibrary.simpleMessage("Okay"),
         "open": MessageLookupByLibrary.simpleMessage("Open"),
         "pageNotFound":
             MessageLookupByLibrary.simpleMessage("404 - Page not found!"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+        "rules": MessageLookupByLibrary.simpleMessage("Rules"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "somethingWentWrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),

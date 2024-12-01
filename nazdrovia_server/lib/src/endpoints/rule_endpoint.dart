@@ -2,12 +2,15 @@ import 'package:nazdrovia_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
 class RuleEndpoint extends Endpoint {
-  Future<List<RuleCategory>> getAllWithCategories(Session session) async {
-    return RuleCategory.db.find(
-      session,
-      include: RuleCategory.include(
-          rules: Rule.includeList(orderBy: (t) => t.displayOrder)),
-      orderBy: (t) => t.displayOrder,
-    );
+  Future<void> insert(Session session, Rule rule) async {
+    await Rule.db.insertRow(session, rule);
+  }
+
+  Future<void> update(Session session, Rule rule) async {
+    await Rule.db.updateRow(session, rule);
+  }
+
+  Future<void> delete(Session session, Rule rule) async {
+    await Rule.db.deleteRow(session, rule);
   }
 }

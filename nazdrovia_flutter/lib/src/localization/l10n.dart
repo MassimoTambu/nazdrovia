@@ -329,6 +329,46 @@ class Translations {
       args: [],
     );
   }
+
+  /// `Achievements`
+  String get achievements {
+    return Intl.message(
+      'Achievements',
+      name: 'achievements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rules`
+  String get rules {
+    return Intl.message(
+      'Rules',
+      name: 'rules',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No rules found`
+  String get noRulesFound {
+    return Intl.message(
+      'No rules found',
+      name: 'noRulesFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No achievements found`
+  String get noAchievementsFound {
+    return Intl.message(
+      'No achievements found',
+      name: 'noAchievementsFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Translations> {

@@ -8,11 +8,10 @@
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
 
-// ignore_for_file: invalid_use_of_visible_for_testing_member
-
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'players.dart' as _i2;
+import 'achievements.dart' as _i3;
 
 abstract class CompletedAchievements
     implements _i1.TableRow, _i1.ProtocolSerialization {
@@ -29,7 +28,7 @@ abstract class CompletedAchievements
     required int playerId,
     _i2.Player? player,
     required int achievementId,
-    _i2.Achievement? achievement,
+    _i3.Achievement? achievement,
   }) = _CompletedAchievementsImpl;
 
   factory CompletedAchievements.fromJson(
@@ -44,7 +43,7 @@ abstract class CompletedAchievements
       achievementId: jsonSerialization['achievementId'] as int,
       achievement: jsonSerialization['achievement'] == null
           ? null
-          : _i2.Achievement.fromJson(
+          : _i3.Achievement.fromJson(
               (jsonSerialization['achievement'] as Map<String, dynamic>)),
     );
   }
@@ -62,7 +61,7 @@ abstract class CompletedAchievements
 
   int achievementId;
 
-  _i2.Achievement? achievement;
+  _i3.Achievement? achievement;
 
   @override
   _i1.Table get table => t;
@@ -72,7 +71,7 @@ abstract class CompletedAchievements
     int? playerId,
     _i2.Player? player,
     int? achievementId,
-    _i2.Achievement? achievement,
+    _i3.Achievement? achievement,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -98,7 +97,7 @@ abstract class CompletedAchievements
 
   static CompletedAchievementsInclude include({
     _i2.PlayerInclude? player,
-    _i2.AchievementInclude? achievement,
+    _i3.AchievementInclude? achievement,
   }) {
     return CompletedAchievementsInclude._(
       player: player,
@@ -140,7 +139,7 @@ class _CompletedAchievementsImpl extends CompletedAchievements {
     required int playerId,
     _i2.Player? player,
     required int achievementId,
-    _i2.Achievement? achievement,
+    _i3.Achievement? achievement,
   }) : super._(
           id: id,
           playerId: playerId,
@@ -162,7 +161,7 @@ class _CompletedAchievementsImpl extends CompletedAchievements {
       playerId: playerId ?? this.playerId,
       player: player is _i2.Player? ? player : this.player?.copyWith(),
       achievementId: achievementId ?? this.achievementId,
-      achievement: achievement is _i2.Achievement?
+      achievement: achievement is _i3.Achievement?
           ? achievement
           : this.achievement?.copyWith(),
     );
@@ -188,7 +187,7 @@ class CompletedAchievementsTable extends _i1.Table {
 
   late final _i1.ColumnInt achievementId;
 
-  _i2.AchievementTable? _achievement;
+  _i3.AchievementTable? _achievement;
 
   _i2.PlayerTable get player {
     if (_player != null) return _player!;
@@ -203,15 +202,15 @@ class CompletedAchievementsTable extends _i1.Table {
     return _player!;
   }
 
-  _i2.AchievementTable get achievement {
+  _i3.AchievementTable get achievement {
     if (_achievement != null) return _achievement!;
     _achievement = _i1.createRelationTable(
       relationFieldName: 'achievement',
       field: CompletedAchievements.t.achievementId,
-      foreignField: _i2.Achievement.t.id,
+      foreignField: _i3.Achievement.t.id,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
-          _i2.AchievementTable(tableRelation: foreignTableRelation),
+          _i3.AchievementTable(tableRelation: foreignTableRelation),
     );
     return _achievement!;
   }
@@ -238,7 +237,7 @@ class CompletedAchievementsTable extends _i1.Table {
 class CompletedAchievementsInclude extends _i1.IncludeObject {
   CompletedAchievementsInclude._({
     _i2.PlayerInclude? player,
-    _i2.AchievementInclude? achievement,
+    _i3.AchievementInclude? achievement,
   }) {
     _player = player;
     _achievement = achievement;
@@ -246,7 +245,7 @@ class CompletedAchievementsInclude extends _i1.IncludeObject {
 
   _i2.PlayerInclude? _player;
 
-  _i2.AchievementInclude? _achievement;
+  _i3.AchievementInclude? _achievement;
 
   @override
   Map<String, _i1.Include?> get includes => {
@@ -301,7 +300,7 @@ class CompletedAchievementsRepository {
       orderDescending: orderDescending,
       limit: limit,
       offset: offset,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
       include: include,
     );
   }
@@ -322,7 +321,7 @@ class CompletedAchievementsRepository {
       orderByList: orderByList?.call(CompletedAchievements.t),
       orderDescending: orderDescending,
       offset: offset,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
       include: include,
     );
   }
@@ -335,7 +334,7 @@ class CompletedAchievementsRepository {
   }) async {
     return session.db.findById<CompletedAchievements>(
       id,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
       include: include,
     );
   }
@@ -347,7 +346,7 @@ class CompletedAchievementsRepository {
   }) async {
     return session.db.insert<CompletedAchievements>(
       rows,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -358,7 +357,7 @@ class CompletedAchievementsRepository {
   }) async {
     return session.db.insertRow<CompletedAchievements>(
       row,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -371,7 +370,7 @@ class CompletedAchievementsRepository {
     return session.db.update<CompletedAchievements>(
       rows,
       columns: columns?.call(CompletedAchievements.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -384,7 +383,7 @@ class CompletedAchievementsRepository {
     return session.db.updateRow<CompletedAchievements>(
       row,
       columns: columns?.call(CompletedAchievements.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -395,7 +394,7 @@ class CompletedAchievementsRepository {
   }) async {
     return session.db.delete<CompletedAchievements>(
       rows,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -406,7 +405,7 @@ class CompletedAchievementsRepository {
   }) async {
     return session.db.deleteRow<CompletedAchievements>(
       row,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -417,7 +416,7 @@ class CompletedAchievementsRepository {
   }) async {
     return session.db.deleteWhere<CompletedAchievements>(
       where: where(CompletedAchievements.t),
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
@@ -430,7 +429,7 @@ class CompletedAchievementsRepository {
     return session.db.count<CompletedAchievements>(
       where: where?.call(CompletedAchievements.t),
       limit: limit,
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 }
@@ -456,14 +455,14 @@ class CompletedAchievementsAttachRowRepository {
     await session.db.updateRow<CompletedAchievements>(
       $completedAchievements,
       columns: [CompletedAchievements.t.playerId],
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 
   Future<void> achievement(
     _i1.Session session,
     CompletedAchievements completedAchievements,
-    _i2.Achievement achievement, {
+    _i3.Achievement achievement, {
     _i1.Transaction? transaction,
   }) async {
     if (completedAchievements.id == null) {
@@ -478,7 +477,7 @@ class CompletedAchievementsAttachRowRepository {
     await session.db.updateRow<CompletedAchievements>(
       $completedAchievements,
       columns: [CompletedAchievements.t.achievementId],
-      transaction: transaction ?? session.transaction,
+      transaction: transaction,
     );
   }
 }

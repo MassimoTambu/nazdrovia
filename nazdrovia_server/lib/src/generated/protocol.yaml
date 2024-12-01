@@ -1,8 +1,33 @@
+achievementCategory:
+  - getAll:
+  - insert:
+  - update:
+  - delete:
 achievement:
   - getAll:
   - getAllWithCategories:
+  - insert:
+  - update:
+  - delete:
 player:
   - getAll:
   - getAllWithAchievements:
+ruleCategory:
+  - getAllWithRules:
+  - insert:
+  - update:
+  - delete:
 rule:
-  - getAllWithCategories:
+  - insert:
+  - update:
+  - delete:
+texts:
+  - getAllWithTranslations:
+  - insert:
+  - update:
+  - delete:
+translation:
+  - getLanguageCodes:
+  - insert:
+  - update:
+  - delete:

@@ -1,0 +1,6 @@
+class: Texts
+table: texts
+
+fields:
+   originalText: String,
+   translations: List<Translation>?, relation

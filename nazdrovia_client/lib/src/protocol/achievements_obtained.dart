@@ -10,7 +10,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'players.dart' as _i2;
+import 'achievements.dart' as _i3;
 
 abstract class CompletedAchievements implements _i1.SerializableModel {
   CompletedAchievements._({
@@ -26,7 +27,7 @@ abstract class CompletedAchievements implements _i1.SerializableModel {
     required int playerId,
     _i2.Player? player,
     required int achievementId,
-    _i2.Achievement? achievement,
+    _i3.Achievement? achievement,
   }) = _CompletedAchievementsImpl;
 
   factory CompletedAchievements.fromJson(
@@ -41,7 +42,7 @@ abstract class CompletedAchievements implements _i1.SerializableModel {
       achievementId: jsonSerialization['achievementId'] as int,
       achievement: jsonSerialization['achievement'] == null
           ? null
-          : _i2.Achievement.fromJson(
+          : _i3.Achievement.fromJson(
               (jsonSerialization['achievement'] as Map<String, dynamic>)),
     );
   }
@@ -57,14 +58,14 @@ abstract class CompletedAchievements implements _i1.SerializableModel {
 
   int achievementId;
 
-  _i2.Achievement? achievement;
+  _i3.Achievement? achievement;
 
   CompletedAchievements copyWith({
     int? id,
     int? playerId,
     _i2.Player? player,
     int? achievementId,
-    _i2.Achievement? achievement,
+    _i3.Achievement? achievement,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -91,7 +92,7 @@ class _CompletedAchievementsImpl extends CompletedAchievements {
     required int playerId,
     _i2.Player? player,
     required int achievementId,
-    _i2.Achievement? achievement,
+    _i3.Achievement? achievement,
   }) : super._(
           id: id,
           playerId: playerId,
@@ -113,7 +114,7 @@ class _CompletedAchievementsImpl extends CompletedAchievements {
       playerId: playerId ?? this.playerId,
       player: player is _i2.Player? ? player : this.player?.copyWith(),
       achievementId: achievementId ?? this.achievementId,
-      achievement: achievement is _i2.Achievement?
+      achievement: achievement is _i3.Achievement?
           ? achievement
           : this.achievement?.copyWith(),
     );

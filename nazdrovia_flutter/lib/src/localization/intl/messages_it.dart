@@ -44,6 +44,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Accedi"),
         "logout": MessageLookupByLibrary.simpleMessage("Disconnetti account"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "noAchievementsFound":
+            MessageLookupByLibrary.simpleMessage("Nessun obbiettivo trovato"),
+        "noRulesFound":
+            MessageLookupByLibrary.simpleMessage("Nessuna regola trovata"),
         "okay": MessageLookupByLibrary.simpleMessage("Okay"),
         "open": MessageLookupByLibrary.simpleMessage("Aperto"),
         "pageNotFound": MessageLookupByLibrary.simpleMessage(

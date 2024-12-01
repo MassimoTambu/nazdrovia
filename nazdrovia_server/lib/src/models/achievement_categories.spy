@@ -2,5 +2,8 @@ class: AchievementCategory
 table: achievement_categories
 
 fields:
-   category: String
+   category: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
    displayOrder: int, default=0
+indexes:
+   achievement_categories_category_idx:
+      fields: categoryId

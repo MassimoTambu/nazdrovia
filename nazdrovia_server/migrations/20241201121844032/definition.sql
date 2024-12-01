@@ -5,20 +5,30 @@ BEGIN;
 --
 CREATE TABLE "achievement_categories" (
     "id" bigserial PRIMARY KEY,
-    "category" text NOT NULL
+    "categoryId" bigint NOT NULL,
+    "displayOrder" bigint NOT NULL DEFAULT 0
 );
+
+-- Indexes
+CREATE INDEX "achievement_categories_category_idx" ON "achievement_categories" USING btree ("categoryId");
 
 --
 -- Class Achievement as table achievements
 --
 CREATE TABLE "achievements" (
     "id" bigserial PRIMARY KEY,
-    "title" text NOT NULL,
-    "description" text NOT NULL,
+    "titleId" bigint NOT NULL,
+    "descriptionId" bigint NOT NULL,
     "nasScore" bigint NOT NULL,
     "categoryId" bigint NOT NULL,
-    "image" text
+    "image" text,
+    "displayOrder" bigint NOT NULL DEFAULT 0
 );
+
+-- Indexes
+CREATE INDEX "achievements_title_idx" ON "achievements" USING btree ("titleId");
+CREATE INDEX "achievements_description_idx" ON "achievements" USING btree ("descriptionId");
+CREATE INDEX "achievements_category_idx" ON "achievements" USING btree ("categoryId");
 
 --
 -- Class CompletedAchievements as table completed_achievements
@@ -30,7 +40,7 @@ CREATE TABLE "completed_achievements" (
 );
 
 -- Indexes
-CREATE UNIQUE INDEX "enrollment_index_idx" ON "completed_achievements" USING btree ("playerId", "achievementId");
+CREATE UNIQUE INDEX "completed_achievements_enrollment_idx" ON "completed_achievements" USING btree ("playerId", "achievementId");
 
 --
 -- Class Player as table players
@@ -50,10 +60,16 @@ CREATE TABLE "players" (
 --
 CREATE TABLE "rule_categories" (
     "id" bigserial PRIMARY KEY,
-    "title" text NOT NULL,
-    "prologue" text,
-    "epilogue" text
+    "titleId" bigint NOT NULL,
+    "prologueId" bigint NOT NULL,
+    "epilogueId" bigint NOT NULL,
+    "displayOrder" bigint NOT NULL DEFAULT 0
 );
+
+-- Indexes
+CREATE INDEX "rule_categories_title_idx" ON "rule_categories" USING btree ("titleId");
+CREATE INDEX "rule_categories_prologue_idx" ON "rule_categories" USING btree ("prologueId");
+CREATE INDEX "rule_categories_epilogue_idx" ON "rule_categories" USING btree ("epilogueId");
 
 --
 -- Class Rule as table rules
@@ -61,10 +77,39 @@ CREATE TABLE "rule_categories" (
 CREATE TABLE "rules" (
     "id" bigserial PRIMARY KEY,
     "number" text,
-    "title" text,
-    "description" text NOT NULL,
+    "titleId" bigint NOT NULL,
+    "descriptionId" bigint NOT NULL,
+    "ruleCategoryId" bigint NOT NULL,
+    "displayOrder" bigint NOT NULL DEFAULT 0,
     "_ruleCategoriesRulesRuleCategoriesId" bigint
 );
+
+-- Indexes
+CREATE INDEX "rules_title_idx" ON "rules" USING btree ("titleId");
+CREATE INDEX "rules_description_idx" ON "rules" USING btree ("descriptionId");
+
+--
+-- Class Texts as table texts
+--
+CREATE TABLE "texts" (
+    "id" bigserial PRIMARY KEY,
+    "originalText" text NOT NULL
+);
+
+--
+-- Class Translation as table translations
+--
+CREATE TABLE "translations" (
+    "id" bigserial PRIMARY KEY,
+    "textId" bigint NOT NULL,
+    "languageCode" text NOT NULL,
+    "translatedText" text NOT NULL,
+    "_textsTranslationsTextsId" bigint
+);
+
+-- Indexes
+CREATE INDEX "translations_text_idx" ON "translations" USING btree ("textId");
+CREATE INDEX "translations_language_code_idx" ON "translations" USING btree ("languageCode");
 
 --
 -- Class CloudStorageEntry as table serverpod_cloud_storage
@@ -273,14 +318,36 @@ CREATE INDEX "serverpod_session_log_touched_idx" ON "serverpod_session_log" USIN
 CREATE INDEX "serverpod_session_log_isopen_idx" ON "serverpod_session_log" USING btree ("isOpen");
 
 --
+-- Foreign relations for "achievement_categories" table
+--
+ALTER TABLE ONLY "achievement_categories"
+    ADD CONSTRAINT "achievement_categories_fk_0"
+    FOREIGN KEY("categoryId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+
+--
 -- Foreign relations for "achievements" table
 --
 ALTER TABLE ONLY "achievements"
     ADD CONSTRAINT "achievements_fk_0"
+    FOREIGN KEY("titleId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "achievements"
+    ADD CONSTRAINT "achievements_fk_1"
+    FOREIGN KEY("descriptionId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "achievements"
+    ADD CONSTRAINT "achievements_fk_2"
     FOREIGN KEY("categoryId")
     REFERENCES "achievement_categories"("id")
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
 
 --
 -- Foreign relations for "completed_achievements" table
@@ -299,12 +366,68 @@ ALTER TABLE ONLY "completed_achievements"
     ON UPDATE NO ACTION;
 
 --
+-- Foreign relations for "rule_categories" table
+--
+ALTER TABLE ONLY "rule_categories"
+    ADD CONSTRAINT "rule_categories_fk_0"
+    FOREIGN KEY("titleId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rule_categories"
+    ADD CONSTRAINT "rule_categories_fk_1"
+    FOREIGN KEY("prologueId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rule_categories"
+    ADD CONSTRAINT "rule_categories_fk_2"
+    FOREIGN KEY("epilogueId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+
+--
 -- Foreign relations for "rules" table
 --
 ALTER TABLE ONLY "rules"
     ADD CONSTRAINT "rules_fk_0"
+    FOREIGN KEY("titleId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rules"
+    ADD CONSTRAINT "rules_fk_1"
+    FOREIGN KEY("descriptionId")
+    REFERENCES "texts"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rules"
+    ADD CONSTRAINT "rules_fk_2"
+    FOREIGN KEY("ruleCategoryId")
+    REFERENCES "rule_categories"("id")
+    ON DELETE SET NULL
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "rules"
+    ADD CONSTRAINT "rules_fk_3"
     FOREIGN KEY("_ruleCategoriesRulesRuleCategoriesId")
     REFERENCES "rule_categories"("id")
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+--
+-- Foreign relations for "translations" table
+--
+ALTER TABLE ONLY "translations"
+    ADD CONSTRAINT "translations_fk_0"
+    FOREIGN KEY("textId")
+    REFERENCES "texts"("id")
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
+ALTER TABLE ONLY "translations"
+    ADD CONSTRAINT "translations_fk_1"
+    FOREIGN KEY("_textsTranslationsTextsId")
+    REFERENCES "texts"("id")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION;
 
@@ -343,9 +466,9 @@ ALTER TABLE ONLY "serverpod_query_log"
 -- MIGRATION VERSION FOR nazdrovia
 --
 INSERT INTO "serverpod_migrations" ("module", "version", "timestamp")
-    VALUES ('nazdrovia', '20241110164104834', now())
+    VALUES ('nazdrovia', '20241201121844032', now())
     ON CONFLICT ("module")
-    DO UPDATE SET "version" = '20241110164104834', "timestamp" = now();
+    DO UPDATE SET "version" = '20241201121844032', "timestamp" = now();
 
 --
 -- MIGRATION VERSION FOR serverpod

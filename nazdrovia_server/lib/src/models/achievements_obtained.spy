@@ -5,6 +5,6 @@ fields:
    player: Player?, relation(name=player_completed_achievements)
    achievement: Achievement?, relation(name=achievements_completed)
 indexes:
-   enrollment_index_idx:
+   completed_achievements_enrollment_idx:
       fields: playerId, achievementId
       unique: true

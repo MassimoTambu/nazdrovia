@@ -1,0 +1,12 @@
+class: Translation
+table: translations
+
+fields:
+   text: Texts?, relation(onUpdate=Cascade, onDelete=Cascade)
+   languageCode: String
+   translatedText: String
+indexes:
+   translations_text_idx:
+      fields: textId
+   translations_language_code_idx:
+      fields: languageCode
