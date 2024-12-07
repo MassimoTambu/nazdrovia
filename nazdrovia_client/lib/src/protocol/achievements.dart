@@ -12,7 +12,7 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'texts.dart' as _i2;
 import 'achievement_categories.dart' as _i3;
-import 'achievements_obtained.dart' as _i4;
+import 'completed_achievements.dart' as _i4;
 
 abstract class Achievement implements _i1.SerializableModel {
   Achievement._({

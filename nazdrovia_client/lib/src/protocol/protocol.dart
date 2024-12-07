@@ -12,7 +12,7 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'achievement_categories.dart' as _i2;
 import 'achievements.dart' as _i3;
-import 'achievements_obtained.dart' as _i4;
+import 'completed_achievements.dart' as _i4;
 import 'players.dart' as _i5;
 import 'rule_categories.dart' as _i6;
 import 'rules.dart' as _i7;
@@ -26,7 +26,7 @@ import 'package:nazdrovia_client/src/protocol/rule_categories.dart' as _i13;
 import 'package:nazdrovia_client/src/protocol/texts.dart' as _i14;
 export 'achievement_categories.dart';
 export 'achievements.dart';
-export 'achievements_obtained.dart';
+export 'completed_achievements.dart';
 export 'players.dart';
 export 'rule_categories.dart';
 export 'rules.dart';

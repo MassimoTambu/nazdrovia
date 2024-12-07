@@ -20,15 +20,15 @@ class AdminAchievementCategoryContainer extends ConsumerWidget {
         ref.watch(currentAdminAchievementCategoryContainerProvider);
     return Column(children: [
       if (achievementCategory.achievements?.isEmpty ?? true)
-        Text(context.tr.noRulesFound)
+        Text(context.tr.noAchievementsFound)
       else
         ListView.builder(
           shrinkWrap: true,
           itemCount: achievementCategory.achievements!.length,
           itemBuilder: (context, index) {
             final rule = achievementCategory.achievements![index];
-            final title = ref.watch(textProvider(rule.title!.id!));
-            final description = ref.watch(textProvider(rule.description!.id!));
+            final title = ref.watch(textProvider(rule.titleId));
+            final description = ref.watch(textProvider(rule.descriptionId));
             return ListTile(
               title: Text(title),
               subtitle: Text(description),

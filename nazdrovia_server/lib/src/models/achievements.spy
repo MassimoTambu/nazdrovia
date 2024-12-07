@@ -5,7 +5,7 @@ fields:
    title: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
    description: Texts?, relation(onUpdate=Cascade, onDelete=SetNull)
    nasScore: int
-   category: AchievementCategory?, relation(onUpdate=Cascade, onDelete=SetNull)
+   category: AchievementCategory?, relation(name=achievement_categories, onUpdate=Cascade, onDelete=SetNull)
    image: String?
    playersWithAchievement: List<CompletedAchievements>?, relation(name=achievements_completed)
    displayOrder: int, default=0

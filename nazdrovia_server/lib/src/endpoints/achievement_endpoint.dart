@@ -20,7 +20,29 @@ class AchievementEndpoint extends Endpoint {
   }
 
   Future<void> insert(Session session, Achievement achievement) async {
-    await Achievement.db.insertRow(session, achievement);
+    if (achievement.title == null) throw Exception('Title must be set');
+    if (achievement.description == null) {
+      throw Exception('Description must be set');
+    }
+
+    await session.db.transaction((transaction) async {
+      var titleText = achievement.title!;
+      titleText = await Texts.db
+          .insertRow(session, titleText, transaction: transaction);
+      var descriptionText = achievement.description!;
+      descriptionText = await Texts.db
+          .insertRow(session, descriptionText, transaction: transaction);
+
+      achievement = achievement.copyWith(
+        title: titleText,
+        titleId: titleText.id,
+        description: descriptionText,
+        descriptionId: descriptionText.id,
+      );
+
+      await Achievement.db
+          .insertRow(session, achievement, transaction: transaction);
+    });
   }
 
   Future<void> update(Session session, Achievement achievement) async {

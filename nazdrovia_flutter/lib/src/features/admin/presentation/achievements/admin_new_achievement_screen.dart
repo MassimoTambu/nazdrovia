@@ -54,6 +54,7 @@ class AdminNewAchievementScreen extends HookConsumerWidget {
                     controller: descriptionController,
                     decoration: InputDecoration(
                         labelText: '${context.tr.enterDescription}*'),
+                    maxLines: 8,
                     validator: (value) => switch (value) {
                       null || '' => context.tr.mandatoryField,
                       _ => null
@@ -85,11 +86,12 @@ class AdminNewAchievementScreen extends HookConsumerWidget {
                         filled: true,
                         contentPadding: EdgeInsets.symmetric(vertical: 5.0),
                       ),
-                      dropdownMenuEntries: categories.map((e) {
-                        final text = ref.watch(textProvider(e.category!.id!));
+                      dropdownMenuEntries: categories.map((category) {
+                        final text =
+                            ref.watch(textProvider(category.categoryId));
 
                         return DropdownMenuEntry(
-                          value: e,
+                          value: category,
                           label: text,
                         );
                       }).toList(),

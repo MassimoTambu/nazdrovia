@@ -13,7 +13,7 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
 import 'achievement_categories.dart' as _i3;
 import 'achievements.dart' as _i4;
-import 'achievements_obtained.dart' as _i5;
+import 'completed_achievements.dart' as _i5;
 import 'players.dart' as _i6;
 import 'rule_categories.dart' as _i7;
 import 'rules.dart' as _i8;
@@ -27,7 +27,7 @@ import 'package:nazdrovia_server/src/generated/rule_categories.dart' as _i14;
 import 'package:nazdrovia_server/src/generated/texts.dart' as _i15;
 export 'achievement_categories.dart';
 export 'achievements.dart';
-export 'achievements_obtained.dart';
+export 'completed_achievements.dart';
 export 'players.dart';
 export 'rule_categories.dart';
 export 'rules.dart';
@@ -161,12 +161,6 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int',
           columnDefault: '0',
         ),
-        _i2.ColumnDefinition(
-          name: '_achievementCategoriesAchievementsAchievementCategoriesId',
-          columnType: _i2.ColumnType.bigint,
-          isNullable: true,
-          dartType: 'int?',
-        ),
       ],
       foreignKeys: [
         _i2.ForeignKeyDefinition(
@@ -197,18 +191,6 @@ class Protocol extends _i1.SerializationManagerServer {
           referenceColumns: ['id'],
           onUpdate: _i2.ForeignKeyAction.cascade,
           onDelete: _i2.ForeignKeyAction.setNull,
-          matchType: null,
-        ),
-        _i2.ForeignKeyDefinition(
-          constraintName: 'achievements_fk_3',
-          columns: [
-            '_achievementCategoriesAchievementsAchievementCategoriesId'
-          ],
-          referenceTable: 'achievement_categories',
-          referenceTableSchema: 'public',
-          referenceColumns: ['id'],
-          onUpdate: _i2.ForeignKeyAction.noAction,
-          onDelete: _i2.ForeignKeyAction.noAction,
           matchType: null,
         ),
       ],

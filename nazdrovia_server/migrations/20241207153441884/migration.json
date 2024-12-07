@@ -1,0 +1,45 @@
+{
+  "actions": [
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "achievements",
+        "schema": "public",
+        "addColumns": [],
+        "deleteColumns": [
+          "_achievementCategoriesAchievementsAchievementCategoriesId"
+        ],
+        "modifyColumns": [],
+        "addIndexes": [],
+        "deleteIndexes": [],
+        "addForeignKeys": [],
+        "deleteForeignKeys": [
+          "achievements_fk_3"
+        ],
+        "warnings": [
+          {
+            "type": "columnDropped",
+            "message": "Column \"_achievementCategoriesAchievementsAchievementCategoriesId\" of table \"achievements\" will be dropped.",
+            "table": "achievements",
+            "columns": [
+              "_achievementCategoriesAchievementsAchievementCategoriesId"
+            ],
+            "destrucive": true
+          }
+        ]
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "columnDropped",
+      "message": "Column \"_achievementCategoriesAchievementsAchievementCategoriesId\" of table \"achievements\" will be dropped.",
+      "table": "achievements",
+      "columns": [
+        "_achievementCategoriesAchievementsAchievementCategoriesId"
+      ],
+      "destrucive": true
+    }
+  ],
+  "migrationApiVersion": 1
+}

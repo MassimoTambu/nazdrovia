@@ -211,8 +211,7 @@ class AchievementCategoryTable extends _i1.Table {
     ___achievements = _i1.createRelationTable(
       relationFieldName: '__achievements',
       field: AchievementCategory.t.id,
-      foreignField: _i3.Achievement.t
-          .$_achievementCategoriesAchievementsAchievementCategoriesId,
+      foreignField: _i3.Achievement.t.categoryId,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
           _i3.AchievementTable(tableRelation: foreignTableRelation),
@@ -225,8 +224,7 @@ class AchievementCategoryTable extends _i1.Table {
     var relationTable = _i1.createRelationTable(
       relationFieldName: 'achievements',
       field: AchievementCategory.t.id,
-      foreignField: _i3.Achievement.t
-          .$_achievementCategoriesAchievementsAchievementCategoriesId,
+      foreignField: _i3.Achievement.t.categoryId,
       tableRelation: tableRelation,
       createTable: (foreignTableRelation) =>
           _i3.AchievementTable(tableRelation: foreignTableRelation),
@@ -481,18 +479,11 @@ class AchievementCategoryAttachRepository {
     }
 
     var $achievement = achievement
-        .map((e) => _i3.AchievementImplicit(
-              e,
-              $_achievementCategoriesAchievementsAchievementCategoriesId:
-                  achievementCategory.id,
-            ))
+        .map((e) => e.copyWith(categoryId: achievementCategory.id))
         .toList();
     await session.db.update<_i3.Achievement>(
       $achievement,
-      columns: [
-        _i3.Achievement.t
-            .$_achievementCategoriesAchievementsAchievementCategoriesId
-      ],
+      columns: [_i3.Achievement.t.categoryId],
       transaction: transaction,
     );
   }
@@ -536,17 +527,10 @@ class AchievementCategoryAttachRowRepository {
       throw ArgumentError.notNull('achievementCategory.id');
     }
 
-    var $achievement = _i3.AchievementImplicit(
-      achievement,
-      $_achievementCategoriesAchievementsAchievementCategoriesId:
-          achievementCategory.id,
-    );
+    var $achievement = achievement.copyWith(categoryId: achievementCategory.id);
     await session.db.updateRow<_i3.Achievement>(
       $achievement,
-      columns: [
-        _i3.Achievement.t
-            .$_achievementCategoriesAchievementsAchievementCategoriesId
-      ],
+      columns: [_i3.Achievement.t.categoryId],
       transaction: transaction,
     );
   }
@@ -564,18 +548,11 @@ class AchievementCategoryDetachRepository {
       throw ArgumentError.notNull('achievement.id');
     }
 
-    var $achievement = achievement
-        .map((e) => _i3.AchievementImplicit(
-              e,
-              $_achievementCategoriesAchievementsAchievementCategoriesId: null,
-            ))
-        .toList();
+    var $achievement =
+        achievement.map((e) => e.copyWith(categoryId: null)).toList();
     await session.db.update<_i3.Achievement>(
       $achievement,
-      columns: [
-        _i3.Achievement.t
-            .$_achievementCategoriesAchievementsAchievementCategoriesId
-      ],
+      columns: [_i3.Achievement.t.categoryId],
       transaction: transaction,
     );
   }
@@ -593,16 +570,10 @@ class AchievementCategoryDetachRowRepository {
       throw ArgumentError.notNull('achievement.id');
     }
 
-    var $achievement = _i3.AchievementImplicit(
-      achievement,
-      $_achievementCategoriesAchievementsAchievementCategoriesId: null,
-    );
+    var $achievement = achievement.copyWith(categoryId: null);
     await session.db.updateRow<_i3.Achievement>(
       $achievement,
-      columns: [
-        _i3.Achievement.t
-            .$_achievementCategoriesAchievementsAchievementCategoriesId
-      ],
+      columns: [_i3.Achievement.t.categoryId],
       transaction: transaction,
     );
   }
